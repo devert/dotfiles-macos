@@ -7,8 +7,7 @@
       "Bash(cat:*)",
       "Bash(find:*)",
       "mcp__context7__resolve-library-id",
-      "mcp__context7__get-library-docs",
-      "mcp__linear__get_issue"
+      "mcp__context7__get-library-docs"
     ],
     "deny": [],
     "ask": [],
