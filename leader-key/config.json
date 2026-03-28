@@ -92,6 +92,12 @@
     {
       "actions" : [
         {
+          "key" : "i",
+          "label" : "Insomnia",
+          "type" : "application",
+          "value" : "/Applications/Insomnia.app"
+        },
+        {
           "iconPath" : "/System/Applications/Messages.app",
           "key" : "m",
           "label" : "Messages",
