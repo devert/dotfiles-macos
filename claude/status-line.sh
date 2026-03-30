@@ -11,29 +11,28 @@ dir=$(basename "$cwd")
 if git -C "$cwd" rev-parse --git-dir >/dev/null 2>&1; then
   branch=$(git -C "$cwd" rev-parse --abbrev-ref HEAD 2>/dev/null)
 
-  # Ahead/behind remote
+  # Ahead/behind remote (green)
   upstream=$(git -C "$cwd" rev-parse --abbrev-ref '@{upstream}' 2>/dev/null)
-  git_extras=""
+  remote_info=""
   if [ -n "$upstream" ]; then
     ahead=$(git -C "$cwd" rev-list --count '@{upstream}..HEAD' 2>/dev/null)
     behind=$(git -C "$cwd" rev-list --count 'HEAD..@{upstream}' 2>/dev/null)
-    [ "$ahead" -gt 0 ] 2>/dev/null && git_extras="${git_extras} ↑${ahead}"
-    [ "$behind" -gt 0 ] 2>/dev/null && git_extras="${git_extras} ↓${behind}"
+    [ "$ahead" -gt 0 ] 2>/dev/null && remote_info="${remote_info} ↑${ahead}"
+    [ "$behind" -gt 0 ] 2>/dev/null && remote_info="${remote_info} ↓${behind}"
   fi
 
-  # Staged files
+  # Staged/unstaged/untracked (yellow)
+  status_info=""
   staged=$(git -C "$cwd" diff --cached --numstat 2>/dev/null | wc -l | tr -d ' ')
-  [ "$staged" -gt 0 ] && git_extras="${git_extras} +${staged}"
+  [ "$staged" -gt 0 ] && status_info="${status_info} +${staged}"
 
-  # Unstaged/modified files
   unstaged=$(git -C "$cwd" diff --numstat 2>/dev/null | wc -l | tr -d ' ')
-  [ "$unstaged" -gt 0 ] && git_extras="${git_extras} !${unstaged}"
+  [ "$unstaged" -gt 0 ] && status_info="${status_info} !${unstaged}"
 
-  # Untracked files
   untracked=$(git -C "$cwd" ls-files --others --exclude-standard 2>/dev/null | wc -l | tr -d ' ')
-  [ "$untracked" -gt 0 ] && git_extras="${git_extras} ?${untracked}"
+  [ "$untracked" -gt 0 ] && status_info="${status_info} ?${untracked}"
 
-  git_info=" \033[36m$branch\033[0m\033[32m$git_extras\033[0m"
+  git_info=" \033[36m$branch\033[0m\033[32m$remote_info\033[0m\033[33m$status_info\033[0m"
 else
   git_info=''
 fi
@@ -54,5 +53,5 @@ else
   rl_int=0
 fi
 
-printf "\033[32m%s\033[0m%b\033[90m | %s\033[0m \033[33m[C:%d%%]\033[0m\033[90m | \033[33m[U:%d%%]\033[0m" \
+printf "\033[32m%s\033[0m%b\033[90m | %s\033[0m \033[34m[%d%%]\033[0m\033[90m | Usage \033[34m[%d%%]\033[0m" \
   "$dir" "$git_info" "$model" "$ctx_int" "$rl_int"
