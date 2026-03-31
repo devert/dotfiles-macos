@@ -21,7 +21,7 @@ if git -C "$cwd" rev-parse --git-dir >/dev/null 2>&1; then
     [ "$behind" -gt 0 ] 2>/dev/null && remote_info="${remote_info} ↓${behind}"
   fi
 
-  # Staged/unstaged/untracked (yellow)
+  # Staged/unstaged (yellow)
   status_info=""
   staged=$(git -C "$cwd" diff --cached --numstat 2>/dev/null | wc -l | tr -d ' ')
   [ "$staged" -gt 0 ] && status_info="${status_info} +${staged}"
@@ -29,10 +29,12 @@ if git -C "$cwd" rev-parse --git-dir >/dev/null 2>&1; then
   unstaged=$(git -C "$cwd" diff --numstat 2>/dev/null | wc -l | tr -d ' ')
   [ "$unstaged" -gt 0 ] && status_info="${status_info} !${unstaged}"
 
+  # Untracked (blue)
   untracked=$(git -C "$cwd" ls-files --others --exclude-standard 2>/dev/null | wc -l | tr -d ' ')
-  [ "$untracked" -gt 0 ] && status_info="${status_info} ?${untracked}"
+  untracked_info=""
+  [ "$untracked" -gt 0 ] && untracked_info=" ?${untracked}"
 
-  git_info=" \033[36m$branch\033[0m\033[32m$remote_info\033[0m\033[33m$status_info\033[0m"
+  git_info=" \033[36m$branch\033[0m\033[32m$remote_info\033[0m\033[33m$status_info\033[0m\033[34m$untracked_info\033[0m"
 else
   git_info=''
 fi
@@ -53,5 +55,5 @@ else
   rl_int=0
 fi
 
-printf "\033[32m%s\033[0m%b\033[90m | %s\033[0m \033[34m[%d%%]\033[0m\033[90m | Usage \033[34m[%d%%]\033[0m" \
+printf "\033[32m%s\033[0m%b\n\033[90m%s | Context \033[34m[%d%%]\033[90m | Usage \033[34m[%d%%]\033[0m" \
   "$dir" "$git_info" "$model" "$ctx_int" "$rl_int"
