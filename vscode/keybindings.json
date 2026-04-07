@@ -166,7 +166,7 @@
   {
     "key": "alt+space",
     "command": "editor.action.inlineSuggest.trigger",
-    "when": "config.github.copilot.inlineSuggest.enable && editorTextFocus && !editorHasSelection && !inlineSuggestionsVisible"
+    "when": "editorTextFocus && !editorReadonly"
   },
   {
     "key": "ctrl+j",

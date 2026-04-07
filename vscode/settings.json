@@ -140,7 +140,6 @@
   "editor.acceptSuggestionOnCommitCharacter": false,
   "editor.parameterHints.enabled": false,
   "editor.linkedEditing": true,
-  "editor.inlineSuggest.enabled": true,
   "editor.lightbulb.enabled": "off",
   "editor.scrollbar.horizontal": "hidden",
   "editor.scrollbar.vertical": "hidden",
@@ -203,13 +202,13 @@
 
   "git.openRepositoryInParentFolders": "never",
 
-  // Github Copilot
+  // GitHub Copilot
   // ---------------------------------------------------------------------------
 
+  "editor.inlineSuggest.enabled": false, // Allow toggling inline suggestions. See keybindings.json.
   "github.copilot.nextEditSuggestions.enabled": true,
   "github.copilot.editor.enableCodeActions": false,
   "github.copilot.enable": {
-    "*": true,
     "plaintext": false,
     "markdown": false,
     "scminput": false
