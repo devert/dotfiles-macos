@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # Make user-level directories for MCP
-mkdir -p ~/.mcp ~/.mcp/servers
+# mkdir -p ~/.mcp ~/.mcp/servers
 
 # MCP config file symlinks
-sudo ln -sfn ~/.dotfiles/mcp/mcp-config.json ~/.mcp/mcp-config.json
+# sudo ln -sfn ~/.dotfiles/mcp/mcp-config.json ~/.mcp/mcp-config.json
 
 # Symlink for Claude Code
 sudo mkdir -p /Library/Application\ Support/ClaudeCode
