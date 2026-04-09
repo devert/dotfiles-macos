@@ -8,6 +8,7 @@ This is a macOS dotfiles repository using modular organization with individual i
 
 **Repository**: `git@github.com:devert/dotfiles-osx.git`
 **Primary Shell**: Zsh with Oh-My-Zsh framework
+**Primary Terminal**: Ghostty
 
 ## Architecture & Organization
 
@@ -23,17 +24,21 @@ The repository follows a **component-based structure** where each tool/applicati
 zsh/          # Shell configuration (Oh-My-Zsh, Powerlevel10k, custom functions/aliases)
 neovim/       # Neovim with lazy.nvim plugin manager
 vscode/       # VS Code settings, keybindings, snippets, extensions
-git/          # Git config with 40+ aliases, GitHub CLI config
+git/          # Git config with aliases, GitHub CLI config
 brew/         # Homebrew package and cask installation
 macos/        # System defaults configuration (100+ settings)
 ghostty/      # Ghostty terminal emulator configuration
-iterm/        # iTerm2 configuration and themes
-node/         # NVM and default npm packages
+node/         # FNM (Fast Node Manager) setup
 python/       # PyEnv and virtualenv setup
 karabiner/    # Keyboard remapping configuration
 leader-key/   # Configuration for Leader Key application (https://github.com/mikker/LeaderKey.app)
-tmux/         # Tmux multiplexer configuration
+tmux/         # Tmux multiplexer configuration with tpm plugins
 fonts/        # Custom fonts installation
+claude/       # Claude Code settings, rules, and status line configuration
+mcp/          # Model Context Protocol server configuration
+contexts/     # Contexts window switching app configuration (https://contexts.co/)
+homerow/      # Homerow keyboard-driven UI navigation configuration (https://www.homerow.app/)
+yazi/         # Yazi terminal file manager configuration (https://github.com/sxyazi/yazi)
 ```
 
 ## Installation Flow
@@ -44,7 +49,7 @@ The setup follows a specific sequence (from README.md):
 2. **Clone repository** to `~/.dotfiles`
 3. **MacOS defaults**: `./macos/install.sh`
 4. **Homebrew packages**: `./brew/install.sh`
-5. **Runtimes**: Node (NVM) and Python (PyEnv)
+5. **Runtimes**: Node (FNM) and Python (PyEnv)
 6. **Zsh (two-step process)**:
    - `./zsh/install.sh` - Installs Zsh and Oh-My-Zsh
    - `reload` - Reload shell
@@ -91,7 +96,7 @@ zshconfig   # Open ~/.zshrc in editor
 
 ### Git Workflow
 
-The git configuration includes 40+ aliases. Most commonly used:
+The git configuration includes 66+ aliases. Most commonly used:
 
 ```bash
 git s         # Status
@@ -126,6 +131,15 @@ kgpg [search-term]       # Get pods with optional grep
 kubesh pod-name-fragment # Shell into pod matching name
 ```
 
+### Modern CLI Tool Replacements
+
+```bash
+ls / lsa / lt  # eza aliases (replaces ls) with --group-directories-first
+y               # yazi terminal file manager
+bat             # Cat clone with syntax highlighting (installed via Homebrew)
+nvm             # Aliased to fnm for backward compatibility
+```
+
 ### VS Code Extensions
 
 ```bash
@@ -142,10 +156,11 @@ code --list-extensions | xargs -L 1 echo code --install-extension
 
 The shell configuration is **performance-optimized**:
 
-- `.zprofile` manually exports paths instead of using `eval` commands (faster startup)
-- Paths are hardcoded rather than dynamically generated
+- `.zprofile` manually exports paths instead of using `eval` commands (faster startup), with the exception of FNM which requires `eval`
+- Paths are hardcoded rather than dynamically generated where possible
 - Plugins are carefully selected to minimize startup time
 - `vi-mode` plugin loaded before `fzf` to avoid keybinding conflicts
+- FNM plugin commented out in `.zshrc` in favor of eval in `.zprofile` for speed
 
 **Example from `.zprofile`**:
 
@@ -154,6 +169,9 @@ The shell configuration is **performance-optimized**:
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+
+# FNM requires eval for use-on-cd functionality
+eval "$(fnm env --use-on-cd)"
 ```
 
 ### 2. FZF Integration
@@ -176,7 +194,7 @@ Vi keybindings are enabled across:
 
 The Monokai Pro color scheme is unified across all tools:
 
-- Ghostty, iTerm2, Warp terminals
+- Ghostty terminal
 - VS Code, Neovim editors
 - FZF fuzzy finder
 
@@ -212,10 +230,10 @@ Most installers:
 ### Active Oh-My-Zsh Plugins
 
 ```bash
-plugins=(git kubectl nvm zoxide zsh-autosuggestions zsh-syntax-highlighting vi-mode fzf)
+plugins=(git history-substring-search zoxide zsh-autosuggestions zsh-syntax-highlighting vi-mode fzf)
 ```
 
-Plugin order matters: `vi-mode` before `fzf` to prevent keybinding conflicts.
+Plugin order matters: `vi-mode` before `fzf` to prevent keybinding conflicts. The `fnm` plugin is commented out in favor of eval in `.zprofile` for faster startup.
 
 ## Neovim Configuration
 
@@ -230,32 +248,61 @@ Key plugins: LSP, Telescope (fuzzy finder), Tree-sitter, Neo-tree, Which-key, Mo
 
 ## VS Code Configuration
 
-The VS Code install script manages **80+ extensions** programmatically via `code --install-extension`. Extensions are version-controlled in the install script rather than via VS Code sync.
+The VS Code install script manages **44 extensions** programmatically via `code --install-extension`. Extensions are version-controlled in the install script rather than via VS Code sync.
 
 Configuration includes:
 
-- Custom settings (13KB file)
+- Custom settings
 - Custom keybindings
 - Code snippets
-- Monokai Pro theme
+- Monokai Pro theme and icon theme
+- Operator Mono font with JetBrainsMonoNL Nerd Font as fallback
+- Vim integration with Neovim enabled (leader key = Space)
+- Copilot inline suggestions disabled by default, togglable via keybinding
 - Multiple language formatters
 
 ## Git Configuration Philosophy
 
-Git aliases follow a pattern:
+Git aliases follow a pattern (66+ total):
 
 - **Single-letter shortcuts**: Ultra-common operations (a, b, c, d, s)
 - **Multi-letter names**: Compound operations (amend, uncommit, delete-merged-branches)
 - **Aliases that chain aliases**: e.g., `dmb` combines multiple operations
-- **Uses git-extras**: For advanced functionality
+- **Uses git-extras**: For advanced functionality (delete-branch, rename-branch, etc.)
 
-## Terminal Emulator Options
+## Terminal Emulator
 
-**Primary**: Ghostty (actively maintained, custom split/scroll keybindings)
-**Previous Primary**: iTerm2 (fully configured with preferences backup)
-**Alternative**: Warp (configuration included)
+**Primary**: Ghostty (custom split/scroll keybindings, Monokai Pro theme)
 
-All use Operator Mono font with Monokai Pro color palette.
+- Operator Mono font at 16pt
+- Custom keybindings for split management (Opt+h/j/k/l for resize)
+- Quick terminal shortcut: Shift+Ctrl+Opt+Cmd+U
+- Window maximized by default
+
+## Claude Code Configuration
+
+Configuration lives in `claude/` and includes:
+
+- `settings.json`: Core settings (model, permissions, status line, auto-update disabled)
+- `status-line.sh`: Custom status line showing directory, git branch/status, model, context usage %, and rate limit %
+- `rules/git.md`: Commit rules (no structured formatting, request review before committing)
+- `rules/github.md`: PR rules (assign to @devert, no "Co-Authored-By" lines, no "Created with Claude Code")
+
+## MCP Server Configuration
+
+MCP server configs in `mcp/` are symlinked to both Claude Code and VS Code:
+
+- **chrome-devtools-mcp**: Browser automation and DevTools access
+- **context7**: Documentation and context lookup
+- **playwright**: Web testing and browser automation
+
+## Tmux Configuration
+
+- **Prefix**: Ctrl+Space (not default Ctrl+b)
+- **Status bar**: Hidden
+- **Plugins** (via tpm): tmux-fzf-url, tmux-jump, extrakto
+- **Vi mode** for copy mode
+- **Passthrough**: Enabled (for Ghostty shell integration)
 
 ## Adding New Components
 
@@ -281,11 +328,14 @@ To add a new tool configuration:
 - fzf, ripgrep, zoxide
 - neovim, zsh
 - pyenv, pyenv-virtualenv
-- httpie, jq, tree, yarn
+- fnm (Fast Node Manager)
+- eza, bat, yazi
+- jq, tmux, curl
 
-**Terminal emulators**: iTerm2, Ghostty, Warp
+**Terminal emulator**: Ghostty
 **Editors**: Neovim, VS Code
-**Language runtimes**: NVM (Node.js), PyEnv (Python)
+**Language runtimes**: FNM (Node.js), PyEnv (Python)
+**Productivity apps**: Contexts, Homerow, Leader Key
 
 ## Working with This Repository
 
@@ -319,10 +369,9 @@ These are automatically sourced by Oh-My-Zsh via the ZSH_CUSTOM mechanism.
 
 This dotfiles setup is optimized for fast shell startup:
 
-- Hardcoded paths in `.zprofile` instead of `eval` commands
-- Minimal plugin set in Oh-My-Zsh
+- Hardcoded paths in `.zprofile` instead of `eval` commands (exception: FNM requires eval)
+- Minimal plugin set in Oh-My-Zsh (FNM plugin commented out in favor of eval in .zprofile)
 - Powerlevel10k instant prompt enabled
-- NVM lazy loading considered (currently disabled for compatibility)
 - Completion security checks disabled
 
 Use `timesh` to measure and track shell startup performance.
