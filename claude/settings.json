@@ -1,19 +1,33 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
     "DISABLE_AUTOUPDATER": "1"
   },
   "attribution": {
+    "commit": "",
     "pr": ""
   },
   "permissions": {
     "allow": [
       "Bash(cat:*)",
+      "Bash(chmod:*)",
       "Bash(find:*)",
-      "mcp__context7__resolve-library-id",
-      "mcp__context7__get-library-docs"
+      "Bash(git:*)",
+      "Bash(grep:*)",
+      "Bash(ls:*)",
+      "Read",
+      "WebSearch",
+      "WebFetch",
+      "mcp__context7__*"
     ],
-    "deny": [],
-    "ask": [],
+    "deny": [
+      "Bash(curl *)",
+      "Read(.env)",
+      "Read(.env.*)",
+      "Bash(rm -rf *)",
+      "Read(~/.ssh/**)"
+    ],
+    "ask": ["Bash(rm *)", "Bash(git commit *)", "Bash(git push *)"],
     "defaultMode": "acceptEdits"
   },
   "statusLine": {
@@ -21,7 +35,6 @@
     "command": "bash ~/.claude/status-line.sh"
   },
   "alwaysThinkingEnabled": true,
-  "commit": {
-    "coAuthoredBy": false
-  }
+  "includeCoAuthoredBy": false,
+  "respectGitignore": false
 }
