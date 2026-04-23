@@ -9,7 +9,10 @@ dir=$(basename "$cwd")
 
 # Git info
 if git -C "$cwd" rev-parse --git-dir >/dev/null 2>&1; then
-  branch=$(git -C "$cwd" rev-parse --abbrev-ref HEAD 2>/dev/null)
+  branch=$(git -C "$cwd" symbolic-ref --short HEAD 2>/dev/null)
+  if [ -z "$branch" ]; then
+    branch="($(git -C "$cwd" rev-parse --short HEAD 2>/dev/null))"
+  fi
 
   # Ahead/behind remote (green)
   upstream=$(git -C "$cwd" rev-parse --abbrev-ref '@{upstream}' 2>/dev/null)
