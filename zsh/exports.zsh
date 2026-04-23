@@ -6,7 +6,7 @@ export FNM_DIR="/Users/devert/.local/share/fnm"
 export FNM_VERSION_FILE_STRATEGY="local"
 export FNM_LOGLEVEL="info"
 export FNM_NODE_DIST_MIRROR="https://nodejs.org/dist"
-export FNM_COREPACK_ENABLED="true"
+export FNM_COREPACK_ENABLED="false"
 export FNM_RESOLVE_ENGINES="true"
 export FNM_ARCH="arm64"
 
