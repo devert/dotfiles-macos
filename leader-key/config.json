@@ -147,6 +147,12 @@
           "value" : "/Applications/1Password.app"
         },
         {
+          "key" : "s",
+          "label" : "Slack",
+          "type" : "application",
+          "value" : "/Applications/Slack.app"
+        },
+        {
           "iconPath" : "/Applications/Claude.app",
           "key" : "c",
           "label" : "Claude",
