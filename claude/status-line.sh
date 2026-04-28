@@ -5,6 +5,7 @@ input=$(cat)
 # Directory and model
 cwd=$(echo "$input" | jq -r '.workspace.current_dir')
 model=$(echo "$input" | jq -r '.model.display_name')
+effort=$(jq -r '.effortLevel // empty' ~/.claude/settings.json 2>/dev/null)
 dir=$(basename "$cwd")
 
 # Git info
@@ -58,5 +59,8 @@ else
   rl_int=0
 fi
 
+model_display="$model"
+[ -n "$effort" ] && model_display="$model ($effort)"
+
 printf "\033[32m%s\033[0m%b\n\033[90m%s | Context \033[34m[%d%%]\033[90m | Usage \033[34m[%d%%]\033[0m" \
-  "$dir" "$git_info" "$model" "$ctx_int" "$rl_int"
+  "$dir" "$git_info" "$model_display" "$ctx_int" "$rl_int"
