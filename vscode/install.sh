@@ -14,6 +14,7 @@ if [[ $? -eq 0 ]];then
     if [[ $configresponse =~ ^(y|yes|Y) ]];then
         echo "Installing extensions please wait..."
 
+        code --install-extension alduncanson.react-hooks-snippets
         code --install-extension alefragnani.project-manager
         code --install-extension ambooth.git-rename
         code --install-extension bpruitt-goddard.mermaid-markdown-syntax-highlighting
@@ -22,13 +23,14 @@ if [[ $? -eq 0 ]];then
         code --install-extension chakrounanas.turbo-console-log
         code --install-extension davidanson.vscode-markdownlint
         code --install-extension dbaeumer.vscode-eslint
+        code --install-extension deinsoftware.vitest-snippets
         code --install-extension donjayamanne.githistory
         code --install-extension dsznajder.es7-react-js-snippets
         code --install-extension earshinov.permute-lines
         code --install-extension editorconfig.editorconfig
         code --install-extension esbenp.prettier-vscode
+        code --install-extension formulahendry.code-runner
         code --install-extension frhtylcn.pythonsnippets
-        code --install-extension github.copilot-chat
         code --install-extension johnnymorganz.stylua
         code --install-extension kevinrose.vsc-python-indent
         code --install-extension monokai.theme-monokai-pro-vscode
@@ -46,12 +48,14 @@ if [[ $? -eq 0 ]];then
         code --install-extension mskelton.playwright-test-snippets
         code --install-extension naumovs.color-highlight
         code --install-extension njpwerner.autodocstring
+        code --install-extension planbcoding.vscode-react-refactor
         code --install-extension rog2.luacheck
         code --install-extension rust-lang.rust-analyzer
         code --install-extension sleistner.vscode-fileutils
         code --install-extension streetsidesoftware.code-spell-checker
         code --install-extension sumneko.lua
         code --install-extension tamasfe.even-better-toml
+        code --install-extension tauri-apps.tauri-vscode
         code --install-extension techer.open-in-browser
         code --install-extension vitest.explorer
         code --install-extension vscodevim.vim
