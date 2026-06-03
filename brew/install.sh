@@ -30,9 +30,9 @@ brew link --overwrite git-sync
 
 brew install jq
 brew install neovim
-brew install anomalyco/tap/opencode
 brew install ripgrep
 brew install tmux
+brew install uv
 brew install zoxide
 brew install zsh
 
