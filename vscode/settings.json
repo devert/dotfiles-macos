@@ -255,7 +255,8 @@
     ".babelrc": "json",
     ".prettierrc": "json",
     ".eslintrc.json": "jsonc",
-    "tsconfig.json": "jsonc"
+    "tsconfig.json": "jsonc",
+    "**/{.vscode,vscode}/*.json": "jsonc"
   },
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
