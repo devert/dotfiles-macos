@@ -25,6 +25,8 @@ brew install git-extras
 brew install gh
 
 # Conflicts with git-extras sync, so override
+brew tap jacobwgillespie/tap
+brew trust --formula jacobwgillespie/tap/git-sync
 brew install jacobwgillespie/tap/git-sync
 brew link --overwrite git-sync
 
