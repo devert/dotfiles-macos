@@ -8,9 +8,12 @@ brew install leader-key
 # Configure Leader Key
 echo "Configuring Leader Key..."
 
+# Ensure parent config directory exists
+mkdir -p "$HOME/.config"
+
 # Create a symlink so the entire Leader Key folder points to the dotfiles config
 export LEADER_KEY_CONFIG_DIR="$HOME/.config/leader-key"
-mkdir -p "$LEADER_KEY_CONFIG_DIR"
+
 ln -sfn "$HOME/.dotfiles/leader-key" "$LEADER_KEY_CONFIG_DIR"
 
 # Additional Leader Key configuration using defaults write

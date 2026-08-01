@@ -92,10 +92,37 @@
     {
       "actions" : [
         {
+          "iconPath" : "/Applications/1Password.app",
+          "key" : "1",
+          "label" : "1Password",
+          "type" : "application",
+          "value" : "/Applications/1Password.app"
+        },
+        {
+          "iconPath" : "/Applications/Claude.app",
+          "key" : "c",
+          "label" : "Claude",
+          "type" : "application",
+          "value" : "/Applications/Claude.app"
+        },
+        {
+          "iconPath" : "/Applications/Docker.app",
+          "key" : "d",
+          "label" : "Docker",
+          "type" : "url",
+          "value" : "raycast://extensions/k4lok/open-docker/open-docker"
+        },
+        {
           "key" : "i",
           "label" : "Insomnia",
           "type" : "application",
           "value" : "/Applications/Insomnia.app"
+        },
+        {
+          "iconPath" : "/Applications/Linear.app",
+          "key" : "l",
+          "type" : "application",
+          "value" : "/Applications/Linear.app"
         },
         {
           "iconPath" : "/System/Applications/Messages.app",
@@ -112,13 +139,6 @@
           "value" : "/Applications/Notion.app"
         },
         {
-          "iconPath" : "/Applications/Docker.app",
-          "key" : "d",
-          "label" : "Docker",
-          "type" : "url",
-          "value" : "raycast://extensions/k4lok/open-docker/open-docker"
-        },
-        {
           "iconPath" : "/Applications/Plex.app",
           "key" : "p",
           "label" : "Plex",
@@ -126,11 +146,10 @@
           "value" : "/Applications/Plex.app"
         },
         {
-          "iconPath" : "/Applications/zoom.us.app",
-          "key" : "z",
-          "label" : "Zoom",
+          "key" : "s",
+          "label" : "Slack",
           "type" : "application",
-          "value" : "/Applications/zoom.us.app"
+          "value" : "/Applications/Slack.app"
         },
         {
           "iconPath" : "/Applications/Ghostty.app",
@@ -140,24 +159,11 @@
           "value" : "/Applications/Ghostty.app"
         },
         {
-          "iconPath" : "/Applications/1Password.app",
-          "key" : "1",
-          "label" : "1Password",
+          "iconPath" : "/Applications/zoom.us.app",
+          "key" : "z",
+          "label" : "Zoom",
           "type" : "application",
-          "value" : "/Applications/1Password.app"
-        },
-        {
-          "key" : "s",
-          "label" : "Slack",
-          "type" : "application",
-          "value" : "/Applications/Slack.app"
-        },
-        {
-          "iconPath" : "/Applications/Claude.app",
-          "key" : "c",
-          "label" : "Claude",
-          "type" : "application",
-          "value" : "/Applications/Claude.app"
+          "value" : "/Applications/zoom.us.app"
         },
         {
           "actions" : [
@@ -209,6 +215,12 @@
     {
       "actions" : [
         {
+          "key" : "a",
+          "label" : "View 2FA Codes",
+          "type" : "url",
+          "value" : "raycast://extensions/yuercl/imessage-2fa/index"
+        },
+        {
           "iconPath" : "cpu",
           "key" : "e",
           "label" : "Extensions",
@@ -221,12 +233,6 @@
           "label" : "Search Menu Items",
           "type" : "url",
           "value" : "raycast://extensions/raycast/navigation/search-menu-items"
-        },
-        {
-          "key" : "a",
-          "label" : "View 2FA Codes",
-          "type" : "url",
-          "value" : "raycast://extensions/yuercl/imessage-2fa/index"
         }
       ],
       "key" : "r",
