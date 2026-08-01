@@ -14,7 +14,13 @@ brew install zsh
 # Switch to using brew-installed zsh as default shell
 echo "Change User Shell To Homebrew Installed Zsh"
 
-sudo dscl . -create /Users/$USER UserShell /opt/homebrew/bin/zsh
+BREW_ZSH="$(brew --prefix)/bin/zsh"
+
+# Register the Homebrew zsh as an allowed login shell (idempotent)
+grep -qxF "$BREW_ZSH" /etc/shells || echo "$BREW_ZSH" | sudo tee -a /etc/shells
+
+# Set it as the default shell via the supported, /etc/shells-validated path
+sudo chsh -s "$BREW_ZSH" "$USER"
 
 # Install Oh My Zsh
 echo "Installing Oh My Zsh"
