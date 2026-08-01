@@ -40,39 +40,37 @@ brew install zsh
 
 echo "Install Applications with Homebrew Cask"
 
-brew install --cask 1password
-brew install --cask appcleaner
-brew install --cask balenaetcher
-brew install --cask bettertouchtool
-brew install --cask brave-browser
-brew install --cask contexts #TODO: Figure out how to configure this in a scripted way
-brew install --cask docker
-brew install --cask dropbox
-brew install --cask firefox
-brew install --cask google-chrome
-brew install --cask hiddenbar
-brew install --cask homerow
-# brew install --cask httpie # TODO: determine which one is better between this and insomnia
-# brew install --cask insomnia # TODO: determine which one is better between this and httpie
-# brew install --cask iterm2
-brew install --cask karabiner-elements
-brew install --cask leader-key
-brew install --cask microsoft-edge
-brew install --cask notion
-# brew install --cask overkill #TODO; May not need now that iTunes is discontinued
-brew install --cask pixelsnap
-brew install --cask plex
-brew install --cask raycast
-brew install --cask slack
-brew install --cask sourcetree
-brew install --cask spotify
-brew install --cask visual-studio-code
-brew install --cask vlc
-brew install --cask zoom
+brew install 1password
+brew install bettertouchtool
+brew install brave-browser
+brew install contexts
+brew install dropbox
+brew install firefox
+brew install google-chrome
+brew install hiddenbar
+brew install homerow
+brew install insomnia
+brew install karabiner-elements
+brew install leader-key
+brew install microsoft-edge
+brew install notion
+brew install pixelsnap
+brew install raycast
+brew install slack
+brew install sourcetree
+brew install spotify
+brew install visual-studio-code
+
+# Optional
+# brew install appcleaner
+# brew install docker
+# brew install linear
+# brew install figma
+# brew install plex
+# brew install vlc
+# brew install zoom
 
 # Optional Raspberry Pi Casks
-# brew install --cask applepi-baker
-# brew install --cask raspberry-pi-imager
-
-# Reload shell
-reload
+# brew install applepi-baker
+# brew install balenaetcher
+# brew install raspberry-pi-imager
