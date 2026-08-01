@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-# Ask for the administrator password upfront.
-sudo -v
-
-# Keep-alive: update existing `sudo` time stamp until the script has finished.
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-
 echo "Installing Visual Studio code extensions and config."
 
 code -v > /dev/null
@@ -82,11 +76,11 @@ if [[ $? -eq 0 ]];then
             echo "Your previous snippets have been saved to: $HOME/Library/Application Support/Code/User/snippets.backup"
         fi
         rm -v $HOME/Library/Application\ Support/Code/User/settings.json
-        sudo ln -s $HOME/.dotfiles/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+        ln -s $HOME/.dotfiles/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
         rm -v $HOME/Library/Application\ Support/Code/User/keybindings.json
-        sudo ln -s $HOME/.dotfiles/vscode/keybindings.json $HOME/Library/Application\ Support/Code/User/keybindings.json
+        ln -s $HOME/.dotfiles/vscode/keybindings.json $HOME/Library/Application\ Support/Code/User/keybindings.json
         rm -rf $HOME/Library/Application\ Support/Code/User/snippets
-        sudo ln -s $HOME/.dotfiles/vscode/snippets $HOME/Library/Application\ Support/Code/User/snippets
+        ln -s $HOME/.dotfiles/vscode/snippets $HOME/Library/Application\ Support/Code/User/snippets
         echo "New user config and keybindings have been written. Please restart VSCode."
     else
         echo "Skipping user config overwriting.";
@@ -98,7 +92,7 @@ if [[ $? -eq 0 ]];then
             mkdir -p $HOME/Library/Application\ Support/Code/User/globalStorage/alefragnani.project-manager
             touch $HOME/Library/Application\ Support/Code/User/globalStorage/alefragnani.project-manager/projects.json
         fi
-        sudo ln -s $HOME/Library/Application\ Support/Code/User/globalStorage/alefragnani.project-manager/projects.json $HOME/Library/Application\ Support/Code/User/projects.json
+        ln -s $HOME/Library/Application\ Support/Code/User/globalStorage/alefragnani.project-manager/projects.json $HOME/Library/Application\ Support/Code/User/projects.json
     else
         echo "Skipping project manager projects.json symlink.";
     fi
