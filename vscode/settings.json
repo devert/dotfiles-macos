@@ -547,6 +547,7 @@
   "workbench.iconTheme": "Monokai Pro Icons",
   "workbench.editor.tabActionCloseVisibility": false,
   "workbench.panel.defaultLocation": "right",
+  "workbench.experimental.modernUI": false,
 
   // Make info, error and warning decorations in overview ruler transparent
   "workbench.colorCustomizations": {
