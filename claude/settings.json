@@ -50,5 +50,6 @@
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "medium",
-  "theme": "dark-ansi"
+  "theme": "dark-ansi",
+  "tui": "fullscreen"
 }
