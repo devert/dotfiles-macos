@@ -33,7 +33,11 @@ defaults write com.contextsformac.Contexts "CTPreferencePanelDisplayMode" -strin
 defaults write com.contextsformac.Contexts "CTPreferencePanelRecentItemsSwitcherKeyType" -string "CTItemKeyTypeNone"
 defaults write com.contextsformac.Contexts "CTPreferencePanelWidth" -int 6
 defaults write com.contextsformac.Contexts "CTPreferencePanelChangeSelectionOnScrollEnabled" -int 0
-defaults write com.contextsformac.Contexts "CTPreferencePanelUpdatesSelectionOnMouseMove" -int 0;
+defaults write com.contextsformac.Contexts "CTPreferencePanelUpdatesSelectionOnMouseMove" -int 0
+
+# Search
+defaults write com.contextsformac.Contexts "CTKeyboardEventCommandModeActive" -int 0
+defaults write com.contextsformac.Contexts "CTPreferenceSearchShortcutFunctionKeyEnabled" -int 0
 
 # Gestures
 defaults write com.contextsformac.Contexts "CTPreferenceInputDoubleTouchSwitchGestureActive" -int 0
