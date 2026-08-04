@@ -50,11 +50,12 @@ When setting up a new Mac, you may want to set some sensible macOS defaults:
 ./brew/install.sh
 ```
 
-## Install Node and Python
+## Install Node, Python, Rust
 
 ```sh
 ./node/install.sh
 ./python/install.sh
+./rust/install.sh
 ```
 
 ## Install and Configure Zsh And Make Default Shell
@@ -70,12 +71,12 @@ reload
 ## Run remaining install scripts
 
 ```sh
-./fonts/install.sh
 ./git/install.sh
 ./karabiner/install.sh
 ./neovim/install.sh
 ./tmux/install.sh
 ./vscode/install.sh
+...and more
 ```
 
 ## Heavily influenced by the following .dotfiles projects
