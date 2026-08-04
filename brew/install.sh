@@ -40,6 +40,7 @@ brew install zsh
 
 echo "Install Applications with Homebrew Cask"
 
+# Install casks
 brew install 1password
 brew install bettertouchtool
 brew install brave-browser
@@ -61,16 +62,14 @@ brew install sourcetree
 brew install spotify
 brew install visual-studio-code
 
-# Optional
+# Optional casks
 # brew install appcleaner
-# brew install docker
-# brew install linear
-# brew install figma
+# brew install docker-desktop
 # brew install plex
 # brew install vlc
 # brew install zoom
 
-# Optional Raspberry Pi Casks
+# Optional Raspberry Pi dev Casks
 # brew install applepi-baker
 # brew install balenaetcher
 # brew install raspberry-pi-imager
