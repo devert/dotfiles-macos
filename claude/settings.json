@@ -25,17 +25,8 @@
       "mcp__context7__*",
       "mcp__chrome-devtools__take_screenshot"
     ],
-    "deny": [
-      "Read(.env)",
-      "Read(.env.*)",
-      "Bash(rm -rf *)",
-      "Read(~/.ssh/**)"
-    ],
-    "ask": [
-      "Bash(rm *)",
-      "Bash(git commit *)",
-      "Bash(git push *)"
-    ],
+    "deny": ["Read(.env)", "Read(.env.*)", "Bash(rm -rf *)", "Read(~/.ssh/**)"],
+    "ask": ["Bash(rm *)", "Bash(git commit *)", "Bash(git push *)"],
     "defaultMode": "acceptEdits"
   },
   "statusLine": {
