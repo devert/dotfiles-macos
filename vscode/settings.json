@@ -352,7 +352,6 @@
   // SCM
   // ---------------------------------------------------------------------------
 
-  "scm.diffDecorations": "gutter",
   "diffEditor.ignoreTrimWhitespace": false,
 
   // Search
