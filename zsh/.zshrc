@@ -97,6 +97,7 @@ plugins=(
     # pyenv
     # rust
     zoxide
+    zsh-uv-env
     zsh-autosuggestions
     zsh-syntax-highlighting
     vi-mode # Must enable this before fzf to not conflict with keybindings

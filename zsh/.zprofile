@@ -24,11 +24,8 @@ eval "$(fnm env --use-on-cd)"
 # Python
 # ------------------------------------------------------------
 
+# Add uv installed Python executables to path
 export PATH="$HOME/.local/bin:$PATH"
-
-# Enable auto-activation of uv virtualenvs
-# TODO
-
 
 # MCP
 # ------------------------------------------------------------
