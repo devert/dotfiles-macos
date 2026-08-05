@@ -17,7 +17,7 @@ echo "Installing Homebrew Packages"
 
 brew install bat
 brew install curl
-nrew install eza
+brew install eza
 brew install fzf
 
 brew install git
