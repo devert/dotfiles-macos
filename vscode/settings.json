@@ -244,6 +244,9 @@
     "vscodevim.vim": 1,
     "GitHub.copilot": 2
   },
+  "extensions.supportAgentsWindow": {
+    "monokai.theme-monokai-pro-vscode": true
+  },
   "extensions.ignoreRecommendations": true,
 
   // File Explorer
