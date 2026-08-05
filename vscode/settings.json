@@ -236,6 +236,16 @@
     "jsonc"
   ],
 
+  // Extensions
+  // ---------------------------------------------------------------------------
+
+  // To improve performance
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1,
+    "GitHub.copilot": 2
+  },
+  "extensions.ignoreRecommendations": true,
+
   // File Explorer
   // ---------------------------------------------------------------------------
 
@@ -390,11 +400,6 @@
   // Vim
   // ---------------------------------------------------------------------------
 
-  // To improve performance
-  "extensions.experimental.affinity": {
-    "vscodevim.vim": 1,
-    "GitHub.copilot": 2
-  },
   "vim.leader": "<Space>",
   "vim.enableNeovim": true,
   "vim.neovimPath": "/usr/local/bin/nvim",
