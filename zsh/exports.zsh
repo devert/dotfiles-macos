@@ -10,6 +10,9 @@ export FNM_COREPACK_ENABLED="false"
 export FNM_RESOLVE_ENGINES="true"
 export FNM_ARCH="arm64"
 
+# FNM acting as NVM
+export NVM_DIR="/Users/devert/.local/share/fnm"
+
 # FZF Default Options
 export FZF_DEFAULT_OPTS="--prompt='❯ '"
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
