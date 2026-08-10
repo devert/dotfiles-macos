@@ -37,9 +37,21 @@
     "skill-creator@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": true
+    "pyright-lsp@claude-plugins-official": true,
+    "otto-harness@otto-harness": true,
+    "superpowers@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "chrome-devtools-mcp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "otto-harness": {
+      "source": {
+        "source": "github",
+        "repo": "agentsport/otto-harness"
+      }
+    }
   },
   "alwaysThinkingEnabled": true,
-  "effortLevel": "medium",
   "theme": "dark-ansi"
 }
