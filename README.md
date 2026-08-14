@@ -72,6 +72,7 @@ reload
 
 ```sh
 ./git/install.sh
+./herdr/install.sh
 ./karabiner/install.sh
 ./neovim/install.sh
 ./tmux/install.sh
