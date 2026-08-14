@@ -43,6 +43,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # Only auto-start tmux for interactive login shells attached to a TTY.
 # This prevents non-interactive processes (like VS Code's shell env resolver)
 # from being replaced by tmux, which can cause unexpected exit codes.
-if [ -z "$TMUX" ] && [ -t 1 ] && [[ $- == *i* ]]; then
-  exec tmux new-session
-fi
+# if [ -z "$TMUX" ] && [ -t 1 ] && [[ $- == *i* ]]; then
+#   exec tmux new-session
+# fi
