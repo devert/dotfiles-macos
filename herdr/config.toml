@@ -6,3 +6,6 @@ auto_switch = false
 
 [ui.sound]
 enabled = false
+
+[keys]
+prefix = "ctrl+space"
