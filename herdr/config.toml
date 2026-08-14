@@ -9,3 +9,12 @@ enabled = false
 
 [keys]
 prefix = "ctrl+space"
+
+# Fuzzy-find and open URLs visible in the focused pane (local plugin,
+# ~/.dotfiles/herdr/plugins/fzf-url). Enter opens, ctrl+y copies,
+# tab multi-selects, ctrl+a selects all.
+[[keys.command]]
+key = "prefix+u"
+type = "plugin_action"
+command = "devert.fzf-url.pick"
+description = "fzf-url: open URL picker"

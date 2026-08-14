@@ -1,0 +1,36 @@
+# herdr-plugin.toml — manifest for fzf-url, a herdr port of wfxr/tmux-fzf-url.
+#
+# Local development:
+#   herdr plugin link ~/.dotfiles/herdr/plugins/fzf-url
+#
+# Bind in ~/.config/herdr/config.toml:
+#   [[keys.command]]
+#   key = "prefix+u"
+#   type = "plugin_action"
+#   command = "devert.fzf-url.pick"
+
+id = "devert.fzf-url"
+name = "fzf-url"
+version = "0.1.0"
+min_herdr_version = "0.8.0"
+description = "Fuzzy-find and open URLs visible in the focused pane, like tmux-fzf-url."
+platforms = ["linux", "macos"]
+license = "MIT"
+keywords = ["url", "fzf", "picker", "tmux-fzf-url"]
+
+# Actions run without a TTY, so the action opens a popup pane for fzf.
+[[actions]]
+id = "pick"
+title = "fzf-url: open URL picker"
+description = "Scan the focused pane for URLs and open an fzf popup to open or copy them."
+command = ["bash", "open-picker.sh"]
+
+# Width/height here are fallbacks; open-picker.sh passes explicit cell sizes
+# computed from the URL list, junegunn/tmux-fzf-url style.
+[[panes]]
+id = "picker"
+title = "URLs"
+placement = "popup"
+width = "60%"
+height = "40%"
+command = ["bash", "picker.sh"]
