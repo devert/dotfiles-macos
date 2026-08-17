@@ -10,6 +10,13 @@ enabled = false
 [keys]
 prefix = "ctrl+space"
 
+# Focus panes with the arrow keys in addition to the default vim keys.
+# Setting these replaces the defaults, so the vim keys are restated.
+focus_pane_up = ["prefix+k", "prefix+up"]
+focus_pane_down = ["prefix+j", "prefix+down"]
+focus_pane_left = ["prefix+h", "prefix+left"]
+focus_pane_right = ["prefix+l", "prefix+right"]
+
 # Fuzzy-find and open URLs visible in the focused pane (local plugin,
 # ~/.dotfiles/herdr/plugins/fzf-url). Enter opens, ctrl+y copies,
 # tab multi-selects, ctrl+a selects all.
