@@ -4,6 +4,11 @@ onboarding = false
 name = "terminal"
 auto_switch = false
 
+[theme.custom]
+selection_bg = "#2d2a2e"
+active_row_bg = "#2d2a2e"
+sidebar_bg = "#221f22"
+
 [ui.sound]
 enabled = false
 
