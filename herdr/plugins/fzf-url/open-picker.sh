@@ -61,8 +61,11 @@ fi
 
 # ---- resolve the invoking pane -----------------------------------------------
 
-# Keybinding invocations set HERDR_ACTIVE_PANE_ID; action invocations set
-# HERDR_PANE_ID. Fall back to the focused pane from the invocation context.
+# herdr sets HERDR_PANE_ID for every invocation source (verified on 0.9.0 for
+# both keybinding and cli). HERDR_ACTIVE_PANE_ID is undocumented and was never
+# observed to be set; it stays in the chain only as insurance. Popup panes are
+# the documented case where HERDR_PANE_ID is absent, so fall back to the
+# focused pane from the invocation context.
 pane_id="${HERDR_PANE_ID:-${HERDR_ACTIVE_PANE_ID:-}}"
 if [[ -z "$pane_id" && -n "${HERDR_PLUGIN_CONTEXT_JSON:-}" ]]; then
     pane_id=$(printf '%s' "$HERDR_PLUGIN_CONTEXT_JSON" |
