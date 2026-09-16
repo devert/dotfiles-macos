@@ -1,6 +1,9 @@
 # Homebrew will not auto-update before running `brew install`,`brew upgrade` or `brew tap`.
 export HOMEBREW_NO_AUTO_UPDATE=1
 
+# Docker Desktop
+export PATH="$PATH:/Users/devert/.docker/bin"
+
 # FNM (Fast Node Manager) configuration
 export FNM_DIR="/Users/devert/.local/share/fnm"
 export FNM_VERSION_FILE_STRATEGY="local"

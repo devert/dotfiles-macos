@@ -450,6 +450,20 @@
       "commands": ["editor.action.outdentLines"]
     },
     {
+      "before": ["]", "c"],
+      "commands": [
+        "workbench.action.editor.nextChange",
+        "workbench.action.compareEditor.nextChange"
+      ]
+    },
+    {
+      "before": ["[", "c"],
+      "commands": [
+        "workbench.action.editor.previousChange",
+        "workbench.action.compareEditor.previousChange"
+      ]
+    },
+    {
       "before": ["<leader>", "f"],
       "commands": ["editor.toggleFold"]
     },
