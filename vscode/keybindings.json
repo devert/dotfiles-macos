@@ -182,5 +182,13 @@
     "key": "ctrl+space",
     "command": "github.copilot.acceptCursorPanelSolution",
     "when": "github.copilot.activated && github.copilot.panelVisible"
+  },
+
+  // Removed Keybindings
+  // ---------------------------------------------------------------------------
+  {
+    "key": "cmd+m",
+    "command": "-markdown.extension.editing.toggleMath",
+    "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
   }
 ]
