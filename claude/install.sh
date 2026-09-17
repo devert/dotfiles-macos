@@ -2,7 +2,7 @@
 
 # Install Claude Code
 echo "Installing Claude Code"
-brew install claude-code
+brew install claude-code@latest
 
 # Configure Claude Code
 echo "Configuring Claude Code"
