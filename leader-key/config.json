@@ -113,6 +113,13 @@
           "value" : "raycast://extensions/k4lok/open-docker/open-docker"
         },
         {
+          "iconPath" : "/Applications/Figma.app",
+          "key" : "f",
+          "label" : "Figma",
+          "type" : "application",
+          "value" : "/Applications/Figma.app"
+        },
+        {
           "key" : "i",
           "label" : "Insomnia",
           "type" : "application",
