@@ -26,18 +26,14 @@
       "mcp__context7__*",
       "mcp__chrome-devtools__take_screenshot"
     ],
-    "deny": [
-      "Read(.env)",
-      "Read(.env.*)",
-      "Read(~/.ssh/**)"
-    ],
+    "deny": ["Read(.env)", "Read(.env.*)", "Read(~/.ssh/**)"],
     "ask": [
       "Bash(rm *)",
       "Bash(git commit *)",
       "Bash(git push *)",
       "Bash(gh pr create *)"
     ],
-    "defaultMode": "acceptEdits"
+    "defaultMode": "auto"
   },
   "hooks": {
     "SessionStart": [
