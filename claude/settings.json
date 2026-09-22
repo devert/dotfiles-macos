@@ -37,7 +37,7 @@
       "Bash(git push *)",
       "Bash(gh pr create *)"
     ],
-    "defaultMode": "acceptEdits"
+    "defaultMode": "auto"
   },
   "statusLine": {
     "type": "command",
@@ -69,6 +69,6 @@
     }
   },
   "alwaysThinkingEnabled": true,
-  "theme": "dark-ansi",
-  "tui": "default"
+  "tui": "default",
+  "theme": "dark-ansi"
 }
