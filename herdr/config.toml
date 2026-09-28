@@ -9,6 +9,10 @@ selection_bg = "#2d2a2e"
 active_row_bg = "#2d2a2e"
 sidebar_bg = "#221f22"
 
+[ui]
+# Hide the scrollbar column beside panes.
+pane_scrollbars = false
+
 [ui.sound]
 enabled = false
 
