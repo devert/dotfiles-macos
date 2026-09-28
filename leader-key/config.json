@@ -1,265 +1,270 @@
 {
-  "actions" : [
+  "actions": [
     {
-      "actions" : [
+      "actions": [
         {
-          "iconPath" : "display.and.arrow.down",
-          "key" : "m",
-          "label" : "Next Monitor",
-          "type" : "url",
-          "value" : "btt://execute_assigned_actions_for_trigger/?uuid=F0071A83-2BE1-4C56-980A-CEBEAD2EA326"
+          "iconPath": "display.and.arrow.down",
+          "key": "m",
+          "label": "Next Monitor",
+          "type": "url",
+          "value": "btt://execute_assigned_actions_for_trigger/?uuid=F0071A83-2BE1-4C56-980A-CEBEAD2EA326"
         },
         {
-          "iconPath" : "rectangle.inset.filled",
-          "key" : "f",
-          "label" : "Toggle Fullscreen",
-          "type" : "url",
-          "value" : "btt://execute_assigned_actions_for_trigger/?uuid=0CE74B44-B7CA-4C2F-B5AB-029C19004545"
+          "iconPath": "rectangle.inset.filled",
+          "key": "f",
+          "label": "Toggle Fullscreen",
+          "type": "url",
+          "value": "btt://execute_assigned_actions_for_trigger/?uuid=0CE74B44-B7CA-4C2F-B5AB-029C19004545"
         },
         {
-          "iconPath" : "rectangle.center.inset.filled",
-          "key" : "c",
-          "label" : "Center",
-          "type" : "url",
-          "value" : "btt://execute_assigned_actions_for_trigger/?uuid=27D99F76-BD6D-4166-9610-9E0B23732384"
+          "iconPath": "rectangle.center.inset.filled",
+          "key": "c",
+          "label": "Center",
+          "type": "url",
+          "value": "btt://execute_assigned_actions_for_trigger/?uuid=27D99F76-BD6D-4166-9610-9E0B23732384"
         },
         {
-          "iconPath" : "rectangle.lefthalf.inset.filled",
-          "key" : "h",
-          "label" : "Left Half",
-          "type" : "url",
-          "value" : "btt://execute_assigned_actions_for_trigger/?uuid=79A8D147-1DE7-4903-AD63-48609D0C5DA0"
+          "iconPath": "rectangle.lefthalf.inset.filled",
+          "key": "h",
+          "label": "Left Half",
+          "type": "url",
+          "value": "btt://execute_assigned_actions_for_trigger/?uuid=79A8D147-1DE7-4903-AD63-48609D0C5DA0"
         },
         {
-          "key" : "H",
-          "label" : "Left Two Thirds",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/first-two-thirds"
+          "key": "H",
+          "label": "Left Two Thirds",
+          "type": "url",
+          "value": "raycast://extensions/raycast/window-management/first-two-thirds"
         },
         {
-          "iconPath" : "rectangle.bottomhalf.inset.filled",
-          "key" : "j",
-          "label" : "Bottom Half",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/bottom-half"
+          "iconPath": "rectangle.bottomhalf.inset.filled",
+          "key": "j",
+          "label": "Bottom Half",
+          "type": "url",
+          "value": "raycast://extensions/raycast/window-management/bottom-half"
         },
         {
-          "iconPath" : "rectangle.tophalf.inset.filled",
-          "key" : "k",
-          "label" : "Top Half",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/top-half"
+          "iconPath": "rectangle.tophalf.inset.filled",
+          "key": "k",
+          "label": "Top Half",
+          "type": "url",
+          "value": "raycast://extensions/raycast/window-management/top-half"
         },
         {
-          "iconPath" : "rectangle.righthalf.inset.filled",
-          "key" : "l",
-          "label" : "Right Half",
-          "type" : "url",
-          "value" : "btt://execute_assigned_actions_for_trigger/?uuid=DE85AB12-69C8-40EB-B4D2-BB35B7FCC071"
+          "iconPath": "rectangle.righthalf.inset.filled",
+          "key": "l",
+          "label": "Right Half",
+          "type": "url",
+          "value": "btt://execute_assigned_actions_for_trigger/?uuid=DE85AB12-69C8-40EB-B4D2-BB35B7FCC071"
         },
         {
-          "key" : "L",
-          "label" : "Right Two Thirds",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/last-two-thirds"
+          "key": "L",
+          "label": "Right Two Thirds",
+          "type": "url",
+          "value": "raycast://extensions/raycast/window-management/last-two-thirds"
         },
         {
-          "actions" : [
+          "actions": [
             {
-              "key" : "h",
-              "label" : "Top Left Quarter",
-              "type" : "url",
-              "value" : "raycast://extensions/raycast/window-management/top-left-quarter"
+              "key": "h",
+              "label": "Top Left Quarter",
+              "type": "url",
+              "value": "raycast://extensions/raycast/window-management/top-left-quarter"
             }
           ],
-          "key" : "t",
-          "label" : "Top",
-          "type" : "group"
+          "key": "t",
+          "label": "Top",
+          "type": "group"
         },
         {
-          "actions" : [
-
-          ],
-          "key" : "b",
-          "label" : "Bottom",
-          "type" : "group"
+          "actions": [],
+          "key": "b",
+          "label": "Bottom",
+          "type": "group"
         }
       ],
-      "key" : "w",
-      "label" : "Window Move",
-      "type" : "group"
+      "key": "w",
+      "label": "Window Move",
+      "type": "group"
     },
     {
-      "actions" : [
+      "actions": [
         {
-          "iconPath" : "/Applications/1Password.app",
-          "key" : "1",
-          "label" : "1Password",
-          "type" : "application",
-          "value" : "/Applications/1Password.app"
+          "iconPath": "/Applications/Spotify.app",
+          "key": "a",
+          "label": "Spotify",
+          "type": "application",
+          "value": "/Applications/Spotify.app"
         },
         {
-          "iconPath" : "/Applications/Claude.app",
-          "key" : "c",
-          "label" : "Claude",
-          "type" : "application",
-          "value" : "/Applications/Claude.app"
+          "iconPath": "/Applications/1Password.app",
+          "key": "1",
+          "label": "1Password",
+          "type": "application",
+          "value": "/Applications/1Password.app"
         },
         {
-          "iconPath" : "/Applications/Docker.app",
-          "key" : "d",
-          "label" : "Docker",
-          "type" : "url",
-          "value" : "raycast://extensions/k4lok/open-docker/open-docker"
+          "iconPath": "/Applications/Claude.app",
+          "key": "c",
+          "label": "Claude",
+          "type": "application",
+          "value": "/Applications/Claude.app"
         },
         {
-          "iconPath" : "/Applications/Figma.app",
-          "key" : "f",
-          "label" : "Figma",
-          "type" : "application",
-          "value" : "/Applications/Figma.app"
+          "iconPath": "/Applications/Docker.app",
+          "key": "d",
+          "label": "Docker",
+          "type": "url",
+          "value": "raycast://extensions/k4lok/open-docker/open-docker"
         },
         {
-          "key" : "i",
-          "label" : "Insomnia",
-          "type" : "application",
-          "value" : "/Applications/Insomnia.app"
+          "iconPath": "/Applications/Figma.app",
+          "key": "f",
+          "label": "Figma",
+          "type": "application",
+          "value": "/Applications/Figma.app"
         },
         {
-          "iconPath" : "/Applications/Linear.app",
-          "key" : "l",
-          "type" : "application",
-          "value" : "/Applications/Linear.app"
+          "key": "i",
+          "label": "Insomnia",
+          "type": "application",
+          "value": "/Applications/Insomnia.app"
         },
         {
-          "iconPath" : "/System/Applications/Messages.app",
-          "key" : "m",
-          "label" : "Messages",
-          "type" : "application",
-          "value" : "/System/Applications/Messages.app"
+          "iconPath": "/Applications/Linear.app",
+          "key": "l",
+          "type": "application",
+          "value": "/Applications/Linear.app"
         },
         {
-          "iconPath" : "/Applications/Notion.app",
-          "key" : "n",
-          "label" : "Notion",
-          "type" : "application",
-          "value" : "/Applications/Notion.app"
+          "iconPath": "/System/Applications/Messages.app",
+          "key": "m",
+          "label": "Messages",
+          "type": "application",
+          "value": "/System/Applications/Messages.app"
         },
         {
-          "iconPath" : "/Applications/Plex.app",
-          "key" : "p",
-          "label" : "Plex",
-          "type" : "application",
-          "value" : "/Applications/Plex.app"
+          "iconPath": "/Applications/Notion.app",
+          "key": "n",
+          "label": "Notion",
+          "type": "application",
+          "value": "/Applications/Notion.app"
         },
         {
-          "key" : "s",
-          "label" : "Slack",
-          "type" : "application",
-          "value" : "/Applications/Slack.app"
+          "iconPath": "/Applications/Plex.app",
+          "key": "p",
+          "label": "Plex",
+          "type": "application",
+          "value": "/Applications/Plex.app"
         },
         {
-          "iconPath" : "/Applications/Ghostty.app",
-          "key" : "t",
-          "label" : "Ghostty",
-          "type" : "application",
-          "value" : "/Applications/Ghostty.app"
+          "key": "s",
+          "label": "Slack",
+          "type": "application",
+          "value": "/Applications/Slack.app"
         },
         {
-          "iconPath" : "/Applications/zoom.us.app",
-          "key" : "z",
-          "label" : "Zoom",
-          "type" : "application",
-          "value" : "/Applications/zoom.us.app"
+          "iconPath": "/Applications/Ghostty.app",
+          "key": "t",
+          "label": "Ghostty",
+          "type": "application",
+          "value": "/Applications/Ghostty.app"
         },
         {
-          "actions" : [
+          "iconPath": "/Applications/zoom.us.app",
+          "key": "z",
+          "label": "Zoom",
+          "type": "application",
+          "value": "/Applications/zoom.us.app"
+        },
+        {
+          "actions": [
             {
-              "iconPath" : "/Applications/Brave Browser.app",
-              "key" : "b",
-              "label" : "Brave",
-              "type" : "application",
-              "value" : "/Applications/Brave Browser.app"
+              "iconPath": "/Applications/Brave Browser.app",
+              "key": "b",
+              "label": "Brave",
+              "type": "application",
+              "value": "/Applications/Brave Browser.app"
             },
             {
-              "iconPath" : "/Applications/Google Chrome.app",
-              "key" : "c",
-              "label" : "Chrome",
-              "type" : "application",
-              "value" : "/Applications/Google Chrome.app"
+              "iconPath": "/Applications/Google Chrome.app",
+              "key": "c",
+              "label": "Chrome",
+              "type": "application",
+              "value": "/Applications/Google Chrome.app"
             },
             {
-              "iconPath" : "/Applications/Microsoft Edge.app",
-              "key" : "e",
-              "label" : "Edge",
-              "type" : "application",
-              "value" : "/Applications/Microsoft Edge.app"
+              "iconPath": "/Applications/Microsoft Edge.app",
+              "key": "e",
+              "label": "Edge",
+              "type": "application",
+              "value": "/Applications/Microsoft Edge.app"
             },
             {
-              "iconPath" : "/Applications/Firefox.app",
-              "key" : "f",
-              "label" : "Firefix",
-              "type" : "application",
-              "value" : "/Applications/Firefox.app"
+              "iconPath": "/Applications/Firefox.app",
+              "key": "f",
+              "label": "Firefix",
+              "type": "application",
+              "value": "/Applications/Firefox.app"
             },
             {
-              "iconPath" : "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app",
-              "key" : "s",
-              "label" : "Safari",
-              "type" : "application",
-              "value" : "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
+              "iconPath": "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app",
+              "key": "s",
+              "label": "Safari",
+              "type": "application",
+              "value": "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
             }
           ],
-          "key" : "b",
-          "label" : "Browser",
-          "type" : "group"
+          "key": "b",
+          "label": "Browser",
+          "type": "group"
         }
       ],
-      "key" : "o",
-      "label" : "Open",
-      "type" : "group"
+      "key": "o",
+      "label": "Open",
+      "type": "group"
     },
     {
-      "actions" : [
+      "actions": [
         {
-          "key" : "a",
-          "label" : "View 2FA Codes",
-          "type" : "url",
-          "value" : "raycast://extensions/yuercl/imessage-2fa/index"
+          "key": "a",
+          "label": "View 2FA Codes",
+          "type": "url",
+          "value": "raycast://extensions/yuercl/imessage-2fa/index"
         },
         {
-          "iconPath" : "cpu",
-          "key" : "e",
-          "label" : "Extensions",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/raycast-settings/extensions"
+          "iconPath": "cpu",
+          "key": "e",
+          "label": "Extensions",
+          "type": "url",
+          "value": "raycast://extensions/raycast/raycast-settings/extensions"
         },
         {
-          "iconPath" : "filemenu.and.selection",
-          "key" : "m",
-          "label" : "Search Menu Items",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/navigation/search-menu-items"
+          "iconPath": "filemenu.and.selection",
+          "key": "m",
+          "label": "Search Menu Items",
+          "type": "url",
+          "value": "raycast://extensions/raycast/navigation/search-menu-items"
         }
       ],
-      "key" : "r",
-      "label" : "Raycast",
-      "type" : "group"
+      "key": "r",
+      "label": "Raycast",
+      "type": "group"
     },
     {
-      "actions" : [
+      "actions": [
         {
-          "iconPath" : "moon.zzz.fill",
-          "key" : "s",
-          "label" : "Sleep",
-          "type" : "command",
-          "value" : "osascript -e 'tell application \"Finder\" to sleep'"
+          "iconPath": "moon.zzz.fill",
+          "key": "s",
+          "label": "Sleep",
+          "type": "command",
+          "value": "osascript -e 'tell application \"Finder\" to sleep'"
         }
       ],
-      "key" : "s",
-      "label" : "System",
-      "type" : "group"
+      "key": "s",
+      "label": "System",
+      "type": "group"
     }
   ],
-  "type" : "group"
+  "type": "group"
 }
