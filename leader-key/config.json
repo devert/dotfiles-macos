@@ -233,18 +233,11 @@
           "value": "raycast://extensions/yuercl/imessage-2fa/index"
         },
         {
-          "iconPath": "cpu",
-          "key": "e",
-          "label": "Extensions",
-          "type": "url",
-          "value": "raycast://extensions/raycast/raycast-settings/extensions"
-        },
-        {
           "iconPath": "filemenu.and.selection",
           "key": "m",
           "label": "Search Menu Items",
           "type": "url",
-          "value": "raycast://extensions/raycast/navigation/search-menu-items"
+          "value": "raycast://extensions/raycast/navigation/search-menu-bar-items"
         }
       ],
       "key": "r",
