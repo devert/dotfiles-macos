@@ -3,6 +3,13 @@
     {
       "actions": [
         {
+          "iconPath": "macwindow.on.rectangle",
+          "key": "s",
+          "label": "Switch",
+          "type": "url",
+          "value": "raycast://extensions/raycast/navigation/switch-windows"
+        },
+        {
           "iconPath": "display.and.arrow.down",
           "key": "m",
           "label": "Next Monitor",
@@ -84,7 +91,7 @@
         }
       ],
       "key": "w",
-      "label": "Window Move",
+      "label": "Window",
       "type": "group"
     },
     {
