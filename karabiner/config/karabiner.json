@@ -184,6 +184,15 @@
                         "vendor_id": 1133
                     },
                     "ignore": true
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": true,
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "vendor_id": 2007
+                    },
+                    "ignore": false
                 }
             ],
             "fn_function_keys": [
