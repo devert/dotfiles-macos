@@ -26,11 +26,7 @@
       "mcp__context7__*",
       "mcp__chrome-devtools__take_screenshot"
     ],
-    "deny": [
-      "Read(.env)",
-      "Read(.env.*)",
-      "Read(~/.ssh/**)"
-    ],
+    "deny": ["Read(.env)", "Read(.env.*)", "Read(~/.ssh/**)"],
     "ask": [
       "Bash(rm *)",
       "Bash(git commit *)",
@@ -69,6 +65,10 @@
     }
   },
   "alwaysThinkingEnabled": true,
-  "tui": "default",
+  "tui": "fullscreen",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
   "theme": "dark-ansi"
 }
