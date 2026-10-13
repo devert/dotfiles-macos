@@ -140,6 +140,7 @@
         {
           "iconPath": "/Applications/Linear.app",
           "key": "l",
+          "label": "Linear",
           "type": "application",
           "value": "/Applications/Linear.app"
         },
