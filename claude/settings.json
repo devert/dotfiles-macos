@@ -80,5 +80,9 @@
   },
   "alwaysThinkingEnabled": true,
   "tui": "fullscreen",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
   "theme": "dark-ansi"
 }
