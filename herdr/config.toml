@@ -26,6 +26,11 @@ focus_pane_down = ["prefix+j", "prefix+down"]
 focus_pane_left = ["prefix+h", "prefix+left"]
 focus_pane_right = ["prefix+l", "prefix+right"]
 
+# Enter copy mode with ctrl+k, no prefix needed, then scroll with k/j or
+# ctrl+u/ctrl+d. Herdr has no direct scroll action, so this is the closest
+# match to my tmux ctrl+k/j scroll bindings.
+copy_mode = ["prefix+[", "ctrl+k"]
+
 # Fuzzy-find and open URLs visible in the focused pane (local plugin,
 # ~/.dotfiles/herdr/plugins/fzf-url). Enter opens, ctrl+y copies,
 # tab multi-selects, ctrl+a selects all.
