@@ -33,7 +33,7 @@ Then pull this repo.
 
 ```sh
 cd ~
-git clone git@github.com:devert/dotfiles-osx .dotfiles
+git clone git@github.com:devert/dotfiles-macos .dotfiles
 ```
 
 ## Configure sensible macOS defaults
