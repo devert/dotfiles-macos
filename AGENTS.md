@@ -6,7 +6,7 @@ This file provides guidance to AI Agents when working with code in this reposito
 
 This is a macOS dotfiles repository using modular organization with individual installation scripts for each component. Configuration is managed via symlinks, keeping the repository as the single source of truth.
 
-**Repository**: `git@github.com:devert/dotfiles-osx.git`
+**Repository**: `git@github.com:devert/dotfiles-macos.git`
 **Primary Shell**: Zsh with Oh-My-Zsh framework
 **Primary Terminal**: Ghostty
 

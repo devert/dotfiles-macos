@@ -1,0 +1,14 @@
+schemaVersion: "2"
+kind: mixin
+name: dotfiles-claude
+description: Links Claude Code rules, status line and settings from the dotfiles repo
+requires:
+  agent: claude
+environment:
+  variables:
+    # Must match the read-only mount passed to sbx run (mounted at the host path)
+    DOTFILES_CLAUDE: /Users/devert/.dotfiles/claude
+setup:
+  startup:
+    - command: ["bash", "/Users/devert/.dotfiles/claude/sbx-kit/link.sh"]
+      description: Link Claude Code config from the mounted dotfiles
