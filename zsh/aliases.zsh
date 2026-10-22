@@ -10,6 +10,13 @@ alias prj="cd ~/Projects"
 
 # Shorten commonly typed commands
 alias b="brew"
+alias bd="brew doctor"
+alias bi="brew info"
+alias bl="brew list"
+alias blf="brew list --formula"
+alias blc="brew list --casks"
+alias bo="brew outdated"
+alias bu="brew update"
 alias c="cargo"
 alias cc="claude"
 alias code="code ."
