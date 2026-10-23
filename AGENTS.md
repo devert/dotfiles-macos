@@ -39,6 +39,7 @@ mcp/          # Model Context Protocol server configuration
 contexts/     # Contexts window switching app configuration (https://contexts.co/)
 homerow/      # Homerow keyboard-driven UI navigation configuration (https://www.homerow.app/)
 yazi/         # Yazi terminal file manager configuration (https://github.com/sxyazi/yazi)
+herdr/        # Herdr terminal agent multiplexer configuration (https://herdr.dev)
 ```
 
 ## Installation Flow
