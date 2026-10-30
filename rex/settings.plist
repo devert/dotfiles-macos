@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Workspace.appIcon</key>
+	<string>dark</string>
+	<key>Workspace.appearance</key>
+	<string>system</string>
+	<key>Workspace.darkThemeID</key>
+	<string>custom-AD40A323-3325-4676-89DF-7507082824B4</string>
+	<key>Workspace.inactivePaneFadeMode</key>
+	<string>both</string>
+	<key>Workspace.interfaceStyle</key>
+	<string>useTheme</string>
+	<key>Workspace.lightThemeID</key>
+	<string>custom-37782C63-B986-49C6-A252-3BAB24C1F286</string>
+	<key>Workspace.paneDensity</key>
+	<string>comfortable</string>
+	<key>Workspace.playsProgramActivitySounds</key>
+	<false/>
+	<key>Workspace.sidebarPosition</key>
+	<string>left</string>
+	<key>Workspace.tabIconTintMode</key>
+	<string>off</string>
+	<key>Workspace.tabStyle</key>
+	<string>horizontal</string>
+	<key>Workspace.terminalAllowsLigatures</key>
+	<false/>
+	<key>Workspace.terminalCellHeightPercent</key>
+	<real>0.0</real>
+	<key>Workspace.terminalCharacterSpacing</key>
+	<string>0</string>
+	<key>Workspace.terminalCursorBlinkIntervalMilliseconds</key>
+	<integer>500</integer>
+	<key>Workspace.terminalCursorBlinkUsesCustomInterval</key>
+	<false/>
+	<key>Workspace.terminalCursorStyle</key>
+	<string>block</string>
+	<key>Workspace.terminalCursorStyleForced</key>
+	<false/>
+	<key>Workspace.terminalFallbackFontNames</key>
+	<array/>
+	<key>Workspace.terminalFontName</key>
+	<string>Operator Mono</string>
+	<key>Workspace.terminalFontPointSize</key>
+	<real>17.0</real>
+	<key>Workspace.terminalFontSmoothing</key>
+	<true/>
+	<key>Workspace.terminalFontStyle</key>
+	<string>Light</string>
+	<key>Workspace.terminalImproveTextContrast</key>
+	<false/>
+	<key>Workspace.terminalSelectionForeground</key>
+	<string>theme</string>
+	<key>Workspace.terminalSmoothScrolling</key>
+	<true/>
+	<key>Workspace.usesStandardInactiveWindowPaneStyles</key>
+	<true/>
+	<key>rex.agents.names-sessions</key>
+	<true/>
+	<key>rex.server.automatic-restart-enabled</key>
+	<true/>
+	<key>rex.server.block-plugin-reload-enabled</key>
+	<false/>
+	<key>rex.server.run-mode</key>
+	<string>bundled</string>
+	<key>rex.server.web-client-origin-patterns</key>
+	<array>
+		<string>https://rex.superlogical.com</string>
+	</array>
+</dict>
+</plist>
