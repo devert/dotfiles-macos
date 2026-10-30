@@ -7,3 +7,6 @@ rex.bind("ctrl+shift+down", "client.tab.move.forward")
 
 -- Cmd+\ toggles the sidebar
 rex.bind("cmd+\\", "client.sidebar.toggle")
+
+-- Cmd+Shift+R reloads the Rex config
+rex.bind("cmd+shift+r", "client.config.reload")
