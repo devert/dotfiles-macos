@@ -7,4 +7,5 @@
 - Never run `git push` (including `--force` and `--force-with-lease`) unless the user explicitly asks for it. Show the target remote and branch first.
 - Do not push as part of finishing a task, even when the branch has no upstream.
 - Always request review of the commit message before committing files.
+- When you show a proposed commit message for review, put it in a fenced code block with no language tag.
 - Do not use structured commits formatting unless the repo is already using this convention
