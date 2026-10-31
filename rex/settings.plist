@@ -23,7 +23,7 @@
 	<key>Workspace.tabIconTintMode</key>
 	<string>off</string>
 	<key>Workspace.tabStyle</key>
-	<string>horizontal</string>
+	<string>vertical</string>
 	<key>Workspace.terminalAllowsLigatures</key>
 	<false/>
 	<key>Workspace.terminalCellHeightPercent</key>
