@@ -1,0 +1,20 @@
+# Rex preferences left out of settings.plist by export-settings.py
+# One key or glob pattern per line
+# Window frames, dialog state, and update checks (written by macOS and Sparkle)
+NSNavPanel*
+NSOSPLastRootDirectory
+NSSplitView Subview Frames *
+NSToolbar Configuration *
+NSWindow Frame *
+SU*
+# Rex session state, caches, and machine-specific values
+Onboarding.*
+RexSync.servers
+Workspace.customThemes
+Workspace.lastFocusedSession
+Workspace.programActivitySeen
+rex.client.label
+rex.local-server.cached-route.*
+rex.server.tailnet-hostname
+rex.sync.hosts-migrated.*
+Workspace.openWindows
