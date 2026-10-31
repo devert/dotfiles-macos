@@ -1,0 +1,5 @@
+{
+  "domain": "com.superlogical.rex",
+  "process": "Rex",
+  "json_files": {"Workspace.customThemes": "themes.json"}
+}

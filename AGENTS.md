@@ -41,6 +41,7 @@ homerow/      # Homerow keyboard-driven UI navigation configuration (https://www
 yazi/         # Yazi terminal file manager configuration (https://github.com/sxyazi/yazi)
 herdr/        # Herdr terminal agent multiplexer configuration (https://herdr.dev)
 rex/          # Rex terminal configuration: keybindings, app settings, and custom themes
+prefs/        # Export and import of macOS app preferences, used by rex/ and homerow/
 ```
 
 ## Installation Flow
@@ -306,27 +307,55 @@ MCP server configs in `mcp/` are symlinked to both Claude Code and VS Code:
 - **Vi mode** for copy mode
 - **Passthrough**: Enabled (for Ghostty shell integration)
 
-## Rex Configuration
+## App Settings Export and Import
 
-Rex keeps its configuration in two places. Keybindings are in a Lua file. App settings from the Rex Settings window are in the macOS preferences for `com.superlogical.rex`.
+Many apps keep the configuration from their Settings window in the macOS preferences, in `~/Library/Preferences/<domain>.plist`. A domain is the app identifier, such as `com.superlogical.rex`. The `prefs/prefs.py` script copies that configuration to and from a component directory. Rex and Homerow use it.
 
-- `init.lua`: Keybindings, symlinked to `~/.config/rex/init.lua`
-- `settings.plist`: App settings exported from the Rex preferences
-- `themes.json`: Custom themes, stored in the preferences as JSON data
+Each component directory that uses the script contains these files:
+
+- `prefs.json`: The domain, the process name of the app, and optional JSON data keys
+- `settings.plist`: The configuration exported from the preferences
 - `export-keys.txt`: Preference keys that the export writes to `settings.plist`
 - `export-ignore.txt`: Preference keys and glob patterns that the export leaves out, such as window frames and updater state
 
+Some apps store JSON text as data in a preference key. Rex keeps its custom themes in this format. Put such a key in the `json_files` object of `prefs.json`, with a file name as its value. The export then writes that key to the named file as readable JSON, and not to `settings.plist`.
+
+```json
+{
+  "domain": "com.superlogical.rex",
+  "process": "Rex",
+  "json_files": {"Workspace.customThemes": "themes.json"}
+}
+```
+
 ### Export settings
 
-After you change settings in the Rex Settings window, run `rex/export-settings.py`. Then commit the changed files. Rex can stay open during the export.
+After you change the configuration in the Settings window of the app, run `prefs/prefs.py export <component>`. For example, run `prefs/prefs.py export rex`. Then commit the changed files. The app can stay open during the export.
 
-If the content of `settings.plist` or `themes.json` did not change, the script does not write that file. If a key is in neither list file, the script shows its value and asks you to keep it, ignore it, or skip it. Your answer goes into `export-keys.txt` or `export-ignore.txt`. Without a terminal, the script prints the new keys and does not ask.
+If the content of an output file did not change, the script does not write that file. If a key is in neither list file, the script shows its value and asks you to keep it, ignore it, or skip it. Your answer goes into `export-keys.txt` or `export-ignore.txt`. Without a terminal, the script prints the new keys and does not ask.
 
 ### Import settings
 
-`rex/install.sh` creates the `init.lua` symlink and runs `rex/import-settings.py`. You can also run the import script on its own. Quit Rex before the import, because a running Rex writes its own copy over the preferences file. If Rex is running, the script stops.
+The `install.sh` script of the component runs `prefs/prefs.py import <component>`. You can also run the import on its own. Quit the app before the import, because a running app writes its own copy over the preferences file. If the app is running, the script stops.
 
-The import merges `settings.plist` and `themes.json` into the existing preferences, so window and session state stays. The script writes a binary plist, because the XML format removes fractional seconds from dates. Then it restarts `cfprefsd` so that macOS reads the new file.
+The import merges `settings.plist` and the JSON files into the existing preferences, so window and session state stays. The script writes a binary plist, because the XML format removes fractional seconds from dates. Then it restarts `cfprefsd` so that macOS reads the new file.
+
+### Add an app
+
+1. Open the Settings window of the app and set the configuration that you want.
+2. Find the domain with `defaults domains | tr ',' '\n' | grep -i <app>`.
+3. Create `prefs.json` in the component directory with the domain and the process name.
+4. Run `prefs/prefs.py export <component>` in a terminal, and answer the prompt for each key.
+5. Add `$HOME/.dotfiles/prefs/prefs.py import <component> || exit 1` to the `install.sh` script of the component.
+
+## Rex Configuration
+
+Rex keeps its configuration in two places. Keybindings are in a Lua file. App settings from the Rex Settings window are in the macOS preferences for `com.superlogical.rex`. The export and import use `prefs/prefs.py`, as [App Settings Export and Import](#app-settings-export-and-import) describes.
+
+- `init.lua`: Keybindings, symlinked to `~/.config/rex/init.lua`
+- `themes.json`: Custom themes, stored in the preferences as JSON data
+
+`rex/install.sh` creates the `init.lua` symlink and then imports the app settings.
 
 ## Adding New Components
 

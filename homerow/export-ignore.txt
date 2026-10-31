@@ -1,0 +1,8 @@
+# Homerow preferences left out of settings.plist by prefs/prefs.py export
+# One key or glob pattern per line
+# Window frames, menu bar position, and update checks (written by macOS and Sparkle)
+NSStatusItem *
+NSWindow Frame *
+SU*
+# Usage counters
+activation-count

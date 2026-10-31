@@ -1,4 +1,4 @@
-# Rex preferences left out of settings.plist by export-settings.py
+# Rex preferences left out of settings.plist by prefs/prefs.py export
 # One key or glob pattern per line
 # Window frames, dialog state, and update checks (written by macOS and Sparkle)
 NSNavPanel*
@@ -10,7 +10,6 @@ SU*
 # Rex session state, caches, and machine-specific values
 Onboarding.*
 RexSync.servers
-Workspace.customThemes
 Workspace.lastFocusedSession
 Workspace.programActivitySeen
 rex.client.label

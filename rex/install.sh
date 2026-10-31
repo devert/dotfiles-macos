@@ -9,7 +9,7 @@ echo "Configuring Rex"
 mkdir -p $HOME/.config/rex
 ln -sfn $HOME/.dotfiles/rex/init.lua $HOME/.config/rex/init.lua
 
-# Import app settings (exported with rex/export-settings.py)
-$HOME/.dotfiles/rex/import-settings.py || exit 1
+# Import app settings (exported with prefs/prefs.py export rex)
+$HOME/.dotfiles/prefs/prefs.py import rex || exit 1
 
 echo "Rex installation and configuration complete!"

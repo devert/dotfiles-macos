@@ -1,0 +1,26 @@
+# Homerow settings exported to settings.plist by prefs/prefs.py export
+# One key per line
+auto-deactivate-scrolling
+auto-switch-input-source-id
+chain-clicks
+check-for-updates-automatically
+dash-speed-multiplier
+enable-hyper-key
+enableSoundEffects
+hide-labels-when-nothing-is-searched
+is-auto-click-enabled
+is-scroll-shortcuts-enabled
+label-characters
+label-font-size
+launch-at-login
+map-arrow-keys-to-scroll
+non-search-shortcut
+scroll-keys
+scroll-px-per-ms
+scroll-shortcut
+scroll-show-numbers
+search-shortcut
+show-menubar-icon
+soundEffectVolume
+theme-id
+use-search-predicate

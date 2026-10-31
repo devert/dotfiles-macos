@@ -1,4 +1,4 @@
-# Rex settings exported to settings.plist by export-settings.py
+# Rex settings exported to settings.plist by prefs/prefs.py export
 # One key per line
 Workspace.appIcon
 Workspace.appearance

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>auto-deactivate-scrolling</key>
+	<integer>0</integer>
+	<key>auto-switch-input-source-id</key>
+	<string>com.apple.keylayout.US</string>
+	<key>chain-clicks</key>
+	<false/>
+	<key>check-for-updates-automatically</key>
+	<true/>
+	<key>dash-speed-multiplier</key>
+	<integer>4</integer>
+	<key>enable-hyper-key</key>
+	<false/>
+	<key>enableSoundEffects</key>
+	<false/>
+	<key>hide-labels-when-nothing-is-searched</key>
+	<true/>
+	<key>is-auto-click-enabled</key>
+	<true/>
+	<key>is-scroll-shortcuts-enabled</key>
+	<true/>
+	<key>label-characters</key>
+	<string></string>
+	<key>label-font-size</key>
+	<real>11.0</real>
+	<key>launch-at-login</key>
+	<true/>
+	<key>map-arrow-keys-to-scroll</key>
+	<true/>
+	<key>non-search-shortcut</key>
+	<string>⌃⌥⇧⌘F</string>
+	<key>scroll-keys</key>
+	<string>HJKL</string>
+	<key>scroll-px-per-ms</key>
+	<integer>2</integer>
+	<key>scroll-shortcut</key>
+	<string>⌃⌥⇧⌘I</string>
+	<key>scroll-show-numbers</key>
+	<true/>
+	<key>search-shortcut</key>
+	<string>⌃⌥⇧⌘S</string>
+	<key>show-menubar-icon</key>
+	<true/>
+	<key>theme-id</key>
+	<string>light</string>
+	<key>use-search-predicate</key>
+	<false/>
+</dict>
+</plist>
