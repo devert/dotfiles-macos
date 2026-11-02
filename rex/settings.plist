@@ -6,8 +6,6 @@
 	<string>dark</string>
 	<key>Workspace.appearance</key>
 	<string>system</string>
-	<key>Workspace.balancesSplitsOnCreation</key>
-	<true/>
 	<key>Workspace.darkThemeID</key>
 	<string>custom-AD40A323-3325-4676-89DF-7507082824B4</string>
 	<key>Workspace.inactivePaneFadeMode</key>
@@ -22,22 +20,16 @@
 	<false/>
 	<key>Workspace.shellIconTheme</key>
 	<string>themed</string>
-	<key>Workspace.showsActivePaneBorder</key>
-	<false/>
-	<key>Workspace.showsPaneHeaders</key>
-	<true/>
 	<key>Workspace.sidebarPosition</key>
 	<string>left</string>
-	<key>Workspace.tabIconColorMode</key>
-	<string>activeTabs</string>
-	<key>Workspace.tabIconCount</key>
-	<integer>3</integer>
+	<key>Workspace.sidebarShowsActivity</key>
+	<false/>
+	<key>Workspace.sidebarWidth</key>
+	<real>230.0</real>
 	<key>Workspace.tabIconTintMode</key>
 	<string>off</string>
 	<key>Workspace.tabStyle</key>
 	<string>vertical</string>
-	<key>Workspace.tabsFillAvailableSpace</key>
-	<false/>
 	<key>Workspace.terminalAllowsLigatures</key>
 	<false/>
 	<key>Workspace.terminalCellHeightPercent</key>
@@ -64,19 +56,13 @@
 	<string>Light</string>
 	<key>Workspace.terminalImproveTextContrast</key>
 	<false/>
+	<key>Workspace.terminalPaddingColor</key>
+	<string>extend</string>
 	<key>Workspace.terminalSelectionForeground</key>
 	<string>theme</string>
-	<key>Workspace.terminalSelectionRoundedCorners</key>
-	<true/>
 	<key>Workspace.terminalSmoothScrolling</key>
 	<true/>
-	<key>Workspace.terminalUseThemePalette</key>
-	<false/>
-	<key>Workspace.terminalUsesDisplayP3</key>
-	<false/>
-	<key>Workspace.tintsPanesWithProgramBackground</key>
-	<true/>
-	<key>Workspace.usesPaneGlass</key>
+	<key>Workspace.usesGestures</key>
 	<false/>
 	<key>Workspace.usesStandardInactiveWindowPaneStyles</key>
 	<true/>

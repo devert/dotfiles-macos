@@ -46,3 +46,7 @@ rex.server.block-plugin-reload-enabled
 rex.server.run-mode
 rex.server.tailnet-enabled
 rex.server.web-client-origin-patterns
+Workspace.sidebarShowsActivity
+Workspace.sidebarWidth
+Workspace.terminalPaddingColor
+Workspace.usesGestures

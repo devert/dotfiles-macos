@@ -18,3 +18,5 @@ rex.local-server.cached-route.*
 rex.server.tailnet-hostname
 rex.sync.hosts-migrated.*
 Workspace.openWindows
+InsertPath.recentPaths.v2
+Workspace.sidebarCollapsed
