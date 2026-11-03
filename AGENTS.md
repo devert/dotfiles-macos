@@ -310,7 +310,8 @@ MCP server configs in `mcp/` are symlinked to both Claude Code and VS Code:
 
 Rex keeps its configuration in two places. Keybindings are in a Lua file. App settings from the Rex Settings window are in the macOS preferences for `com.superlogical.rex`.
 
-- `init.lua`: Keybindings, symlinked to `~/.config/rex/init.lua`
+- `init.lua`: Keybindings and custom actions, symlinked to `~/.config/rex/init.lua`
+- `fzf-url/picker.sh`: The fzf picker for the `fzf_url` action (Ctrl+Space, then U). The action reads the scrollback of the focused pane. It finds URLs with `herdr/plugins/fzf-url/extract-urls` and shows the picker in a floating pane
 - `settings.plist`: App settings exported from the Rex preferences
 - `themes.json`: Custom themes, stored in the preferences as JSON data
 - `export-keys.txt`: Preference keys that the export writes to `settings.plist`
