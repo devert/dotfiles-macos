@@ -226,7 +226,7 @@ Most installers:
 - **`.zshrc`**: Interactive shell config - Oh-My-Zsh, plugins, theme
 - **`aliases.zsh`**: Custom command shortcuts (sourced by OMZ)
 - **`functions.zsh`**: Custom shell functions (sourced by OMZ)
-- **`exports.zsh`**: Environment variables like FZF_DEFAULT_OPTS (sourced by OMZ)
+- **`exports.zsh`**: Environment variables (sourced by OMZ)
 - **`.p10k.zsh`**: Powerlevel10k prompt configuration
 
 ### Active Oh-My-Zsh Plugins

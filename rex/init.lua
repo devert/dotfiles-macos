@@ -16,7 +16,7 @@ rex.bind("cmd+shift+r", "client.config.reload")
 -- in ~/.config/rex/plugins/rex-fzf-url by rex/install.sh.
 local ok, fzf_url = pcall(require, "plugins.rex-fzf-url")
 if ok then
-  fzf_url.setup{ key = "ctrl+space>u" }
+  fzf_url.setup({ key = "ctrl+space>u" })
 else
   rex.log("warn", "rex-fzf-url is not installed: " .. tostring(fzf_url))
 end
