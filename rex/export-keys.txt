@@ -55,3 +55,4 @@ Workspace.cursorShadersEnabled
 Workspace.experiments.usesNewQuickSwitcher
 rex.developer-mode-enabled
 Workspace.cursorShader
+Workspace.smoothResizeEnabled

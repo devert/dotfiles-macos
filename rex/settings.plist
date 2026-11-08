@@ -38,6 +38,8 @@
 	<string>left</string>
 	<key>Workspace.sidebarShowsActivity</key>
 	<false/>
+	<key>Workspace.smoothResizeEnabled</key>
+	<true/>
 	<key>Workspace.tabIconColorMode</key>
 	<string>activeTabs</string>
 	<key>Workspace.tabIconCount</key>
