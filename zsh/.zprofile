@@ -21,21 +21,26 @@ export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 eval "$(fnm env --use-on-cd)"
 
 
-# Pyenv
+# Python
 # ------------------------------------------------------------
 
-# Pyenv configuration (manual PATH setup instead of eval "$(pyenv init --path)" for faster startup)
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
+# Add uv installed Python executables to path
+export PATH="$HOME/.local/bin:$PATH"
 
-# Disable virtualenv name in prompt
-# export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
-# Install pyenv into your shell as a shell function, enable shims and autocompletion
-# export PATH="$PYENV_ROOT/shims:$PATH"
+# FZF
+# ------------------------------------------------------------
 
-# Enable auto-activation of pyenv virtualenvs
-# eval "$(pyenv virtualenv-init -)"
+# Set here, not in exports.zsh, so that commands that get the login
+# environment without .zshrc also get these options.
+export FZF_DEFAULT_OPTS="--prompt='❯ '"
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+  --color=fg:-1,fg+:-1,bg:-1,bg+:#373539
+  --color=hl:#78dce8,hl+:#ff6188,info:#727072,marker:#fc9867
+  --color=prompt:#a9dc76,spinner:#fc9867,pointer:#ff6188,header:#727072
+  --color=border:#727072,label:#fcfcfa,query:#fcfcfa
+  --info=right
+  --height=~40%'
 
 
 # MCP
@@ -54,6 +59,6 @@ eval "$(fnm env --use-on-cd)"
 # Only auto-start tmux for interactive login shells attached to a TTY.
 # This prevents non-interactive processes (like VS Code's shell env resolver)
 # from being replaced by tmux, which can cause unexpected exit codes.
-if [ -z "$TMUX" ] && [ -t 1 ] && [[ $- == *i* ]]; then
-  exec tmux new-session
-fi
+# if [ -z "$TMUX" ] && [ -t 1 ] && [[ $- == *i* ]]; then
+#   exec tmux new-session
+# fi

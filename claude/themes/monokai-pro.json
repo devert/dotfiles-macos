@@ -1,0 +1,7 @@
+{
+  "name": "Monokai Pro (ANSI)",
+  "base": "dark-ansi",
+  "overrides": {
+    "selectionBg": "#5b595c"
+  }
+}

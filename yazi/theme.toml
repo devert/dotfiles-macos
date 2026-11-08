@@ -1,0 +1,4 @@
+[icon]
+append_exts = [
+  { name = "heic", text = "", fg = "#a074c4" },
+]

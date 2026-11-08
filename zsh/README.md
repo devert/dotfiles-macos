@@ -7,6 +7,3 @@ reload
 
 ~/.dotfiles/zsh/configure.sh
 ```
-
-
-

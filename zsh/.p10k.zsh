@@ -52,6 +52,7 @@
     # direnv                  # direnv status (https://direnv.net/)
     # asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
     # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    venv_python_version     # python version when inside a venv (custom segment, see bottom of file)
     # anaconda                # conda environment (https://conda.io/)
     # pyenv                   # python environment (https://github.com/pyenv/pyenv)
     # goenv                   # go environment (https://github.com/syndbg/goenv)
@@ -1686,6 +1687,47 @@
   # User-defined prompt segments can be customized the same way as built-in segments.
   # typeset -g POWERLEVEL9K_EXAMPLE_FOREGROUND=208
   # typeset -g POWERLEVEL9K_EXAMPLE_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+  # Shows just the Python version (e.g. "3.12.4") with while inside a
+  # virtualenv, instead of the builtin `virtualenv` segment's "3.12.4 venv-name". Configured
+  # via POWERLEVEL9K_VENV_PYTHON_VERSION_* above.
+  #
+  # pyvenv.cfg only records major.minor (uv writes e.g. "version_info = 3.14", no patch), so
+  # it can't give us the full version on its own. We still use it to confirm we're in a real
+  # venv, then run the venv's own interpreter directly by absolute path
+  # ($VIRTUAL_ENV/bin/python) for the full version -- that sidesteps PATH/command-hashing
+  # entirely, so it can't drift to some other `python` on PATH the way a bare `python
+  # --version` call could.
+  #
+  # A venv's interpreter doesn't change while the venv exists, so the version is cached, keyed
+  # on the binary's path + mtime, to skip the subprocess on every prompt. Cache only misses
+  # when entering a not-yet-seen venv or after recreating one (mtime changes).
+  typeset -gA _p9k_venv_python_version_cache
+  function prompt_venv_python_version() {
+    [[ -n $VIRTUAL_ENV && -r $VIRTUAL_ENV/pyvenv.cfg ]] || return
+    local bin=$VIRTUAL_ENV/bin/python
+    [[ -x $bin ]] || return
+    local -a st
+    zstat -A st +mtime -- $bin 2>/dev/null || return
+    local key="$bin:$st[1]"
+    local v=$_p9k_venv_python_version_cache[$key]
+    if [[ -z $v ]]; then
+      setopt local_options extended_glob
+      local out=$($bin --version 2>&1)
+      v=$out
+      [[ $out == (#b)Python\ ([[:digit:].]##)* ]] && v=$match[1]
+      _p9k_venv_python_version_cache[$key]=$v
+    fi
+    p10k segment -i PYTHON_ICON -r -t "${v//\%/%%}"
+  }
+  function instant_prompt_venv_python_version() {
+    prompt_venv_python_version
+  }
+
+  # Color for the custom venv_python_version segment
+  typeset -g POWERLEVEL9K_VENV_PYTHON_VERSION_FOREGROUND=6
+  # Custom icon.
+  # typeset -g POWERLEVEL9K_VENV_PYTHON_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   # Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
   # when accepting a command line. Supported values:

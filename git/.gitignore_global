@@ -25,8 +25,7 @@ node_modules
 .sass-cache
 .idea
 .vscode
-.github
-*.sw*
+*.sw[a-p]
 
 # Claude Code local settings (machine-specific permissions)
 .claude/settings.local.json

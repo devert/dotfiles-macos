@@ -14,7 +14,7 @@ play = [
 
 [open]
 rules = [
-  { name = "*.svg", use = "play" },  # SVG files open with default app (browser)
+  { url = "*.svg", use = "play" },  # SVG files open with default app (browser)
   { mime = "image/*", use = "preview" },  # images open with Preview
   { mime = "video/*", use = "play" },  # videos open with default player
   { mime = "audio/*", use = "play" },  # audio files open with default player
@@ -24,7 +24,7 @@ rules = [
   { mime = "application/gzip", use = "open" },
   { mime = "application/json", use = "edit" },  # JSON files in editor
   { mime = "text/*", use = "edit" },  # text files in editor
-  { name = "*", use = "edit" },  # everything else in editor
+  { url = "*", use = "edit" },  # everything else in editor
 ]
 
 [mgr]
