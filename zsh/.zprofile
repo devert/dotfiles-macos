@@ -27,6 +27,22 @@ eval "$(fnm env --use-on-cd)"
 # Add uv installed Python executables to path
 export PATH="$HOME/.local/bin:$PATH"
 
+
+# FZF
+# ------------------------------------------------------------
+
+# Set here, not in exports.zsh, so that commands that get the login
+# environment without .zshrc also get these options.
+export FZF_DEFAULT_OPTS="--prompt='❯ '"
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+  --color=fg:-1,fg+:-1,bg:-1,bg+:#373539
+  --color=hl:#78dce8,hl+:#ff6188,info:#727072,marker:#fc9867
+  --color=prompt:#a9dc76,spinner:#fc9867,pointer:#ff6188,header:#727072
+  --color=border:#727072,label:#fcfcfa,query:#fcfcfa
+  --info=right
+  --height=~40%'
+
+
 # MCP
 # ------------------------------------------------------------
 

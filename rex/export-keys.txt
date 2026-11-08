@@ -50,3 +50,9 @@ Workspace.sidebarShowsActivity
 Workspace.sidebarWidth
 Workspace.terminalPaddingColor
 Workspace.usesGestures
+RexAppUpdateAutomation
+Workspace.cursorShadersEnabled
+Workspace.experiments.usesNewQuickSwitcher
+rex.developer-mode-enabled
+Workspace.cursorShader
+Workspace.smoothResizeEnabled

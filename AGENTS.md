@@ -226,7 +226,7 @@ Most installers:
 - **`.zshrc`**: Interactive shell config - Oh-My-Zsh, plugins, theme
 - **`aliases.zsh`**: Custom command shortcuts (sourced by OMZ)
 - **`functions.zsh`**: Custom shell functions (sourced by OMZ)
-- **`exports.zsh`**: Environment variables like FZF_DEFAULT_OPTS (sourced by OMZ)
+- **`exports.zsh`**: Environment variables (sourced by OMZ)
 - **`.p10k.zsh`**: Powerlevel10k prompt configuration
 
 ### Active Oh-My-Zsh Plugins
@@ -308,9 +308,10 @@ MCP server configs in `mcp/` are symlinked to both Claude Code and VS Code:
 
 ## Rex Configuration
 
-Rex keeps its configuration in two places. Keybindings are in a Lua file. App settings from the Rex Settings window are in the macOS preferences for `com.superlogical.rex`.
+Rex keeps its configuration in two places. Keybindings and custom actions are in a Lua file. App settings from the Rex Settings window are in the macOS preferences for `com.superlogical.rex`.
 
-- `init.lua`: Keybindings, symlinked to `~/.config/rex/init.lua`
+- `init.lua`: Keybindings and custom actions, symlinked to `~/.config/rex/init.lua`
+- `init.lua` also loads the [rex-fzf-url](https://github.com/devert/rex-fzf-url) plugin and binds Ctrl+Space, then U, to its URL picker. `install.sh` clones the plugin into `~/.config/rex/plugins/rex-fzf-url` if that folder does not exist
 - `settings.plist`: App settings exported from the Rex preferences
 - `themes.json`: Custom themes, stored in the preferences as JSON data
 - `export-keys.txt`: Preference keys that the export writes to `settings.plist`
