@@ -25,6 +25,7 @@
     "input.delete.to.line.end": "none"
   },
   "tabs": {
+    "mode": "off",
     "layout": "horizontal",
     "indicators": "status"
   }
