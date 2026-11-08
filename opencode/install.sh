@@ -1,6 +1,15 @@
 #!/usr/bin/env zsh
 
-# Symlink settings file
-mkdir -p ~/.config/opencode
-ln -sfn ~/.dotfiles/opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc
-ln -sfn ~/.dotfiles/opencode/tui.jsonc ~/.config/opencode/tui.jsonc
+# Install OpenCode
+echo "Installing OpenCode"
+brew install opencode
+
+# Configure OpenCode
+# opencode.jsonc: agent, model, MCP, and permission configuration
+# cli.json: TUI configuration (theme, diffs, session display)
+echo "Configuring OpenCode"
+mkdir -p $HOME/.config/opencode
+ln -sfn $HOME/.dotfiles/opencode/opencode.jsonc $HOME/.config/opencode/opencode.jsonc
+ln -sfn $HOME/.dotfiles/opencode/cli.json $HOME/.config/opencode/cli.json
+
+echo "OpenCode installation Complete!"

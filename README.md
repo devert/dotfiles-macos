@@ -75,6 +75,7 @@ reload
 ./herdr/install.sh
 ./karabiner/install.sh
 ./neovim/install.sh
+./opencode/install.sh
 ./tmux/install.sh
 ./vscode/install.sh
 ...and more

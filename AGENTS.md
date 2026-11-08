@@ -40,6 +40,7 @@ contexts/     # Contexts window switching app configuration (https://contexts.co
 homerow/      # Homerow keyboard-driven UI navigation configuration (https://www.homerow.app/)
 yazi/         # Yazi terminal file manager configuration (https://github.com/sxyazi/yazi)
 herdr/        # Herdr terminal agent multiplexer configuration (https://herdr.dev)
+opencode/     # OpenCode 2 configuration: agent configuration and TUI configuration (https://opencode.ai)
 rex/          # Rex terminal configuration: keybindings, app settings, and custom themes
 ```
 
@@ -305,6 +306,15 @@ MCP server configs in `mcp/` are symlinked to both Claude Code and VS Code:
 - **Plugins** (via tpm): tmux-fzf-url, tmux-jump, extrakto
 - **Vi mode** for copy mode
 - **Passthrough**: Enabled (for Ghostty shell integration)
+
+## OpenCode Configuration
+
+OpenCode 2 reads its configuration from two files in `~/.config/opencode`. `opencode/install.sh` installs OpenCode with Homebrew and creates a symlink for each file:
+
+- `opencode.jsonc`: Agents, models, MCP servers, and permissions. The schema is `https://opencode.ai/config.json`.
+- `cli.json`: The TUI (terminal user interface) configuration, for example theme, diffs, and session display. The schema is `https://opencode.ai/v2/cli.json`.
+
+Do not add `service.json` from `~/.config/opencode` to the repository. It contains the password for the OpenCode background server.
 
 ## Rex Configuration
 
