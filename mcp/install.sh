@@ -6,10 +6,6 @@
 # MCP config file symlinks
 # sudo ln -sfn ~/.dotfiles/mcp/mcp-config.json ~/.mcp/mcp-config.json
 
-# Symlink for Claude Code
-sudo mkdir -p /Library/Application\ Support/ClaudeCode
-sudo ln -sfn ~/.dotfiles/mcp/mcp-config.json /Library/Application\ Support/ClaudeCode/managed-mcp.json
-
 # Symlink for VS Code
 sudo ln -sfn ~/.dotfiles/mcp/mcp-config.json ~/Library/Application\ Support/Code/User/mcp.json
 

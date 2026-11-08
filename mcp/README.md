@@ -15,8 +15,11 @@ Creates `~/.mcp/` directories for centralized installation and management of loc
 Symlinks MCP JSON configuration files to application-specific paths:
 
 - `~/.mcp/mcp-config.json`: Global config
-- `/Library/Application Support/ClaudeCode/managed-mcp.json`: Claude Code config
 - `~/Library/Application Support/Code/User/mcp.json`: VS Code config
+
+Claude Code gets the same servers from its plugins, so the script does not configure Claude Code.
+
+Do not use `/Library/Application Support/ClaudeCode/managed-mcp.json` for these servers. Claude Code treats that file as an enterprise policy. Then the OpenCode Claude Agent provider cannot start Claude Code.
 
 ### Raycast Installation
 
