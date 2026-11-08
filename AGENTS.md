@@ -325,7 +325,7 @@ Do not add `service.json` to the repository. It contains the password for the Op
 Rex keeps its configuration in two places. Keybindings and custom actions are in a Lua file. App settings from the Rex Settings window are in the macOS preferences for `com.superlogical.rex`.
 
 - `init.lua`: Keybindings and custom actions, symlinked to `~/.config/rex/init.lua`
-- `init.lua` also loads the [rex-fzf-url](https://github.com/devert/rex-fzf-url) plugin and binds Ctrl+Space, then U, to its URL picker. `install.sh` clones the plugin into `~/.config/rex/plugins/rex-fzf-url` if that folder does not exist
+- `init.lua` also loads the [rex-fzf-url](https://github.com/devert/rex-fzf-url) plugin and binds Cmd+U to its URL picker. `install.sh` clones the plugin into `~/.config/rex/plugins/rex-fzf-url` if that folder does not exist
 - `settings.plist`: App settings exported from the Rex preferences
 - `themes.json`: Custom themes, stored in the preferences as JSON data
 - `export-keys.txt`: Preference keys that the export writes to `settings.plist`
