@@ -13,5 +13,13 @@
     "thinking": "show",
     "verbosity": "high"
   },
-  "animations": true
+  "animations": true,
+  "keybinds": {
+    "session.line.up": "ctrl+k,ctrl+alt+y",
+    "session.line.down": "ctrl+j,ctrl+alt+e",
+    "session.half.page.up": "alt+k,ctrl+alt+u",
+    "session.half.page.down": "alt+j,ctrl+alt+d",
+    "input.newline": "shift+return,ctrl+return,alt+return",
+    "input.delete.to.line.end": "none"
+  }
 }
