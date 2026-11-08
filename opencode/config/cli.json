@@ -10,16 +10,17 @@
   },
   "session": {
     "sidebar": "auto",
-    "scrollbar": true,
+    "scrollbar": false,
     "thinking": "show",
     "verbosity": "low"
   },
   "animations": true,
   "keybinds": {
+    "leader": "ctrl+space",
     "session.line.up": "ctrl+k,ctrl+alt+y",
     "session.line.down": "ctrl+j,ctrl+alt+e",
-    "session.half.page.up": "alt+k,ctrl+alt+u",
-    "session.half.page.down": "alt+j,ctrl+alt+d",
+    "session.message.previous": "alt+k",
+    "session.message.next": "alt+j",
     "input.newline": "shift+return,ctrl+return,alt+return",
     "input.delete.to.line.end": "none"
   },
