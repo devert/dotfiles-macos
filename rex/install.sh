@@ -8,6 +8,7 @@
 echo "Configuring Rex"
 mkdir -p $HOME/.config/rex
 ln -sfn $HOME/.dotfiles/rex/init.lua $HOME/.config/rex/init.lua
+ln -sfn $HOME/.dotfiles/rex/layouts.lua $HOME/.config/rex/layouts.lua
 
 # Install the fzf URL picker plugin (https://github.com/devert/rex-fzf-url)
 if [ ! -e $HOME/.config/rex/plugins/rex-fzf-url ]; then

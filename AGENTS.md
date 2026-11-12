@@ -41,7 +41,7 @@ homerow/      # Homerow keyboard-driven UI navigation configuration (https://www
 yazi/         # Yazi terminal file manager configuration (https://github.com/sxyazi/yazi)
 herdr/        # Herdr terminal agent multiplexer configuration (https://herdr.dev)
 opencode/     # OpenCode 2 configuration: agent configuration and TUI configuration (https://opencode.ai)
-rex/          # Rex terminal configuration: keybindings, app settings, and custom themes
+rex/          # Rex terminal configuration: keybindings, pane layouts, app settings, and custom themes
 ```
 
 ## Installation Flow
@@ -322,9 +322,10 @@ Do not add `service.json` to the repository. It contains the password for the Op
 
 ## Rex Configuration
 
-Rex keeps its configuration in two places. Keybindings and custom actions are in a Lua file. App settings from the Rex Settings window are in the macOS preferences for `com.superlogical.rex`.
+Rex keeps its configuration in two places. Keybindings and custom actions are in Lua files. App settings from the Rex Settings window are in the macOS preferences for `com.superlogical.rex`.
 
 - `init.lua`: Keybindings and custom actions, symlinked to `~/.config/rex/init.lua`
+- `layouts.lua`: Named pane layouts, symlinked to `~/.config/rex/layouts.lua`. `init.lua` loads it with `require("layouts")`. Rex looks for required files in `~/.config/rex`, so each Lua file needs its own symlink there. Each layout is a custom action titled `Layout: <title>` in the command palette. The action splits the focused pane in the current tab. If the tab already has that layout, the action does nothing. To add a layout, add an entry to the `layouts` table
 - `init.lua` also loads the [rex-fzf-url](https://github.com/devert/rex-fzf-url) plugin and binds Cmd+U to its URL picker. `install.sh` clones the plugin into `~/.config/rex/plugins/rex-fzf-url` if that folder does not exist
 - `settings.plist`: App settings exported from the Rex preferences
 - `themes.json`: Custom themes, stored in the preferences as JSON data
@@ -339,7 +340,7 @@ If the content of `settings.plist` or `themes.json` did not change, the script d
 
 ### Import settings
 
-`rex/install.sh` creates the `init.lua` symlink and runs `rex/import-settings.py`. You can also run the import script on its own. Quit Rex before the import, because a running Rex writes its own copy over the preferences file. If Rex is running, the script stops.
+`rex/install.sh` creates the `init.lua` and `layouts.lua` symlinks and runs `rex/import-settings.py`. You can also run the import script on its own. Quit Rex before the import, because a running Rex writes its own copy over the preferences file. If Rex is running, the script stops.
 
 The import merges `settings.plist` and `themes.json` into the existing preferences, so window and session state stays. The script writes a binary plist, because the XML format removes fractional seconds from dates. Then it restarts `cfprefsd` so that macOS reads the new file.
 

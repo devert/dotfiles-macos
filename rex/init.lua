@@ -1,3 +1,14 @@
+-- ============================================================================
+-- Modules
+-- ============================================================================
+
+-- Named pane layouts, defined in layouts.lua beside this file
+require("layouts")
+
+-- ============================================================================
+-- Key bindings
+-- ============================================================================
+
 -- Cmd+K clears the screen, like Ctrl+L
 rex.bind("cmd+k", "pane.send_key", { key = "ctrl+l" })
 
@@ -26,6 +37,10 @@ rex.bind("cmd+\\", "client.sidebar.toggle")
 
 -- Cmd+Shift+R reloads the Rex config
 rex.bind("cmd+shift+r", "client.config.reload")
+
+-- ============================================================================
+-- Plugins
+-- ============================================================================
 
 -- Cmd+U opens an fzf picker with the URLs in the focused pane's scrollback.
 -- The plugin is https://github.com/devert/rex-fzf-url, installed in
