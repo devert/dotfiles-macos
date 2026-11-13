@@ -1,44 +1,16 @@
-" General
-" ---------------------------------------------------------------
+" Remaining parts of the old init.vim (reference only, this file is not loaded).
+" Everything that is already covered by the Lua config was removed.
+" Bring these back as plugins in lua/plugins/.
 
-set nocompatible
-set encoding=utf-8
-set fileencoding=utf-8
-set timeoutlen=500 ttimeoutlen=0
-
-let g:mapleader="\<Space>"
-
-
-" Vim UI
-" ---------------------------------------------------------------
-
-set mouse=a                     " Automatically enable mouse usage
-set mousehide                   " Hide the mouse cursor while typing
-
-" Allows copy-pasting from other apps
-" workaround: https://github.com/neovim/neovim/issues/8631
-let g:clipboard = {'copy': {'+': 'pbcopy', '*': 'pbcopy'}, 'paste': {'+': 'pbpaste', '*': 'pbpaste'}, 'name': 'pbcopy', 'cache_enabled': 0}
-if has('clipboard')
-  if has('unnamedplus')
-    set clipboard=unnamedplus,unnamed
-else
-    set clipboard=unnamed
-  endif
-endif
 
 " Plugins
 " ---------------------------------------------------------------
-
-call plug#begin('~/.local/share/nvim/plugged')
 
 " UI
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'itchyny/lightline.vim'
 
-" " Theme
-Plug 'phanviet/vim-monokai-pro'
-
-" " Utility
+" Utility
 " Currently causing slow down when opening files
 " https://github.com/editorconfig/editorconfig-vim/issues/100
 " Plug 'editorconfig/editorconfig-vim'
@@ -48,44 +20,6 @@ Plug '907th/vim-auto-save'
 Plug 'terryma/vim-multiple-cursors'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-
-" " Language Packs
-Plug 'sheerun/vim-polyglot'
-
-
-call plug#end()
-
-
-" Theme/Editor Config
-" ---------------------------------------------------------------
-
-syntax on                      " Enable syntax highlighting
-filetype plugin indent on       " Automatically detect file types
-
-set termguicolors               " Enables truecolor
-colorscheme monokai_pro
-
-" Line Numbers
-set number                      " Line numbers on
-set numberwidth=5
-" Make line number column transparent
-highlight LineNr guibg=NONE guifg=#555555
-
-" Cursor Styles
-" Block in normal, line in insert, underline in replace
-set guicursor=n-v-c-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20
-
-" Cursor Line
-set cursorline
-highlight CursorLineNr guifg=#BBBBBB
-highlight CursorLine guibg=NONE guifg=NONE
-
-" Show leading spaces
-highlight Conceal guibg=NONE ctermbg=NONE guifg=#676767
-autocmd BufWinEnter * setl conceallevel=2 concealcursor=nv
-autocmd BufWinEnter * syn match LeadingSpace /\(^ *\)\@<= / containedin=ALL conceal cchar=·
-autocmd BufReadPre * setl conceallevel=2 concealcursor=nv
-autocmd BufReadPre * syn match LeadingSpace /\(^ *\)\@<= / containedin=ALL conceal cchar=·
 
 
 " NERDTree Config
