@@ -6,9 +6,6 @@
 " Plugins
 " ---------------------------------------------------------------
 
-" UI
-Plug 'itchyny/lightline.vim'
-
 " Utility
 " Currently causing slow down when opening files
 " https://github.com/editorconfig/editorconfig-vim/issues/100
@@ -19,14 +16,6 @@ Plug '907th/vim-auto-save'
 Plug 'terryma/vim-multiple-cursors'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-
-
-" Lightline Config
-" ---------------------------------------------------------------
-
-let g:lightline = {
-  \'colorscheme': 'one',
-  \}
 
 
 " Vim-AutoSave Config
