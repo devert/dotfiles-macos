@@ -3,6 +3,13 @@ vim.g.mapleader = " "
 vim.opt.timeoutlen = 500
 vim.keymap.set("n", "<leader>q", ":qa<CR>", { desc = "Quit all" })
 
+-- Save all files and restart Nvim to load config and plugin changes.
+-- :restart (Nvim 0.12+) keeps the terminal UI and restores open windows.
+vim.keymap.set("n", "<leader><leader>r", function()
+  vim.cmd("silent! wall")
+  vim.cmd("restart")
+end, { desc = "Save all and restart Nvim" })
+
 -- Clipboard (share yank and paste with the system clipboard)
 vim.opt.clipboard = "unnamedplus"
 
