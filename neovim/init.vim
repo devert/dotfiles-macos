@@ -11,17 +11,9 @@
 " https://github.com/editorconfig/editorconfig-vim/issues/100
 " Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
-Plug '907th/vim-auto-save'
 Plug 'terryma/vim-multiple-cursors'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-
-
-" Vim-AutoSave Config
-" ---------------------------------------------------------------
-
-let g:auto_save = 1  " enable AutoSave on Vim startup
-
 
 " FZF Config
 " ---------------------------------------------------------------

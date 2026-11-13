@@ -1,5 +1,6 @@
 {
   "SchemaStore.nvim": { "branch": "main", "commit": "4a4d239adc33ba8804f892313509177798924fcf" },
+  "auto-save.nvim": { "branch": "main", "commit": "141e5b4cb5df51e659fc039e25d227360f4dffcd" },
   "gitsigns.nvim": { "branch": "main", "commit": "dc7698f932792a764d3db95fedee26c38e728355" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lazydev.nvim": { "branch": "main", "commit": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d" },
