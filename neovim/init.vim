@@ -11,7 +11,6 @@
 " https://github.com/editorconfig/editorconfig-vim/issues/100
 " Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
-Plug 'tpope/vim-surround'
 Plug '907th/vim-auto-save'
 Plug 'terryma/vim-multiple-cursors'
 Plug '/usr/local/opt/fzf'
