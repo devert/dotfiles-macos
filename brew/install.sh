@@ -34,6 +34,7 @@ brew install jq
 brew install neovim
 brew install ripgrep
 brew install tmux
+brew install tree-sitter-cli
 brew install uv
 brew install zoxide
 brew install zsh
