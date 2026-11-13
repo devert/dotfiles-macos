@@ -246,7 +246,6 @@ Uses **lazy.nvim** as the plugin manager with Lua configuration:
 - Core settings and keymaps: `lua/options.lua` (leader key = Space)
 - Plugin definitions: one spec per file in `lua/plugins/*.lua`, or a directory with an `init.lua` for larger specs (`lua/plugins/nvim-tree/`). `lua/plugins.lua` returns an empty table.
 - Locked versions: `lazy-lock.json`
-- `init.vim` is the old Vimscript config. It is not symlinked or loaded.
 
 `neovim/install.sh` installs `neovim` and `tree-sitter-cli` with Homebrew. Then it symlinks `init.lua`, `lazy-lock.json`, and `lua/` into `~/.config/nvim/`.
 

@@ -96,8 +96,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Keep the selection after indenting in Visual mode
 vim.keymap.set("x", "<", "<gv", { desc = "Outdent and keep selection" })
 vim.keymap.set("x", ">", ">gv", { desc = "Indent and keep selection" })
-
--- Plugin settings from the old config, to bring back with their plugins:
---   vim-auto-save,
---   emmet
---   (see init.vim for the old settings)
