@@ -36,6 +36,30 @@ vim.keymap.set("n", "<leader>j", ":wincmd j<CR>", { desc = "Window down" })
 vim.keymap.set("n", "<leader>k", ":wincmd k<CR>", { desc = "Window up" })
 vim.keymap.set("n", "<leader>l", ":wincmd l<CR>", { desc = "Window right" })
 
+-- Resize the current pane with Alt+j (bigger) / Alt+k (smaller), like VS Code.
+-- Width changes when the pane has a neighbor to the left or right.
+-- Height changes when the pane has a neighbor above or below.
+local function resize_pane(delta)
+  local win = vim.api.nvim_get_current_win()
+  local has_neighbor = function(dir)
+    return vim.fn.win_getid(vim.fn.winnr(dir)) ~= win
+  end
+  if has_neighbor("h") or has_neighbor("l") then
+    vim.cmd("vertical resize " .. string.format("%+d", delta * 5))
+  end
+  if has_neighbor("k") or has_neighbor("j") then
+    vim.cmd("resize " .. string.format("%+d", delta * 2))
+  end
+end
+-- "∆" and "˚" are what Option+j / Option+k type on macOS when the
+-- terminal does not send Option as Alt.
+for _, key in ipairs({ "<M-j>", "∆" }) do
+  vim.keymap.set("n", key, function() resize_pane(1) end, { desc = "Increase pane size" })
+end
+for _, key in ipairs({ "<M-k>", "˚" }) do
+  vim.keymap.set("n", key, function() resize_pane(-1) end, { desc = "Decrease pane size" })
+end
+
 -- Create and close split panes
 vim.keymap.set("n", "<leader>wv", ":vsplit<CR>", { desc = "Vertical split" })
 vim.keymap.set("n", "<leader>wh", ":split<CR>", { desc = "Horizontal split" })

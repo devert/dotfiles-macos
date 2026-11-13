@@ -26,10 +26,10 @@ theme = Monokai Pro
 
 # Keybindings
 keybind = global:shift+ctrl+opt+cmd+u=toggle_quick_terminal
-keybind = opt+j=resize_split:up,10
-keybind = opt+k=resize_split:down,10
-keybind = opt+h=resize_split:left,10
-keybind = opt+l=resize_split:right,10
+keybind = opt+shift+j=resize_split:up,10
+keybind = opt+shift+k=resize_split:down,10
+keybind = opt+shift+h=resize_split:left,10
+keybind = opt+shift+l=resize_split:right,10
 keybind = opt+space=equalize_splits
 keybind = shift+enter=text:\x1b\r
 
