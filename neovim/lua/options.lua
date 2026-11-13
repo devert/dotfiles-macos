@@ -85,6 +85,6 @@ vim.keymap.set("x", "<", "<gv", { desc = "Outdent and keep selection" })
 vim.keymap.set("x", ">", ">gv", { desc = "Indent and keep selection" })
 
 -- Plugin settings from the old config, to bring back with their plugins:
---   lightline (one), vim-auto-save,
+--   vim-auto-save,
 --   fzf (<Leader><Leader>), emmet, vim-surround
 --   (see init.vim for the old settings)
