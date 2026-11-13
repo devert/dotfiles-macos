@@ -250,7 +250,9 @@ Uses **lazy.nvim** as the plugin manager with Lua configuration:
 
 `neovim/install.sh` installs `neovim` and `tree-sitter-cli` with Homebrew. Then it symlinks `init.lua`, `lazy-lock.json`, and `lua/` into `~/.config/nvim/`.
 
-Active plugins: Monokai Pro theme, Tree-sitter, LSP (nvim-lspconfig with Mason and mason-lspconfig), nvim-tree, lualine, gitsigns (keymaps under `<leader>g`), nvim-surround, Which-key, Telescope (with fzf-native and ui-select, keymaps under `<leader>f`), auto-save.nvim (saves 1 second after the last edit, `:ASToggle` turns it off and on).
+Active plugins: Monokai Pro theme, Tree-sitter, LSP (nvim-lspconfig with Mason and mason-lspconfig), nvim-tree, lualine, gitsigns (keymaps under `<leader>g`), nvim-surround, Which-key, Telescope (with fzf-native and ui-select, keymaps under `<leader>f`), auto-save.nvim (saves 1 second after the last edit, `:ASToggle` turns it off and on), multicursor.nvim.
+
+multicursor.nvim uses keys like the VSCodeVim multi-cursor mode. `gb` adds a cursor at the next match. Alt+Up/Down adds a cursor above or below. Esc removes the extra cursors. `lua/plugins/multicursor.lua` lists all the keys.
 
 Messages use the experimental ui2 UI (`vim._core.ui2`) with `cmdheight = 0`. Messages close after 4 seconds. In Rex, Padding Fill must be Off (`Workspace.terminalPaddingColor = background`), or the status line colors stretch into the padding under it.
 
