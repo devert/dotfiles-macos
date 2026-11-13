@@ -40,6 +40,7 @@ contexts/     # Contexts window switching app configuration (https://contexts.co
 homerow/      # Homerow keyboard-driven UI navigation configuration (https://www.homerow.app/)
 yazi/         # Yazi terminal file manager configuration (https://github.com/sxyazi/yazi)
 herdr/        # Herdr terminal agent multiplexer configuration (https://herdr.dev)
+opencode/     # OpenCode 2 configuration: agent configuration and TUI configuration (https://opencode.ai)
 rex/          # Rex terminal configuration: keybindings, pane layouts, app settings, and custom themes
 ```
 
@@ -292,7 +293,9 @@ Configuration lives in `claude/` and includes:
 
 ## MCP Server Configuration
 
-MCP server configs in `mcp/` are symlinked to both Claude Code and VS Code:
+`mcp/mcp-config.json` defines the MCP servers. `mcp/install.sh` symlinks it for VS Code. Claude Code gets the same servers from its plugins. Do not symlink it to `/Library/Application Support/ClaudeCode/managed-mcp.json`. Claude Code treats that file as an enterprise policy, and the OpenCode Claude Agent provider then fails.
+
+The servers are:
 
 - **chrome-devtools-mcp**: Browser automation and DevTools access
 - **context7**: Documentation and context lookup
@@ -306,13 +309,24 @@ MCP server configs in `mcp/` are symlinked to both Claude Code and VS Code:
 - **Vi mode** for copy mode
 - **Passthrough**: Enabled (for Ghostty shell integration)
 
+## OpenCode Configuration
+
+OpenCode 2 reads its configuration from two files in `~/.config/opencode`. `opencode/install.sh` installs OpenCode with Homebrew. Then it links the directory `~/.config/opencode` to `opencode/config`. The files are:
+
+- `opencode.jsonc`: Agents, models, MCP servers, and permissions. The schema is `https://opencode.ai/config.json`.
+- `cli.json`: The TUI (terminal user interface) configuration, for example theme, diffs, and session display. The schema is `https://opencode.ai/v2/cli.json`.
+
+Do not link each file separately. OpenCode saves `cli.json` with a temp file and a rename, and the rename replaces a file symlink with a regular file.
+
+Do not add `service.json` to the repository. It contains the password for the OpenCode background server. The root `.gitignore` excludes it.
+
 ## Rex Configuration
 
 Rex keeps its configuration in two places. Keybindings and custom actions are in Lua files. App settings from the Rex Settings window are in the macOS preferences for `com.superlogical.rex`.
 
 - `init.lua`: Keybindings and custom actions, symlinked to `~/.config/rex/init.lua`
 - `layouts.lua`: Named pane layouts, symlinked to `~/.config/rex/layouts.lua`. `init.lua` loads it with `require("layouts")`. Rex looks for required files in `~/.config/rex`, so each Lua file needs its own symlink there. Each layout is a custom action titled `Layout: <title>` in the command palette. The action splits the focused pane in the current tab. If the tab already has that layout, the action does nothing. To add a layout, add an entry to the `layouts` table
-- `init.lua` also loads the [rex-fzf-url](https://github.com/devert/rex-fzf-url) plugin and binds Ctrl+Space, then U, to its URL picker. `install.sh` clones the plugin into `~/.config/rex/plugins/rex-fzf-url` if that folder does not exist
+- `init.lua` also loads the [rex-fzf-url](https://github.com/devert/rex-fzf-url) plugin and binds Cmd+U to its URL picker. `install.sh` clones the plugin into `~/.config/rex/plugins/rex-fzf-url` if that folder does not exist
 - `settings.plist`: App settings exported from the Rex preferences
 - `themes.json`: Custom themes, stored in the preferences as JSON data
 - `export-keys.txt`: Preference keys that the export writes to `settings.plist`

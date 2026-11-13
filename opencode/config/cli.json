@@ -1,0 +1,32 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "theme": {
+    "name": "monokai-pro",
+    "mode": "system"
+  },
+  "diffs": {
+    "wrap": "word",
+    "view": "auto"
+  },
+  "session": {
+    "sidebar": "auto",
+    "scrollbar": false,
+    "thinking": "show",
+    "verbosity": "low"
+  },
+  "animations": true,
+  "keybinds": {
+    "leader": "ctrl+space",
+    "session.line.up": "ctrl+k,ctrl+alt+y",
+    "session.line.down": "ctrl+j,ctrl+alt+e",
+    "session.message.previous": "alt+k",
+    "session.message.next": "alt+j",
+    "input.newline": "shift+return,ctrl+return,alt+return",
+    "input.delete.to.line.end": "none"
+  },
+  "tabs": {
+    "mode": "off",
+    "layout": "horizontal",
+    "indicators": "status"
+  }
+}

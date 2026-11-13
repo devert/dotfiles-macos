@@ -5,3 +5,7 @@ after
 # Karabiner configration ignores
 karabiner/config/automatic_backups/*
 !karabiner/config/automatic_backups/.gitkeep
+
+# OpenCode configuration ignores
+opencode/config/service.json
+opencode/config/*.tmp
