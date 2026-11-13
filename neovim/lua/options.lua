@@ -1,6 +1,5 @@
 -- General
 vim.g.mapleader = " "
-vim.opt.timeoutlen = 500
 vim.keymap.set("n", "<leader>q", ":qa<CR>", { desc = "Quit all" })
 
 -- Save all files and restart Nvim to load config and plugin changes.
@@ -9,6 +8,20 @@ vim.keymap.set("n", "<leader><leader>r", function()
   vim.cmd("silent! wall")
   vim.cmd("restart")
 end, { desc = "Save all and restart Nvim" })
+
+-- Messages: use the experimental ui2 message UI (Nvim 0.12+). Messages show in a
+-- small window at the bottom right and close after the timeout.
+-- Long messages show a [+x] marker instead of "Press ENTER". Use g< to read them.
+-- The command line row is hidden (cmdheight = 0) and shows only while you type a :
+-- command. In Rex, set Padding Fill to Off, or the status line colors stretch into the
+-- padding under it.
+vim.opt.cmdheight = 0
+require("vim._core.ui2").enable({
+  msg = {
+    targets = "msg",
+    msg = { timeout = 4000 },
+  },
+})
 
 -- Clipboard (share yank and paste with the system clipboard)
 vim.opt.clipboard = "unnamedplus"
@@ -86,5 +99,5 @@ vim.keymap.set("x", ">", ">gv", { desc = "Indent and keep selection" })
 
 -- Plugin settings from the old config, to bring back with their plugins:
 --   vim-auto-save,
---   fzf (<Leader><Leader>), emmet, vim-surround
+--   emmet
 --   (see init.vim for the old settings)

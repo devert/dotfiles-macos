@@ -153,17 +153,14 @@ return {
         silent = true,
         nowait = true,
       })
-      -- Space opens and closes folders (and opens files)
-      vim.keymap.set("n", "<Space>", api.node.open.edit, {
-        desc = "nvim-tree: Open / toggle folder",
-        buffer = bufnr,
-        noremap = true,
-        silent = true,
-        nowait = true,
-      })
     end,
     view = {
       width = 35,
+    },
+    -- Highlight the current file in the tree and open its parent folders when you switch
+    -- buffers (for example from Telescope), like the VS Code explorer
+    update_focused_file = {
+      enable = true,
     },
     renderer = {
       group_empty = true,

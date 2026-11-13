@@ -250,7 +250,9 @@ Uses **lazy.nvim** as the plugin manager with Lua configuration:
 
 `neovim/install.sh` installs `neovim` and `tree-sitter-cli` with Homebrew. Then it symlinks `init.lua`, `lazy-lock.json`, and `lua/` into `~/.config/nvim/`.
 
-Active plugins: Monokai Pro theme, Tree-sitter, LSP (nvim-lspconfig with Mason and mason-lspconfig), nvim-tree, lualine, gitsigns, nvim-surround, Which-key. Telescope is disabled (`lua/plugins/telescope.lua` returns an empty table).
+Active plugins: Monokai Pro theme, Tree-sitter, LSP (nvim-lspconfig with Mason and mason-lspconfig), nvim-tree, lualine, gitsigns, nvim-surround, Which-key, Telescope (with fzf-native and ui-select, keymaps under `<leader>f`).
+
+Messages use the experimental ui2 UI (`vim._core.ui2`) with `cmdheight = 0`. Messages close after 4 seconds. In Rex, Padding Fill must be Off (`Workspace.terminalPaddingColor = background`), or the status line colors stretch into the padding under it.
 
 `neovim/README.md` lists the known color differences between Monokai Pro in Neovim and in VS Code.
 

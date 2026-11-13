@@ -76,6 +76,8 @@
 	<string>Light</string>
 	<key>Workspace.terminalImproveTextContrast</key>
 	<false/>
+	<key>Workspace.terminalPaddingColor</key>
+	<string>background</string>
 	<key>Workspace.terminalSelectionForeground</key>
 	<string>theme</string>
 	<key>Workspace.terminalSelectionRoundedCorners</key>

@@ -3,6 +3,7 @@ return {
   event = "VeryLazy",
   opts = {
     spec = {
+      { "<leader>f", group = "find" },
       { "<leader>w", group = "windows" },
       { "<leader>u", group = "toggles" },
       { "gr", group = "LSP" },
