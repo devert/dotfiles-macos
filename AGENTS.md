@@ -295,6 +295,7 @@ Git aliases follow a pattern (66+ total):
 Configuration lives in `claude/` and includes:
 
 - `settings.json`: Core settings (model, permissions, status line, auto-update disabled)
+- `keybindings.json`: Custom keybindings, symlinked to `~/.claude/keybindings.json`.
 - `status-line.sh`: Custom status line showing directory, git branch/status, model, context usage %, and rate limit %
 - `rules/git.md`: Commit rules (no structured formatting, request review before committing)
 - `rules/github.md`: PR rules (assign to @devert, no "Co-Authored-By" lines, no "Created with Claude Code")

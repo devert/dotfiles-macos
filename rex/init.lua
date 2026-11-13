@@ -16,8 +16,8 @@ rex.bind("cmd+k", "pane.send_key", { key = "ctrl+l" })
 rex.bind("ctrl+shift+up", "client.tab.move.backward")
 rex.bind("ctrl+shift+down", "client.tab.move.forward")
 
--- Ctrl+Shift+J/K sends Ctrl+J/K three times, so OpenCode scrolls 3 lines per
--- press. OpenCode binds Ctrl+J/K to scroll one line down/up.
+-- Ctrl+Shift+J/K sends Ctrl+J/K three times, so a TUI that scrolls one line
+-- down/up on Ctrl+J/K scrolls 3 lines per press.
 rex.action({
   name = "send_key_x3",
   title = "Send Key 3 Times",

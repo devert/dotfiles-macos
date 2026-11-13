@@ -10,6 +10,9 @@ echo "Configuring Claude Code"
 # Symlink settings file
 ln -sfn ~/.dotfiles/claude/settings.json ~/.claude/settings.json
 
+# Symlink keybindings file
+ln -sfn ~/.dotfiles/claude/keybindings.json ~/.claude/keybindings.json
+
 # Symlink rules files
 ln -sfn ~/.dotfiles/claude/rules ~/.claude/rules
 
