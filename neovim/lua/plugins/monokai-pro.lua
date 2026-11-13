@@ -10,7 +10,7 @@ return {
           DiagnosticHint = { fg = "#ab9df2" },
           DiagnosticSignHint = { fg = "#ab9df2" },
           DiagnosticFloatingHint = { fg = "#ab9df2" },
-          DiagnosticUnderlineHint = { sp = "#ab9df2", underline = true },
+          DiagnosticUnderlineHint = { sp = "#ab9df2", undercurl = true },
           PmenuSel = { bg = "#5b595c" },
           MatchParen = { fg = "NONE", bg = "#403e41" },
           -- CSS: class selectors green, id selectors orange, pseudo classes/elements teal italic

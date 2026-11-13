@@ -4,6 +4,8 @@ return {
   opts = {
     spec = {
       { "<leader>w", group = "windows" },
+      { "<leader>u", group = "toggles" },
+      { "gr", group = "LSP" },
     },
   },
   keys = {
