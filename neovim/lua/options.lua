@@ -1,6 +1,7 @@
 -- General
 vim.g.mapleader = " "
 vim.opt.timeoutlen = 500
+vim.keymap.set("n", "<leader>q", ":qa<CR>", { desc = "Quit all" })
 
 -- Clipboard (share yank and paste with the system clipboard)
 vim.opt.clipboard = "unnamedplus"
@@ -14,6 +15,9 @@ vim.opt.shiftwidth = 2
 -- Line Numbers
 vim.wo.number = true
 vim.wo.numberwidth = 5
+-- Line number (4 digits wide) followed by 3 spaces, like the gap in VS Code.
+-- %s is the sign column, which stays empty until something (git, diagnostics) uses it.
+vim.opt.statuscolumn = "%s%4l   "
 
 -- Move 3 lines at a time with Ctrl+j / Ctrl+k
 vim.keymap.set({ "n", "x" }, "<C-j>", "3j", { desc = "Down 3 lines" })
@@ -50,6 +54,6 @@ vim.keymap.set("x", "<", "<gv", { desc = "Outdent and keep selection" })
 vim.keymap.set("x", ">", ">gv", { desc = "Indent and keep selection" })
 
 -- Plugin settings from the old config, to bring back with their plugins:
---   nerdtree (<C-e> toggle, <leader>e find), lightline (one), vim-auto-save,
+--   lightline (one), vim-auto-save,
 --   fzf (<Leader><Leader>), emmet, vim-surround
 --   (see init.vim for the old settings)
