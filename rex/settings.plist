@@ -38,6 +38,8 @@
 	<string>left</string>
 	<key>Workspace.sidebarShowsActivity</key>
 	<false/>
+	<key>Workspace.sidebarWidth</key>
+	<real>230.0</real>
 	<key>Workspace.smoothResizeEnabled</key>
 	<true/>
 	<key>Workspace.tabIconColorMode</key>
@@ -57,7 +59,7 @@
 	<key>Workspace.terminalCharacterSpacing</key>
 	<string>0</string>
 	<key>Workspace.terminalCursorBlinkIntervalMilliseconds</key>
-	<integer>500</integer>
+	<integer>0</integer>
 	<key>Workspace.terminalCursorBlinkUsesCustomInterval</key>
 	<false/>
 	<key>Workspace.terminalCursorStyle</key>
@@ -90,6 +92,8 @@
 	<false/>
 	<key>Workspace.tintsPanesWithProgramBackground</key>
 	<true/>
+	<key>Workspace.usesGestures</key>
+	<false/>
 	<key>Workspace.usesPaneGlass</key>
 	<false/>
 	<key>Workspace.usesStandardInactiveWindowPaneStyles</key>
