@@ -1,6 +1,20 @@
 # Neovim Setup
 
-The config is a work in progress. Most of it is commented out and is turned on step by step.
+## Installation
+
+Run this command:
+
+```sh
+./neovim/install.sh
+```
+
+The script installs Neovim and tree-sitter-cli with Homebrew. Tree-sitter uses tree-sitter-cli to build language parsers. Then the script creates the `~/.config/nvim` directory and adds these symlinks to the dotfiles:
+
+- `~/.config/nvim/init.lua`
+- `~/.config/nvim/lazy-lock.json`
+- `~/.config/nvim/lua`
+
+When you start Neovim for the first time, `init.lua` downloads lazy.nvim (the plugin manager). Then lazy.nvim installs the plugins at the versions in `lazy-lock.json`.
 
 ## Monokai Pro compared to VS Code
 
@@ -24,10 +38,10 @@ These overrides are in `lua/plugins/monokai-pro.lua`.
 
 These cannot be fixed with a simple override. The same highlight group covers tokens that VS Code colors differently. A fix needs a custom Tree-sitter query.
 
-- **Brackets:** VS Code colors bracket pairs by nesting depth (pink, orange, yellow, green, cyan, purple). Neovim colors all brackets pink. A rainbow brackets plugin would fix this.
+- **Brackets:** VS Code colors bracket pairs by nesting depth (pink, orange, yellow, green, cyan, purple). Neovim colors all brackets pink. A rainbow brackets plugin can fix this.
 - **`const`, `let`, `var`:** These are teal and italic in VS Code. In Neovim they are pink and italic, like `extends`.
 - **`console`:** This is teal and italic in VS Code. In Neovim it is gray and italic, like `this` and `super`.
-- **`${` in template strings:** This is pink in VS Code and gray in Neovim. The `?` in optional TypeScript properties shares the same group, so an override would turn `?` pink too.
+- **`${` in template strings:** This is pink in VS Code and gray in Neovim. The `?` in optional TypeScript properties shares the same group, so an override also turns `?` pink.
 - **CSS values:** Words such as `none`, `no-repeat`, and `sans-serif` are teal in VS Code and white in Neovim. A color such as `#fff` is purple in VS Code and yellow in Neovim.
 - **HTML `class` and `id` values:** These are green and orange in VS Code. In Neovim they are yellow, like all strings.
 

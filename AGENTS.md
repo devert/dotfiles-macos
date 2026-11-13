@@ -72,7 +72,7 @@ ln -s ~/.dotfiles/<component>/<file> <target-location>
 **Examples**:
 
 - `~/.zshrc` → `~/.dotfiles/zsh/.zshrc`
-- `~/.config/nvim/` → `~/.dotfiles/neovim/`
+- `~/.config/nvim/init.lua` → `~/.dotfiles/neovim/init.lua`
 - `~/.gitconfig` → `~/.dotfiles/git/.gitconfig`
 - `~/Library/Application Support/Code/User/settings.json` → `~/.dotfiles/vscode/settings.json`
 
@@ -243,11 +243,16 @@ Plugin order matters: `vi-mode` before `fzf` to prevent keybinding conflicts. Th
 Uses **lazy.nvim** as the plugin manager with Lua configuration:
 
 - Entry point: `init.lua` (bootstraps lazy.nvim and loads configs)
-- Core settings: `lua/options.lua`
-- Plugin definitions: `lua/plugins.lua` and `lua/plugins/*.lua`
+- Core settings and keymaps: `lua/options.lua` (leader key = Space)
+- Plugin definitions: one spec per file in `lua/plugins/*.lua`, or a directory with an `init.lua` for larger specs (`lua/plugins/nvim-tree/`). `lua/plugins.lua` returns an empty table.
 - Locked versions: `lazy-lock.json`
+- `init.vim` is the old Vimscript config. It is not symlinked or loaded.
 
-Key plugins: LSP, Telescope (fuzzy finder), Tree-sitter, Neo-tree, Which-key, Monokai Pro theme.
+`neovim/install.sh` installs `neovim` and `tree-sitter-cli` with Homebrew. Then it symlinks `init.lua`, `lazy-lock.json`, and `lua/` into `~/.config/nvim/`.
+
+Active plugins: Monokai Pro theme, Tree-sitter, LSP (nvim-lspconfig with Mason and mason-lspconfig), nvim-tree, lualine, gitsigns, nvim-surround, Which-key. Telescope is disabled (`lua/plugins/telescope.lua` returns an empty table).
+
+`neovim/README.md` lists the known color differences between Monokai Pro in Neovim and in VS Code.
 
 ## VS Code Configuration
 
