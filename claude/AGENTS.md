@@ -26,7 +26,7 @@ If you add a local change, add it to this list.
 
 ### Update the skill
 
-1. Run `claude/update-simple-english.sh` from any folder. The script downloads the upstream project to a temporary folder. It merges each upstream change into the local copy with a three-way merge. Then it writes the new commit to `simple-english.upstream`.
+1. Run `claude/skills/update-simple-english.sh` from any folder. The script downloads the upstream project to a temporary folder. It merges each upstream change into the local copy with a three-way merge. Then it writes the new commit to `simple-english.upstream`.
 2. Read the script output. It shows one line for each file that changed: `MERGED`, `ADDED`, `CONFLICT`, `DELETED`, or `SKIP`.
 3. If the output shows `CONFLICT`, open the file and find the `<<<<<<< local` markers. Keep the local side where the conflict touches a local change from the list above. Keep the upstream side for all other conflicts. Remove all markers.
 4. If upstream adds new rules for chat replies, do not add them. If upstream adds hooks or a new folder outside `skills/simple-english/`, do not copy them. The script copies only `skills/simple-english/` and `LICENSE`.

@@ -5,9 +5,9 @@
 set -euo pipefail
 
 repo_url=https://github.com/AminBlg/SimpleEnglish.git
-claude_dir="$(cd "$(dirname "$0")" && pwd)"
-skill_dir="$claude_dir/skills/simple-english"
-base_file="$claude_dir/skills/simple-english.upstream"
+skills_dir="$(cd "$(dirname "$0")" && pwd)"
+skill_dir="$skills_dir/simple-english"
+base_file="$skills_dir/simple-english.upstream"
 upstream_path=skills/simple-english
 
 base=$(tr -d '[:space:]' < "$base_file")
@@ -66,7 +66,7 @@ done < <(git diff --name-only --diff-filter=D "$base" "$head" -- "$upstream_path
 
 echo "$head" > "$base_file"
 echo
-echo "Recorded upstream commit ${head:0:7} in ${base_file#"$claude_dir"/}."
+echo "Recorded upstream commit ${head:0:7} in ${base_file#"$skills_dir"/}."
 
 if (( conflicts > 0 )); then
   echo "$conflicts file(s) have conflict markers. Fix them, then review git diff."
