@@ -36,3 +36,6 @@ keybind = shift+enter=text:\x1b\r
 # Send Ctrl+L (clear) instead of full reset
 keybind = cmd+k=unbind
 keybind = cmd+k=text:\x0c
+
+# Cmd+S sends F13, which Neovim maps to save
+keybind = cmd+s=text:\x1b[25~

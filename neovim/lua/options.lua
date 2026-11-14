@@ -2,6 +2,10 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>q", ":qa<CR>", { desc = "Quit all" })
 
+-- Cmd+S saves the file. The terminal turns Cmd+S into F13 (see rex/init.lua and
+-- ghostty/config), because terminals do not pass Cmd to Neovim.
+vim.keymap.set({ "n", "i", "v" }, "<F13>", "<Cmd>silent! write<CR><Esc>", { desc = "Save file" })
+
 -- Save all files and restart Nvim to load config and plugin changes.
 -- :restart (Nvim 0.12+) keeps the terminal UI and restores open windows.
 vim.keymap.set("n", "<leader><leader>r", function()
@@ -26,7 +30,7 @@ require("vim._core.ui2").enable({
 -- Clipboard (share yank and paste with the system clipboard)
 vim.opt.clipboard = "unnamedplus"
 
--- Files: no swap files (auto-save writes within 1 second), and reload files that
+-- Files: no swap files (auto-save writes when you leave a buffer), and reload files that
 -- another program changed (for example Claude Code) when Neovim gets focus back.
 vim.opt.swapfile = false
 vim.opt.autoread = true

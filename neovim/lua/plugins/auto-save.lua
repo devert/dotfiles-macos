@@ -1,5 +1,5 @@
--- Save files automatically. Edits save 1 second after the last change.
--- Leaving a buffer or switching away from Neovim saves right away.
+-- Save files when you leave a buffer or switch away from Neovim.
+-- Cmd+S saves on demand (see options.lua).
 -- :ASToggle turns auto-save off and on.
 
 -- Skip git commit and rebase messages, so that quitting with :cq still aborts.
@@ -7,10 +7,14 @@ local excluded_filetypes = { "gitcommit", "gitrebase" }
 
 return {
   "okuuva/auto-save.nvim",
-  event = { "InsertLeave", "TextChanged" },
+  event = "VeryLazy",
   cmd = "ASToggle",
   opts = {
-    debounce_delay = 1000,
+    trigger_events = {
+      immediate_save = { "BufLeave", "FocusLost" },
+      defer_save = {},
+      cancel_deferred_save = {},
+    },
     condition = function(buf)
       return vim.bo[buf].buftype == ""
         and not vim.tbl_contains(excluded_filetypes, vim.bo[buf].filetype)

@@ -12,6 +12,9 @@ require("layouts")
 -- Cmd+K clears the screen, like Ctrl+L
 rex.bind("cmd+k", "pane.send_key", { key = "ctrl+l" })
 
+-- Cmd+S sends F13, which Neovim maps to save
+rex.bind("cmd+s", "pane.send_key", { key = "f13" })
+
 -- Ctrl+Shift+Up/Down moves the active tab up/down
 rex.bind("ctrl+shift+up", "client.tab.move.backward")
 rex.bind("ctrl+shift+down", "client.tab.move.forward")
