@@ -122,6 +122,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+-- Undo and redo without the "1 change; before #2 ..." message
+vim.keymap.set("n", "u", function()
+  vim.cmd("silent normal! " .. vim.v.count1 .. "u")
+end, { desc = "Undo" })
+vim.keymap.set("n", "<C-r>", function()
+  vim.cmd("silent normal! " .. vim.v.count1 .. "\18")
+end, { desc = "Redo" })
+
 -- Keep the selection after indenting in Visual mode
 vim.keymap.set("x", "<", "<gv", { desc = "Outdent and keep selection" })
 vim.keymap.set("x", ">", ">gv", { desc = "Indent and keep selection" })

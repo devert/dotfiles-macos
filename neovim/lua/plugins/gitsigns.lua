@@ -12,7 +12,7 @@ return {
         if vim.wo.diff then
           vim.cmd.normal({ builtin, bang = true })
         else
-          gitsigns.nav_hunk(direction)
+          gitsigns.nav_hunk(direction, { navigation_message = false })
         end
       end
 
