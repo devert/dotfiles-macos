@@ -1,0 +1,22 @@
+# Neovim Configuration
+
+- Entry point: `init.lua` (bootstraps lazy.nvim and loads configs)
+- Core settings and keymaps: `lua/options.lua` (leader key = Space)
+- Plugin definitions: one spec per file in `lua/plugins/*.lua`, or a directory with an `init.lua` for larger specs (`lua/plugins/nvim-tree/`). `lua/plugins.lua` returns an empty table.
+- Locked versions: `lazy-lock.json`
+
+`neovim/install.sh` installs `neovim` and `tree-sitter-cli` with Homebrew. Then it symlinks `init.lua`, `lazy-lock.json`, and `lua/` into `~/.config/nvim/`.
+
+Active plugins: Monokai Pro theme, Tree-sitter, LSP (nvim-lspconfig with Mason and mason-lspconfig), nvim-tree, lualine, gitsigns (keymaps under `<leader>g`), nvim-surround, Which-key, Telescope (with fzf-native and ui-select, keymaps under `<leader>f`), auto-save.nvim (saves when you leave a buffer or switch away from Neovim, `:ASToggle` turns it off and on; Cmd+S saves on demand through F13), multicursor.nvim, flash.nvim, satellite.nvim.
+
+multicursor.nvim uses keys like the VSCodeVim multi-cursor mode. `gb` adds a cursor at the next match. Alt+Up/Down adds a cursor above or below. Esc removes the extra cursors. `lua/plugins/multicursor.lua` lists all the keys.
+
+flash.nvim jumps like the VSCodeVim sneak plugin. `s` plus two characters shows a label on each match, and you press a label to jump. `z` does the same after an operator, for example `dz`, because `s` is used by nvim-surround. `gl` selects a Tree-sitter node. Labels are lowercase only, and `f`, `t`, `F`, and `T` also show labels. The Flash colors are set in `lua/plugins/monokai-pro.lua`.
+
+Messages use the experimental ui2 UI (`vim._core.ui2`) with `cmdheight = 0`. Messages close after 4 seconds. In Rex, Padding Fill must be Off (`Workspace.terminalPaddingColor = background`), or the status line colors stretch into the padding under it.
+
+satellite.nvim shows git change markers (gitsigns colors) on the right edge of the window, in the style of the VS Code overview ruler, measured from a VS Code screenshot. The bar is 3 cells wide. Each marker is a small square, half a cell wide and half a cell tall, in the right half of the middle cell. All markers stay in one column. Each cell is split into a top and a bottom half. When two different hunks share a cell, the lower one moves down into the next half cell if it is free. If both places are taken, a change wins over a delete, and a delete wins over an add. A custom handler in `lua/plugins/satellite.lua` draws them. A light line crosses the middle and right cells of the bar at the cursor position. It moves in 4 steps per cell. In a cell that holds a marker, the line is only in the right cell, at the same height. There is no scrollbar thumb or track. `:SatelliteDisable` and `:SatelliteEnable` turn it off and on.
+
+Markdown code blocks get a dark background over the whole block, from the left edge to the right edge of the window, including the ``` lines and empty lines. `lua/markdown-code-blocks.lua` paints it, and `MarkdownCodeBlock` in `lua/plugins/monokai-pro.lua` sets the color. The theme's own background behind the characters is removed. The code keeps its syntax colors. To drop the background, set `MarkdownCodeBlock` to `bg = "NONE"`.
+
+`neovim/README.md` lists the known color differences between Monokai Pro in Neovim and in VS Code.

@@ -44,6 +44,8 @@ opencode/     # OpenCode 2 configuration: agent configuration and TUI configurat
 rex/          # Rex terminal configuration: keybindings, pane layouts, app settings, and custom themes
 ```
 
+`neovim/AGENTS.md` and `rex/AGENTS.md` have the details for those components. Read them before you change files there.
+
 ## Installation Flow
 
 The setup follows a specific sequence (from README.md):
@@ -90,69 +92,6 @@ timesh
 for i in $(seq 1 10); do /usr/bin/time $SHELL -i -c exit; done
 ```
 
-### Shell Management
-
-```bash
-reload      # Reload shell configuration (alias for omz reload)
-zshconfig   # Open ~/.zshrc in editor
-```
-
-### Git Workflow
-
-The git configuration includes 66+ aliases. Most commonly used:
-
-```bash
-git s         # Status
-git aa        # Add all changes
-git c         # Commit with message
-git co        # Checkout
-git p         # Push
-git pl        # Pull
-git l         # Log with graph
-git nb        # New branch
-git b         # List branches
-git bd        # Branch delete
-git bdf       # Branch delete (forced)
-git rhh       # Reset hard to HEAD
-git rnb       # Rename branch
-git t         # Tag list
-```
-
-**FZF-enhanced aliases** (interactive selection with fuzzy finder):
-
-```bash
-ga   # Add files interactively
-gu   # Unstage files interactively
-gb   # Checkout branch interactively
-gbr  # Checkout remote branch interactively
-```
-
-### Kubernetes (Custom Functions)
-
-```bash
-kgpg [search-term]       # Get pods with optional grep
-kubesh pod-name-fragment # Shell into pod matching name
-```
-
-### Modern CLI Tool Replacements
-
-```bash
-ls / lsa / lt  # eza aliases (replaces ls) with --group-directories-first
-y               # yazi terminal file manager
-bat             # Cat clone with syntax highlighting (installed via Homebrew)
-nvm             # Aliased to fnm for backward compatibility
-```
-
-### VS Code Extensions
-
-```bash
-# Export currently installed extensions
-code --list-extensions | xargs -L 1 echo code --install-extension
-
-# Update extensions via install script
-~/.dotfiles/vscode/install.sh
-```
-
 ## Critical Architecture Patterns
 
 ### 1. Shell Startup Optimization
@@ -164,6 +103,8 @@ The shell configuration is **performance-optimized**:
 - Plugins are carefully selected to minimize startup time
 - `vi-mode` plugin loaded before `fzf` to avoid keybinding conflicts
 - FNM plugin commented out in `.zshrc` in favor of eval in `.zprofile` for speed
+- Powerlevel10k instant prompt is on. Code that asks for input (password prompts, y/n questions) must go above it in `.zshrc`, and code below it should not print output
+- Completion security checks are off (`ZSH_DISABLE_COMPFIX=true`) to skip the slow `compaudit` scan
 
 **Example from `.zprofile`**:
 
@@ -230,81 +171,6 @@ Most installers:
 - **`exports.zsh`**: Environment variables (sourced by OMZ)
 - **`.p10k.zsh`**: Powerlevel10k prompt configuration
 
-### Active Oh-My-Zsh Plugins
-
-```bash
-plugins=(git history-substring-search zoxide zsh-autosuggestions zsh-syntax-highlighting vi-mode fzf)
-```
-
-Plugin order matters: `vi-mode` before `fzf` to prevent keybinding conflicts. The `fnm` plugin is commented out in favor of eval in `.zprofile` for faster startup.
-
-## Neovim Configuration
-
-
-- Entry point: `init.lua` (bootstraps lazy.nvim and loads configs)
-- Core settings and keymaps: `lua/options.lua` (leader key = Space)
-- Plugin definitions: one spec per file in `lua/plugins/*.lua`, or a directory with an `init.lua` for larger specs (`lua/plugins/nvim-tree/`). `lua/plugins.lua` returns an empty table.
-- Locked versions: `lazy-lock.json`
-
-`neovim/install.sh` installs `neovim` and `tree-sitter-cli` with Homebrew. Then it symlinks `init.lua`, `lazy-lock.json`, and `lua/` into `~/.config/nvim/`.
-
-Active plugins: Monokai Pro theme, Tree-sitter, LSP (nvim-lspconfig with Mason and mason-lspconfig), nvim-tree, lualine, gitsigns (keymaps under `<leader>g`), nvim-surround, Which-key, Telescope (with fzf-native and ui-select, keymaps under `<leader>f`), auto-save.nvim (saves when you leave a buffer or switch away from Neovim, `:ASToggle` turns it off and on; Cmd+S saves on demand through F13), multicursor.nvim, flash.nvim, satellite.nvim.
-
-multicursor.nvim uses keys like the VSCodeVim multi-cursor mode. `gb` adds a cursor at the next match. Alt+Up/Down adds a cursor above or below. Esc removes the extra cursors. `lua/plugins/multicursor.lua` lists all the keys.
-
-flash.nvim jumps like the VSCodeVim sneak plugin. `s` plus two characters shows a label on each match, and you press a label to jump. `z` does the same after an operator, for example `dz`, because `s` is used by nvim-surround. `gl` selects a Tree-sitter node. Labels are lowercase only, and `f`, `t`, `F`, and `T` also show labels. The Flash colors are set in `lua/plugins/monokai-pro.lua`.
-
-Messages use the experimental ui2 UI (`vim._core.ui2`) with `cmdheight = 0`. Messages close after 4 seconds. In Rex, Padding Fill must be Off (`Workspace.terminalPaddingColor = background`), or the status line colors stretch into the padding under it.
-
-satellite.nvim shows git change markers (gitsigns colors) on the right edge of the window, in the style of the VS Code overview ruler, measured from a VS Code screenshot. The bar is 3 cells wide. Each marker is a small square, half a cell wide and half a cell tall, in the right half of the middle cell. All markers stay in one column. Each cell is split into a top and a bottom half. When two different hunks share a cell, the lower one moves down into the next half cell if it is free. If both places are taken, a change wins over a delete, and a delete wins over an add. A custom handler in `lua/plugins/satellite.lua` draws them. A light line crosses the middle and right cells of the bar at the cursor position. It moves in 4 steps per cell. In a cell that holds a marker, the line is only in the right cell, at the same height. There is no scrollbar thumb or track. `:SatelliteDisable` and `:SatelliteEnable` turn it off and on.
-
-Markdown code blocks get a dark background over the whole block, from the left edge to the right edge of the window, including the ``` lines and empty lines. `lua/markdown-code-blocks.lua` paints it, and `MarkdownCodeBlock` in `lua/plugins/monokai-pro.lua` sets the color. The theme's own background behind the characters is removed. The code keeps its syntax colors. To drop the background, set `MarkdownCodeBlock` to `bg = "NONE"`.
-
-`neovim/README.md` lists the known color differences between Monokai Pro in Neovim and in VS Code.
-
-## VS Code Configuration
-
-The VS Code install script manages **44 extensions** programmatically via `code --install-extension`. Extensions are version-controlled in the install script rather than via VS Code sync.
-
-Configuration includes:
-
-- Custom settings
-- Custom keybindings
-- Code snippets
-- Monokai Pro theme and icon theme
-- Operator Mono font with JetBrainsMonoNL Nerd Font as fallback
-- Vim integration with Neovim enabled (leader key = Space)
-- Copilot inline suggestions disabled by default, togglable via keybinding
-- Multiple language formatters
-
-## Git Configuration Philosophy
-
-Git aliases follow a pattern (66+ total):
-
-- **Single-letter shortcuts**: Ultra-common operations (a, b, c, d, s)
-- **Multi-letter names**: Compound operations (amend, uncommit, delete-merged-branches)
-- **Aliases that chain aliases**: e.g., `dmb` combines multiple operations
-- **Uses git-extras**: For advanced functionality (delete-branch, rename-branch, etc.)
-
-## Terminal Emulator
-
-**Primary**: Ghostty (custom split/scroll keybindings, Monokai Pro theme)
-
-- Operator Mono font at 16pt
-- Custom keybindings for split management (Opt+h/j/k/l for resize)
-- Quick terminal shortcut: Shift+Ctrl+Opt+Cmd+U
-- Window maximized by default
-
-## Claude Code Configuration
-
-Configuration lives in `claude/` and includes:
-
-- `settings.json`: Core settings (model, permissions, status line, auto-update disabled)
-- `keybindings.json`: Custom keybindings, symlinked to `~/.claude/keybindings.json`.
-- `status-line.sh`: Custom status line showing directory, git branch/status, model, context usage %, and rate limit %
-- `rules/git.md`: Commit rules (no structured formatting, request review before committing)
-- `rules/github.md`: PR rules (assign to @devert, no "Co-Authored-By" lines, no "Created with Claude Code")
-
 ## MCP Server Configuration
 
 `mcp/mcp-config.json` defines the MCP servers. `mcp/install.sh` symlinks it for VS Code. Claude Code gets the same servers from its plugins. Do not symlink it to `/Library/Application Support/ClaudeCode/managed-mcp.json`. Claude Code treats that file as an enterprise policy, and the OpenCode Claude Agent provider then fails.
@@ -314,14 +180,6 @@ The servers are:
 - **chrome-devtools-mcp**: Browser automation and DevTools access
 - **context7**: Documentation and context lookup
 - **playwright**: Web testing and browser automation
-
-## Tmux Configuration
-
-- **Prefix**: Ctrl+Space (not default Ctrl+b)
-- **Status bar**: Hidden
-- **Plugins** (via tpm): tmux-fzf-url, tmux-jump, extrakto
-- **Vi mode** for copy mode
-- **Passthrough**: Enabled (for Ghostty shell integration)
 
 ## OpenCode Configuration
 
@@ -333,30 +191,6 @@ OpenCode 2 reads its configuration from two files in `~/.config/opencode`. `open
 Do not link each file separately. OpenCode saves `cli.json` with a temp file and a rename, and the rename replaces a file symlink with a regular file.
 
 Do not add `service.json` to the repository. It contains the password for the OpenCode background server. The root `.gitignore` excludes it.
-
-## Rex Configuration
-
-Rex keeps its configuration in two places. Keybindings and custom actions are in Lua files. App settings from the Rex Settings window are in the macOS preferences for `com.superlogical.rex`.
-
-- `init.lua`: Keybindings and custom actions, symlinked to `~/.config/rex/init.lua`
-- `layouts.lua`: Named pane layouts, symlinked to `~/.config/rex/layouts.lua`. `init.lua` loads it with `require("layouts")`. Rex looks for required files in `~/.config/rex`, so each Lua file needs its own symlink there. Each layout is a custom action titled `Layout: <title>` in the command palette. The action splits the focused pane in the current tab. If the tab already has that layout, the action does nothing. To add a layout, add an entry to the `layouts` table
-- `init.lua` also loads the [rex-fzf-url](https://github.com/devert/rex-fzf-url) plugin and binds Cmd+U to its URL picker. `install.sh` clones the plugin into `~/.config/rex/plugins/rex-fzf-url` if that folder does not exist
-- `settings.plist`: App settings exported from the Rex preferences
-- `themes.json`: Custom themes, stored in the preferences as JSON data
-- `export-keys.txt`: Preference keys that the export writes to `settings.plist`
-- `export-ignore.txt`: Preference keys and glob patterns that the export leaves out, such as window frames and updater state
-
-### Export settings
-
-After you change settings in the Rex Settings window, run `rex/export-settings.py`. Then commit the changed files. Rex can stay open during the export.
-
-If the content of `settings.plist` or `themes.json` did not change, the script does not write that file. If a key is in neither list file, the script shows its value and asks you to keep it, ignore it, or skip it. Your answer goes into `export-keys.txt` or `export-ignore.txt`. Without a terminal, the script prints the new keys and does not ask.
-
-### Import settings
-
-`rex/install.sh` creates the `init.lua` and `layouts.lua` symlinks and runs `rex/import-settings.py`. You can also run the import script on its own. Quit Rex before the import, because a running Rex writes its own copy over the preferences file. If Rex is running, the script stops.
-
-The import merges `settings.plist` and `themes.json` into the existing preferences, so window and session state stays. The script writes a binary plist, because the XML format removes fractional seconds from dates. Then it restarts `cfprefsd` so that macOS reads the new file.
 
 ## Adding New Components
 
@@ -373,23 +207,6 @@ To add a new tool configuration:
 
 4. Update README.md with installation step
 5. Test the installer
-
-## Dependencies
-
-**Critical tools installed via Homebrew**:
-
-- git, git-extras, gh (GitHub CLI)
-- fzf, ripgrep, zoxide
-- neovim, zsh
-- pyenv, pyenv-virtualenv
-- fnm (Fast Node Manager)
-- eza, bat, yazi
-- jq, tmux, curl
-
-**Terminal emulator**: Ghostty
-**Editors**: Neovim, VS Code
-**Language runtimes**: FNM (Node.js), PyEnv (Python)
-**Productivity apps**: Contexts, Homerow, Leader Key
 
 ## Working with This Repository
 
@@ -418,14 +235,3 @@ Custom functions and aliases live in:
 - `zsh/exports.zsh` - Environment variables
 
 These are automatically sourced by Oh-My-Zsh via the ZSH_CUSTOM mechanism.
-
-## Performance Considerations
-
-This dotfiles setup is optimized for fast shell startup:
-
-- Hardcoded paths in `.zprofile` instead of `eval` commands (exception: FNM requires eval)
-- Minimal plugin set in Oh-My-Zsh (FNM plugin commented out in favor of eval in .zprofile)
-- Powerlevel10k instant prompt enabled
-- Completion security checks disabled
-
-Use `timesh` to measure and track shell startup performance.
