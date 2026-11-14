@@ -13,6 +13,11 @@ return {
           DiagnosticUnderlineHint = { sp = "#ab9df2", undercurl = true },
           PmenuSel = { bg = "#5b595c" },
           MatchParen = { fg = "NONE", bg = "#403e41" },
+          -- flash.nvim: pink label letters, dim gray matches on a gray background, blue current match, dimmed backdrop
+          FlashLabel = { fg = "#ff6188", bg = "NONE", bold = true },
+          FlashMatch = { fg = "#c1c0c0", bg = "#5b595c" },
+          FlashCurrent = { fg = "#2d2a2e", bg = "#78dce8" },
+          FlashBackdrop = { fg = "#727072" },
           -- CSS: class selectors green, id selectors orange, pseudo classes/elements teal italic
           ["@type.css"] = { fg = "#a9dc76" },
           ["@constant.css"] = { fg = "#fc9867" },

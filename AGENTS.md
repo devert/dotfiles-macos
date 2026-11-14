@@ -249,9 +249,11 @@ Uses **lazy.nvim** as the plugin manager with Lua configuration:
 
 `neovim/install.sh` installs `neovim` and `tree-sitter-cli` with Homebrew. Then it symlinks `init.lua`, `lazy-lock.json`, and `lua/` into `~/.config/nvim/`.
 
-Active plugins: Monokai Pro theme, Tree-sitter, LSP (nvim-lspconfig with Mason and mason-lspconfig), nvim-tree, lualine, gitsigns (keymaps under `<leader>g`), nvim-surround, Which-key, Telescope (with fzf-native and ui-select, keymaps under `<leader>f`), auto-save.nvim (saves 1 second after the last edit, `:ASToggle` turns it off and on), multicursor.nvim.
+Active plugins: Monokai Pro theme, Tree-sitter, LSP (nvim-lspconfig with Mason and mason-lspconfig), nvim-tree, lualine, gitsigns (keymaps under `<leader>g`), nvim-surround, Which-key, Telescope (with fzf-native and ui-select, keymaps under `<leader>f`), auto-save.nvim (saves 1 second after the last edit, `:ASToggle` turns it off and on), multicursor.nvim, flash.nvim.
 
 multicursor.nvim uses keys like the VSCodeVim multi-cursor mode. `gb` adds a cursor at the next match. Alt+Up/Down adds a cursor above or below. Esc removes the extra cursors. `lua/plugins/multicursor.lua` lists all the keys.
+
+flash.nvim jumps like the VSCodeVim sneak plugin. `s` plus two characters shows a label on each match, and you press a label to jump. `z` does the same after an operator, for example `dz`, because `s` is used by nvim-surround. `gl` selects a Tree-sitter node. Labels are lowercase only, and `f`, `t`, `F`, and `T` also show labels. The Flash colors are set in `lua/plugins/monokai-pro.lua`.
 
 Messages use the experimental ui2 UI (`vim._core.ui2`) with `cmdheight = 0`. Messages close after 4 seconds. In Rex, Padding Fill must be Off (`Workspace.terminalPaddingColor = background`), or the status line colors stretch into the padding under it.
 
