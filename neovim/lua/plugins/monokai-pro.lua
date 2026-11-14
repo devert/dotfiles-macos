@@ -4,7 +4,7 @@ return {
   config = function()
     require("monokai-pro").setup({
       -- Match the VS Code Monokai Pro theme more closely
-      override = function()
+      override = function(c)
         return {
           ["@keyword.coroutine"] = { fg = "#ff6188", italic = true },
           DiagnosticHint = { fg = "#ab9df2" },
@@ -28,6 +28,12 @@ return {
           ["@markup.link.label.html"] = { fg = "#fcfcfa" },
           -- Markdown: block quotes italic
           ["@markup.quote.markdown"] = { italic = true },
+          -- Markdown code blocks: the theme paints a dark background only behind the
+          -- characters. Remove it here. lua/markdown-code-blocks.lua paints the whole
+          -- block, so the syntax colors of the code stay.
+          ["@markup.raw.block.markdown"] = { bg = "NONE" },
+          ["@markup.raw.delimiter.markdown"] = { fg = c.base.dimmed2, bg = "NONE" },
+          MarkdownCodeBlock = { bg = c.base.black },
         }
       end,
     })

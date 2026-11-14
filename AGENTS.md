@@ -258,6 +258,8 @@ Messages use the experimental ui2 UI (`vim._core.ui2`) with `cmdheight = 0`. Mes
 
 satellite.nvim shows git change markers (gitsigns colors) on the right edge of the window, in the style of the VS Code overview ruler, measured from a VS Code screenshot. The bar is 3 cells wide. Each marker is a small square, half a cell wide and half a cell tall, in the right half of the middle cell. Each cell is split into a top and a bottom half, so two hunks that share a cell can both show. A cell shows at most two colors. When hunks share a half, a change wins over a delete, and a delete wins over an add. A custom handler in `lua/plugins/satellite.lua` draws them. A light underline crosses the middle and right cells of the bar at the cursor position, in the same cell as the markers. There is no scrollbar thumb or track. `:SatelliteDisable` and `:SatelliteEnable` turn it off and on.
 
+Markdown code blocks get a dark background over the whole block, from the left edge to the right edge of the window, including the ``` lines and empty lines. `lua/markdown-code-blocks.lua` paints it, and `MarkdownCodeBlock` in `lua/plugins/monokai-pro.lua` sets the color. The theme's own background behind the characters is removed. The code keeps its syntax colors. To drop the background, set `MarkdownCodeBlock` to `bg = "NONE"`.
+
 `neovim/README.md` lists the known color differences between Monokai Pro in Neovim and in VS Code.
 
 ## VS Code Configuration

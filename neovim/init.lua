@@ -16,6 +16,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("options")
+require("markdown-code-blocks")
 require("lazy").setup("plugins", {
   performance = {
     rtp = {
