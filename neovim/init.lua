@@ -1,3 +1,6 @@
+-- Cache compiled Lua modules to speed up startup
+vim.loader.enable()
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -13,4 +16,21 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("options")
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+  performance = {
+    rtp = {
+      -- Built-in plugins that are not used. netrw is replaced by nvim-tree.
+      disabled_plugins = {
+        "gzip",
+        "tarPlugin",
+        "zipPlugin",
+        "tohtml",
+        "tutor",
+        "netrwPlugin",
+        "rplugin",
+        "spellfile",
+        "matchit",
+      },
+    },
+  },
+})

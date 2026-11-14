@@ -1,6 +1,7 @@
 return {
   "nvim-tree/nvim-tree.lua",
-  lazy = false,
+  -- Loads on the first key or command below, or when Neovim starts with a directory
+  cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus", "NvimTreeFindFile" },
   dependencies = {
     {
       "nvim-tree/nvim-web-devicons",
@@ -58,6 +59,21 @@ return {
     -- Disable netrw, the built-in file explorer, before nvim-tree loads
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
+
+    -- `nvim <directory>` opens the tree. The plugin is lazy, so load it here.
+    vim.api.nvim_create_autocmd("VimEnter", {
+      once = true,
+      callback = function()
+        local arg = vim.fn.argv(0)
+        if vim.fn.argc() == 1 and arg ~= "" and vim.fn.isdirectory(arg) == 1 then
+          require("lazy").load({ plugins = { "nvim-tree.lua" } })
+          vim.cmd.cd(arg)
+          require("nvim-tree.api").tree.open()
+          -- Remove the empty directory buffer
+          vim.cmd("silent! bwipeout 1")
+        end
+      end,
+    })
   end,
   keys = {
     { "<C-e>", "<cmd>NvimTreeToggle<CR>", desc = "Toggle file tree" },
