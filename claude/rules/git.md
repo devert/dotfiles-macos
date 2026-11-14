@@ -8,4 +8,5 @@
 - Do not push as part of finishing a task, even when the branch has no upstream.
 - Always request review of the commit message before committing files.
 - When you show a proposed commit message for review, put it in a fenced code block with no language tag.
+- Before you show a proposed commit message, invoke the `simple-english` skill and run its self-check.
 - Do not use structured commits formatting unless the repo is already using this convention

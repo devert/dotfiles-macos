@@ -26,6 +26,19 @@ if [[ -d ~/.claude/themes && ! -L ~/.claude/themes ]]; then
 fi
 ln -sfn ~/.dotfiles/claude/themes ~/.claude/themes
 
+# Symlink custom skills, one link per skill
+# ~/.claude/skills also holds skills from other tools, so it stays a real directory.
+mkdir -p ~/.claude/skills
+for skill in ~/.dotfiles/claude/skills/*(/); do
+  target=~/.claude/skills/${skill:t}
+  if [[ -d $target && ! -L $target ]]; then
+    skill_backup=$target.backup.$(date +%Y%m%d-%H%M%S)
+    echo "Moving existing $target to $skill_backup"
+    mv "$target" "$skill_backup"
+  fi
+  ln -sfn "$skill" "$target"
+done
+
 # Symlink status line script
 ln -sfn ~/.dotfiles/claude/status-line.sh ~/.claude/status-line.sh
 

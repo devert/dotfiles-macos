@@ -43,13 +43,13 @@ code comments, documentation, and any other generated text.
 - Invoke the `simple-english` skill before writing or rewriting these:
   documentation, READMEs, runbooks, PR descriptions, commit messages, release
   notes, incident reports, and user facing error messages.
+- This includes drafts you show for review. Invoke the skill again for each
+  new piece of writing, even if it loaded earlier in the session.
 - Chat replies do not need the skill, but they still follow the conciseness
   rules above.
 - Bullet and numbered lists, bold, and headers are allowed in chat replies,
-  as the conciseness rules describe. This overrides the simple-english
-  plugin's "answer in prose" reply rule. Ignore its Stop hook notice about
-  list items, bold spans, or headers.
-- Use it on request whenever I say "plain English", "simple English", "STE",
+  as the conciseness rules describe.
+- Use it on request whenever I say "plain english", "simple english", "STE",
   or "no jargon".
 - Explain a technical term the first time it appears, or replace it with a
   common word.

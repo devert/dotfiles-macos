@@ -44,7 +44,7 @@ opencode/     # OpenCode 2 configuration: agent configuration and TUI configurat
 rex/          # Rex terminal configuration: keybindings, pane layouts, app settings, and custom themes
 ```
 
-`neovim/AGENTS.md` and `rex/AGENTS.md` have the details for those components. Read them before you change files there.
+`neovim/AGENTS.md`, `rex/AGENTS.md`, and `claude/AGENTS.md` have the details for those components. Read them before you change files there.
 
 ## Installation Flow
 
