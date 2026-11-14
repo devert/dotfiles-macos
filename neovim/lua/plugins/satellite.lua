@@ -8,12 +8,16 @@
 -- bar is 3 cells wide. Each hunk is a small square, half a cell wide and half a
 -- cell tall, in the right half of the middle cell. That is about 9 px wide and
 -- 28 px from the edge, like VS Code. Each cell is split into a top and a bottom
--- half, so two hunks that share a cell can both show. A cell shows at most two
--- colors. When hunks share a half, a change wins over a delete, and a delete
--- wins over an add.
--- The cursor line is a light underline across the middle and right cells. It
--- shares the cell with the marks, so it does not hide them. Its color is the text color, 70% of the
--- way from the background, which is the VS Code color in Monokai Pro.
+-- half. All marks stay in one column. A cell can only hold one color per column,
+-- so when two different hunks share a cell, the lower one moves down into the
+-- next half cell if it is free (and otherwise the upper one moves up). If both
+-- places are taken, the hunk with the higher rank wins: a change wins over a
+-- delete, and a delete wins over an add.
+-- The cursor line crosses the middle and right cells, at one of 4 heights inside
+-- the cell, so it moves 4 times per cell. In a cell with a mark, the mark takes
+-- the middle cell and the line is only in the right cell, at the same height.
+-- Its color is the text color, 70% of the way from the background, which is the
+-- VS Code color in Monokai Pro.
 -- :SatelliteDisable and :SatelliteEnable turn the markers off and on.
 return {
   "lewis6991/satellite.nvim",
@@ -27,7 +31,7 @@ return {
       cursor = { enable = false }, -- the git handler below draws the cursor line
       search = { enable = false },
       diagnostic = { enable = false },
-      gitsigns = { enable = false }, -- replaced by the two column handler below
+      gitsigns = { enable = false }, -- replaced by the custom handler below
       marks = { enable = false },
       quickfix = { enable = false },
     },
@@ -46,9 +50,8 @@ return {
 
     -- Git handler. A mark is a quarter block, which is a small square. It sits in
     -- the right half of the middle cell of the bar. Its glyph is the top
-    -- right or the bottom right quarter of the cell. A cell with two different
-    -- hunks draws the top one in the middle cell and the bottom one in the
-    -- left half of the cell right of it.
+    -- right or the bottom right quarter of the cell, or the whole right half
+    -- when both halves of the cell hold the same type.
     local rank_by_type = { add = 1, delete = 2, change = 3 }
     local source_hl = { add = "GitSignsAdd", change = "GitSignsChange", delete = "GitSignsDelete" }
 
@@ -69,23 +72,26 @@ return {
       return mix(16) * 65536 + mix(8) * 256 + mix(0)
     end
 
-    -- Highlight group for a cell. top and bottom are hunk types or nil. With
-    -- cursor set, the cell also gets an underline in the cursor color.
-    local function cell_highlight(top, bottom, cursor)
-      local name = "SatelliteHunk_" .. (top or "none") .. "_" .. (bottom or "none") .. (cursor and "_cursor" or "")
-      local spec = {}
-      if top and bottom and top ~= bottom then
-        spec.fg, spec.bg = color_of(top), color_of(bottom)
-      elseif top or bottom then
-        spec.fg = color_of(top or bottom)
-      end
-      if cursor then
-        spec.underline, spec.sp = true, cursor_color()
-      end
-      vim.api.nvim_set_hl(0, name, spec)
+    -- Highlight group for a mark. top and bottom are hunk types or nil. The color
+    -- is that of the first one that is set.
+    local function cell_highlight(top, bottom)
+      local kind = top or bottom
+      local name = "SatelliteHunk_" .. kind
+      vim.api.nvim_set_hl(0, name, { fg = color_of(kind) })
       return name
     end
 
+    -- The cursor line at 4 heights inside a cell: top, upper middle, lower middle,
+    -- and bottom.
+    local line_glyphs = { "⎺", "⎻", "⎼", "⎽" }
+    local function line_highlight()
+      vim.api.nvim_set_hl(0, "SatelliteCursorLine", { fg = cursor_color() })
+      return "SatelliteCursorLine"
+    end
+
+    -- satellite adds the fields `enabled` and `ns` itself when it registers the
+    -- handler, so the language server is wrong to ask for them here.
+    ---@diagnostic disable-next-line: missing-fields
     require("satellite.handlers").register({
       name = "git_hunks",
       config = { priority = 20, overlap = true },
@@ -125,40 +131,58 @@ return {
           end
         end
 
-        local cursor_cell = math.floor(half_cell(vim.api.nvim_win_get_cursor(winid)[1] - 1) / 2)
+        -- A cell with two different hunks cannot show both colors in one column.
+        -- Move the lower hunk down into the next half cell if it is free. If not,
+        -- move the upper hunk up into the half cell above. If that is taken too,
+        -- the higher ranked type wins both halves.
+        for cell = 0, height - 1 do
+          local top, bottom = winner[2 * cell], winner[2 * cell + 1]
+          if top and bottom and top ~= bottom then
+            if cell + 1 < height and not winner[2 * cell + 2] then
+              winner[2 * cell + 2], winner[2 * cell + 1] = bottom, nil
+            elseif cell > 0 and not winner[2 * cell - 1] then
+              winner[2 * cell - 1], winner[2 * cell] = top, nil
+            else
+              local best = rank_by_type[top] >= rank_by_type[bottom] and top or bottom
+              winner[2 * cell], winner[2 * cell + 1] = best, best
+            end
+          end
+        end
+
+        -- Exact bar position of the cursor row in cells. The whole part is the cell,
+        -- and the fraction picks one of 4 line heights inside the cell.
+        local cursor_row = vim.api.nvim_win_get_cursor(winid)[1] - 1
+        local rounded, diff = util.row_to_barpos(winid, cursor_row)
+        local cursor_exact = math.max(0, math.min(height - 0.001, (rounded - diff) * height / (height - 1)))
+        local cursor_cell = math.floor(cursor_exact)
+        local cursor_step = math.min(3, math.floor((cursor_exact - cursor_cell) * 4)) + 1
 
         -- An empty sign keeps the sign column, which makes the bar 3 cells wide.
         -- The marks below are text that is drawn over the sign column.
         local marks = { { pos = 0, symbol = "  ", highlight = "Normal", column = "sign" } }
         for cell = 0, height - 1 do
           local top, bottom = winner[2 * cell], winner[2 * cell + 1]
-          local is_cursor = cell == cursor_cell
-          if top and bottom and top ~= bottom then
-            marks[#marks + 1] = { pos = cell, symbol = "▝", highlight = cell_highlight(top, nil, is_cursor), column = "middle" }
-            marks[#marks + 1] = { pos = cell, symbol = "▖", highlight = cell_highlight(nil, bottom, is_cursor), column = "right" }
-          else
-            if top or bottom then
-              local symbol = (top and bottom) and "▐" or (top and "▝" or "▗")
-              marks[#marks + 1] =
-                { pos = cell, symbol = symbol, highlight = cell_highlight(top or bottom, nil, is_cursor), column = "middle" }
-            elseif is_cursor then
-              marks[#marks + 1] = { pos = cell, symbol = " ", highlight = cell_highlight(nil, nil, true), column = "middle" }
-            end
-            -- The cursor line also crosses the right cell.
-            if is_cursor then
-              marks[#marks + 1] = { pos = cell, symbol = " ", highlight = cell_highlight(nil, nil, true), column = "right" }
-            end
+          local line = cell == cursor_cell and line_glyphs[cursor_step] or nil
+          if top or bottom then
+            local symbol = (top and bottom) and "▐" or (top and "▝" or "▗")
+            marks[#marks + 1] = { pos = cell, symbol = symbol, highlight = cell_highlight(top or bottom), column = "middle" }
+          elseif line then
+            marks[#marks + 1] = { pos = cell, symbol = line, highlight = line_highlight(), column = "middle" }
+          end
+          -- The line stays at the same height whether or not the cell has a mark.
+          -- Next to a mark it is only in the right cell, because the middle cell
+          -- holds the mark.
+          if line then
+            marks[#marks + 1] = { pos = cell, symbol = line, highlight = line_highlight(), column = "right" }
           end
         end
         return marks
       end,
 
       -- The bar has 3 cells. The sign column is the left and middle cells. The
-      -- text column is the right cell. A "middle" mark is text drawn over the
-      -- middle cell, and a "right" mark is text drawn over the right cell. Every
-      -- mark gets its own extmark, so marks in the same row do not replace each
-      -- other. The cursor line starts at the middle cell, so the left cell stays
-      -- empty.
+      -- text column is the right cell. "middle" and "right" marks are text drawn
+      -- over those cells. Every mark gets its own extmark, so marks in
+      -- the same row do not replace each other.
       apply_mark = function(self, bufnr, m, max_pos)
         if m.pos > max_pos then
           return
