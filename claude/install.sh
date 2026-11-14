@@ -18,11 +18,13 @@ ln -sfn ~/.dotfiles/claude/rules ~/.claude/rules
 
 # Symlink custom themes
 # ln -sfn cannot replace a real directory. It would create the link inside it.
+# Move a real directory aside first, so nothing is lost.
 if [[ -d ~/.claude/themes && ! -L ~/.claude/themes ]]; then
-  echo "Skipping themes: ~/.claude/themes is a real directory. Move it away, then run this script again."
-else
-  ln -sfn ~/.dotfiles/claude/themes ~/.claude/themes
+  themes_backup=~/.claude/themes.backup.$(date +%Y%m%d-%H%M%S)
+  echo "Moving existing ~/.claude/themes to $themes_backup"
+  mv ~/.claude/themes "$themes_backup"
 fi
+ln -sfn ~/.dotfiles/claude/themes ~/.claude/themes
 
 # Symlink status line script
 ln -sfn ~/.dotfiles/claude/status-line.sh ~/.claude/status-line.sh
