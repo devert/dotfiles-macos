@@ -26,6 +26,31 @@ require("vim._core.ui2").enable({
 -- Clipboard (share yank and paste with the system clipboard)
 vim.opt.clipboard = "unnamedplus"
 
+-- Files: no swap files (auto-save writes within 1 second), and reload files that
+-- another program changed (for example Claude Code) when Neovim gets focus back.
+vim.opt.swapfile = false
+vim.opt.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "TermClose" }, {
+  command = "silent! checktime",
+})
+
+-- Search: ignore case, unless the search text has a capital letter
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- Splits open to the right and below
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+-- Always show the sign column, so text does not shift when git signs or diagnostics appear
+vim.opt.signcolumn = "yes"
+
+-- Do not wrap long lines
+vim.opt.wrap = false
+
+-- Run CursorHold events after 250 ms idle (default 4000 ms)
+vim.opt.updatetime = 250
+
 -- Indentation
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
@@ -96,3 +121,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Keep the selection after indenting in Visual mode
 vim.keymap.set("x", "<", "<gv", { desc = "Outdent and keep selection" })
 vim.keymap.set("x", ">", ">gv", { desc = "Indent and keep selection" })
+
+-- Close the Lazy window with Esc (q also works)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "lazy",
+  callback = function(ev)
+    vim.keymap.set("n", "<Esc>", "<cmd>close<CR>", { buffer = ev.buf, desc = "Close Lazy" })
+  end,
+})
