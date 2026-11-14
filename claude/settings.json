@@ -22,9 +22,7 @@
       "Bash(ls:*)",
       "Read",
       "WebSearch",
-      "WebFetch",
-      "mcp__context7__*",
-      "mcp__chrome-devtools__take_screenshot"
+      "WebFetch"
     ],
     "deny": [
       "Read(.env)",
@@ -38,16 +36,6 @@
   },
   "hooks": {
     "SessionStart": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash '/Users/devert/.claude/hooks/herdr-agent-state.sh' session",
-            "timeout": 10
-          }
-        ]
-      },
       {
         "hooks": [
           {
@@ -63,31 +51,8 @@
     "type": "command",
     "command": "bash ~/.claude/status-line.sh"
   },
-  "enabledPlugins": {
-    "skill-creator@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": true,
-    "otto-harness@otto-harness": true,
-    "context7@claude-plugins-official": true,
-    "playwright@claude-plugins-official": true,
-    "chrome-devtools-mcp@claude-plugins-official": true,
-    "simple-english@simple-english": true
-  },
-  "extraKnownMarketplaces": {
-    "otto-harness": {
-      "source": {
-        "source": "github",
-        "repo": "agentsport/otto-harness"
-      }
-    },
-    "simple-english": {
-      "source": {
-        "source": "github",
-        "repo": "AminBlg/SimpleEnglish"
-      }
-    }
-  },
+  "enabledPlugins": {},
+  "extraKnownMarketplaces": {},
   "alwaysThinkingEnabled": true,
   "tui": "fullscreen",
   "voice": {
