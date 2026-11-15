@@ -58,5 +58,10 @@ return {
       end,
     })
     vim.cmd([[colorscheme monokai-pro]])
+
+    -- ui2 command line (also its dialogs and pager): same background as the file tree.
+    -- The theme links MsgArea to ModeMsg, and an override cannot replace a link.
+    local scheme = require("monokai-pro").get_scheme()
+    vim.api.nvim_set_hl(0, "MsgArea", { fg = scheme.editor.foreground, bg = scheme.sideBar.background })
   end
 }

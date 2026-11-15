@@ -18,6 +18,17 @@ return {
       end,
     })
   end,
+  config = function(_, opts)
+    -- The monokai-pro theme gives the middle sections (c and x) the darker status bar
+    -- color. Use the file tree background instead.
+    local theme = require("lualine.themes.monokai-pro")
+    local tree_bg = require("monokai-pro").get_scheme().sideBar.background
+    theme.normal.c.bg = tree_bg
+    theme.normal.x.bg = tree_bg
+    -- Pass the table, because lualine loads a theme given by name from its own copy
+    opts.options.theme = theme
+    require("lualine").setup(opts)
+  end,
   opts = {
     options = {
       -- monokai-pro.nvim includes a lualine theme
