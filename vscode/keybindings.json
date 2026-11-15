@@ -184,6 +184,16 @@
     "when": "github.copilot.activated && github.copilot.panelVisible"
   },
 
+  // Git
+  // ---------------------------------------------------------------------------
+  // VSCodeVim only handles keys when an editor is open. This covers the empty
+  // editor area, so Space g a works without a file open.
+  {
+    "key": "space g a",
+    "command": "git.openAllChanges",
+    "when": "activeEditorGroupEmpty && !inputFocus && !sideBarFocus && !panelFocus"
+  },
+
   // Removed Keybindings
   // ---------------------------------------------------------------------------
   {

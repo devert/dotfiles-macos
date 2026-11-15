@@ -477,6 +477,10 @@
       ]
     },
     {
+      "before": ["<leader>", "g", "a"],
+      "commands": ["git.openAllChanges"]
+    },
+    {
       "before": ["<leader>", "f"],
       "commands": ["editor.toggleFold"]
     },

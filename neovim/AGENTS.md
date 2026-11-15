@@ -1,7 +1,7 @@
 # Neovim Configuration
 
 - Entry point: `init.lua` (bootstraps lazy.nvim and loads configs)
-- Core settings and keymaps: `lua/options.lua` (leader key = Space)
+- Core settings and keymaps: `lua/options.lua` (leader key = Space). `<leader>ga` there opens all modified and untracked files as tabs, in any buffer.
 - Plugin definitions: one spec per file in `lua/plugins/*.lua`, or a directory with an `init.lua` for larger specs (`lua/plugins/nvim-tree/`). `lua/plugins.lua` returns an empty table.
 - Locked versions: `lazy-lock.json`
 

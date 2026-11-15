@@ -145,6 +145,23 @@ end, { desc = "Redo" })
 vim.keymap.set("x", "<", "<gv", { desc = "Outdent and keep selection" })
 vim.keymap.set("x", ">", ">gv", { desc = "Indent and keep selection" })
 
+-- Open every modified and untracked file as a buffer (a bufferline tab).
+vim.keymap.set("n", "<leader>ga", function()
+  local root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+  local files = vim.fn.systemlist("git ls-files --modified --others --exclude-standard")
+  if vim.v.shell_error ~= 0 or #files == 0 then
+    vim.notify("No git changes found.")
+    return
+  end
+  for _, file in ipairs(files) do
+    local path = root .. "/" .. file
+    -- A deleted file is still listed as modified, so skip it.
+    if vim.uv.fs_stat(path) then
+      vim.cmd.edit(vim.fn.fnameescape(path))
+    end
+  end
+end, { desc = "Open all changed files" })
+
 -- Close the Lazy window with Esc (q also works)
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "lazy",
