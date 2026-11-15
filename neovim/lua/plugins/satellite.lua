@@ -1,23 +1,9 @@
--- Git change markers on the right edge, like the VS Code overview ruler. The
--- markers show added, changed, and deleted lines for the whole file, so you can
--- see them without scrolling. There is no scrollbar thumb or track, only the
--- markers. The markers use the gitsigns colors and show only in the active
--- window. They hide when the whole file fits on screen, because the sign column
--- shows them.
--- The layout copies the VS Code overview ruler, measured from a screenshot. The
--- bar is 3 cells wide. Each hunk is a small square, half a cell wide and half a
--- cell tall, in the right half of the middle cell. That is about 9 px wide and
--- 28 px from the edge, like VS Code. Each cell is split into a top and a bottom
--- half. All marks stay in one column. A cell can only hold one color per column,
--- so when two different hunks share a cell, the lower one moves down into the
--- next half cell if it is free (and otherwise the upper one moves up). If both
--- places are taken, the hunk with the higher rank wins: a change wins over a
--- delete, and a delete wins over an add.
--- The cursor line crosses the middle and right cells, at one of 4 heights inside
--- the cell, so it moves 4 times per cell. In a cell with a mark, the mark takes
--- the middle cell and the line is only in the right cell, at the same height.
--- Its color is the text color, 70% of the way from the background, which is the
--- VS Code color in Monokai Pro.
+-- Git change markers on the right edge of the window, inspired by the VS Code
+-- overview ruler. The markers show the added, changed, and deleted lines of the
+-- whole file in the gitsigns colors. They show only in the active window, and
+-- only when the file does not fit on the screen.
+-- The bar is 3 cells wide. Each marker is a thin block in the middle cell. A
+-- light line in the right cell shows the cursor position.
 -- :SatelliteDisable and :SatelliteEnable turn the markers off and on.
 return {
   "lewis6991/satellite.nvim",
@@ -48,10 +34,8 @@ return {
       callback = hide_bar,
     })
 
-    -- Git handler. A mark is a quarter block, which is a small square. It sits in
-    -- the right half of the middle cell of the bar. Its glyph is the top
-    -- right or the bottom right quarter of the cell, or the whole right half
-    -- when both halves of the cell hold the same type.
+    -- Git handler. A mark is the upper or lower half of the right quarter of the
+    -- middle cell (U+1CEAC, U+1CEAF), or the whole right quarter (U+1FB87).
     local rank_by_type = { add = 1, delete = 2, change = 3 }
     local source_hl = { add = "GitSignsAdd", change = "GitSignsChange", delete = "GitSignsDelete" }
 
@@ -72,10 +56,8 @@ return {
       return mix(16) * 65536 + mix(8) * 256 + mix(0)
     end
 
-    -- Highlight group for a mark. top and bottom are hunk types or nil. The color
-    -- is that of the first one that is set.
-    local function cell_highlight(top, bottom)
-      local kind = top or bottom
+    -- Highlight group for a mark of this hunk type.
+    local function cell_highlight(kind)
       local name = "SatelliteHunk_" .. kind
       vim.api.nvim_set_hl(0, name, { fg = color_of(kind) })
       return name
@@ -94,7 +76,7 @@ return {
     ---@diagnostic disable-next-line: missing-fields
     require("satellite.handlers").register({
       name = "git_hunks",
-      config = { priority = 20, overlap = true },
+      config = { enable = true, priority = 20, overlap = true },
 
       setup = function(_, update)
         vim.api.nvim_create_autocmd("User", {
@@ -149,8 +131,8 @@ return {
           end
         end
 
-        -- Exact bar position of the cursor row in cells. The whole part is the cell,
-        -- and the fraction picks one of 4 line heights inside the cell.
+        -- Bar position of the cursor in cells. The fraction picks one of 4 line
+        -- heights inside the cell.
         local cursor_row = vim.api.nvim_win_get_cursor(winid)[1] - 1
         local rounded, diff = util.row_to_barpos(winid, cursor_row)
         local cursor_exact = math.max(0, math.min(height - 0.001, (rounded - diff) * height / (height - 1)))
@@ -163,15 +145,12 @@ return {
         for cell = 0, height - 1 do
           local top, bottom = winner[2 * cell], winner[2 * cell + 1]
           local line = cell == cursor_cell and line_glyphs[cursor_step] or nil
+          -- Marks are in the middle cell and the line is always in the right
+          -- cell, so the line never hides a mark and never moves sideways.
           if top or bottom then
-            local symbol = (top and bottom) and "▐" or (top and "▝" or "▗")
+            local symbol = (top and bottom) and "🮇" or (top and "𜺬" or "𜺯")
             marks[#marks + 1] = { pos = cell, symbol = symbol, highlight = cell_highlight(top or bottom), column = "middle" }
-          elseif line then
-            marks[#marks + 1] = { pos = cell, symbol = line, highlight = line_highlight(), column = "middle" }
           end
-          -- The line stays at the same height whether or not the cell has a mark.
-          -- Next to a mark it is only in the right cell, because the middle cell
-          -- holds the mark.
           if line then
             marks[#marks + 1] = { pos = cell, symbol = line, highlight = line_highlight(), column = "right" }
           end
@@ -179,10 +158,9 @@ return {
         return marks
       end,
 
-      -- The bar has 3 cells. The sign column is the left and middle cells. The
-      -- text column is the right cell. "middle" and "right" marks are text drawn
-      -- over those cells. Every mark gets its own extmark, so marks in
-      -- the same row do not replace each other.
+      -- The sign column is the left and middle cells, and the text column is the
+      -- right cell. Each mark gets its own extmark, so marks in one row do not
+      -- replace each other.
       apply_mark = function(self, bufnr, m, max_pos)
         if m.pos > max_pos then
           return
@@ -207,10 +185,9 @@ return {
 
     require("satellite").setup(opts)
 
-    -- Redraw the markers when gitsigns finishes reading the changes. Satellite
-    -- only listens for GitSignsUpdate (a branch change), so it can render before
-    -- gitsigns has the changes and then show no markers until you scroll.
-    -- GitSignsChanged fires when the changes of a buffer are updated.
+    -- Satellite redraws only on GitSignsUpdate (a branch change), so it can draw
+    -- before gitsigns has the changes and show no markers until you scroll.
+    -- Also redraw on GitSignsChanged, which fires when the changes update.
     local refresh_pending = false
     local function refresh()
       if refresh_pending then
