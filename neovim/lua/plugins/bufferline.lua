@@ -41,6 +41,8 @@ return {
   opts = {
     options = {
       mode = "buffers",
+      -- Thin yellow bar on the left of the active tab (the default "▎" is twice as wide)
+      indicator = { icon = "▏", style = "icon" },
       -- No tab for the empty [No Name] buffer
       custom_filter = is_file,
       -- Use the colors from monokai-pro.nvim instead of the bufferline defaults
