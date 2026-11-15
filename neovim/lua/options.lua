@@ -77,7 +77,7 @@ vim.opt.cursorline = true
 
 -- Show leading and trailing spaces, and tabs
 vim.opt.list = true
-vim.opt.listchars = { lead = "·", trail = "·", tab = "» " }
+vim.opt.listchars = { lead = "·", trail = "·", multispace = "·", tab = "» " }
 
 -- Navigate split panes with <leader>h/j/k/l
 vim.keymap.set("n", "<leader>h", ":wincmd h<CR>", { desc = "Window left" })
