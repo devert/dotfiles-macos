@@ -52,6 +52,17 @@ vim.opt.signcolumn = "yes"
 -- Do not wrap long lines
 vim.opt.wrap = false
 
+-- Markdown files wrap long lines. They break at a space, not in the middle of a
+-- word, and wrapped list items keep their indent.
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+    vim.opt_local.breakindent = true
+  end,
+})
+
 -- Run CursorHold events after 250 ms idle (default 4000 ms)
 vim.opt.updatetime = 250
 
