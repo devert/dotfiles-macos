@@ -2,10 +2,30 @@ return {
   "loctvl842/monokai-pro.nvim",
   priority = 1000,
   config = function()
+    -- The theme caches its colors on disk, and a change to the override functions
+    -- below does not clear that cache. Clear it when this file is newer than the cache.
+    local cache_file = vim.fn.stdpath("cache") .. "/monokai-pro-pro.json"
+    local cache_stat = vim.uv.fs_stat(cache_file)
+    local this_stat = vim.uv.fs_stat(vim.fn.resolve(debug.getinfo(1, "S").source:sub(2)))
+    if cache_stat and this_stat and this_stat.mtime.sec >= cache_stat.mtime.sec then
+      os.remove(cache_file)
+    end
+
     require("monokai-pro").setup({
+      -- bufferline tabs: give the tab bar and all tabs the editor background, like VS Code.
+      -- The active tab stands out by its yellow text and the yellow bar on its left.
+      override_scheme = function(scheme)
+        return {
+          editorGroupHeader = { tabsBackground = scheme.editor.background },
+          tab = { inactiveBackground = scheme.editor.background },
+        }
+      end,
       -- Match the VS Code Monokai Pro theme more closely
       override = function(c)
         return {
+          -- Keep the theme's dark Directory background. The tab bar change above
+          -- would set it to the editor background too.
+          Directory = { bg = "#221f22" },
           ["@keyword.coroutine"] = { fg = "#ff6188", italic = true },
           DiagnosticHint = { fg = "#ab9df2" },
           DiagnosticSignHint = { fg = "#ab9df2" },
