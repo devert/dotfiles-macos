@@ -8,7 +8,13 @@ brew install claude-code@latest
 echo "Configuring Claude Code"
 
 # Symlink settings file
-ln -sfn ~/.dotfiles/claude/settings.json ~/.claude/settings.json
+# The Otto Sport machine uses its own settings.json from ~/.dotfiles-otto-sport.
+if [[ -d ~/.dotfiles-otto-sport ]]; then
+  echo "Skipping settings.json: this is the Otto Sport machine."
+  echo "Run ~/.dotfiles-otto-sport/claude/configure.sh to link its settings.json."
+else
+  ln -sfn ~/.dotfiles/claude/settings.json ~/.claude/settings.json
+fi
 
 # Symlink keybindings file
 ln -sfn ~/.dotfiles/claude/keybindings.json ~/.claude/keybindings.json
