@@ -39,35 +39,24 @@ return {
     local rank_by_type = { add = 1, delete = 2, change = 3 }
     local source_hl = { add = "GitSignsAdd", change = "GitSignsChange", delete = "GitSignsDelete" }
 
-    local function color_of(kind)
-      local hl = vim.api.nvim_get_hl(0, { name = source_hl[kind], link = false })
-      return hl.fg
+    -- Highlight group for a mark of this hunk type.
+    local function cell_highlight(kind)
+      local name = "SatelliteHunk_" .. kind
+      vim.api.nvim_set_hl(0, name, { fg = vim.api.nvim_get_hl(0, { name = source_hl[kind], link = false }).fg })
+      return name
     end
 
-    -- Color of the cursor line: the text color, 70% of the way from the
-    -- background.
-    local function cursor_color()
+    -- The cursor line at 4 heights inside a cell: top, upper middle, lower middle,
+    -- and bottom. Its color is the text color, 70% of the way from the background.
+    local line_glyphs = { "⎺", "⎻", "⎼", "⎽" }
+    local function line_highlight()
       local normal = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
       local fg, bg = normal.fg or 0xcccccc, normal.bg or 0x000000
       local function mix(shift)
         local f, b = math.floor(fg / 2 ^ shift) % 256, math.floor(bg / 2 ^ shift) % 256
         return math.floor(0.7 * f + 0.3 * b + 0.5)
       end
-      return mix(16) * 65536 + mix(8) * 256 + mix(0)
-    end
-
-    -- Highlight group for a mark of this hunk type.
-    local function cell_highlight(kind)
-      local name = "SatelliteHunk_" .. kind
-      vim.api.nvim_set_hl(0, name, { fg = color_of(kind) })
-      return name
-    end
-
-    -- The cursor line at 4 heights inside a cell: top, upper middle, lower middle,
-    -- and bottom.
-    local line_glyphs = { "⎺", "⎻", "⎼", "⎽" }
-    local function line_highlight()
-      vim.api.nvim_set_hl(0, "SatelliteCursorLine", { fg = cursor_color() })
+      vim.api.nvim_set_hl(0, "SatelliteCursorLine", { fg = mix(16) * 65536 + mix(8) * 256 + mix(0) })
       return "SatelliteCursorLine"
     end
 
@@ -78,6 +67,8 @@ return {
       name = "git_hunks",
       config = { enable = true, priority = 20, overlap = true },
 
+      -- Redraw when gitsigns has new changes (GitSignsChanged), after a branch
+      -- change (GitSignsUpdate), and when the cursor moves.
       setup = function(_, update)
         vim.api.nvim_create_autocmd("User", {
           pattern = { "GitSignsChanged", "GitSignsUpdate" },
@@ -87,18 +78,21 @@ return {
       end,
 
       update = function(bufnr, winid)
-        local height = require("satellite.util").get_winheight(winid)
+        local util = require("satellite.util")
+        local height = util.get_winheight(winid)
         if not package.loaded.gitsigns or height < 2 then
           return {}
         end
-        local util = require("satellite.util")
+
+        -- Exact bar position of a buffer row in cells.
+        local function bar_pos(row)
+          local rounded, diff = util.row_to_barpos(winid, row)
+          return (rounded - diff) * height / (height - 1)
+        end
 
         -- Bar position of a buffer row in half cells: 0 to 2 * height - 1.
         local function half_cell(row)
-          local rounded, diff = util.row_to_barpos(winid, row)
-          local exact = rounded - diff
-          local half = math.floor(exact * height / (height - 1) * 2)
-          return math.max(0, math.min(2 * height - 1, half))
+          return math.max(0, math.min(2 * height - 1, math.floor(bar_pos(row) * 2)))
         end
 
         local winner = {} -- half cell -> hunk type with the highest rank
@@ -107,7 +101,7 @@ return {
           local last = math.max(1, hunk.added.start + math.max(0, hunk.added.count - 1))
           for half = half_cell(first - 1), half_cell(last - 1) do
             local current = winner[half]
-            if not current or (rank_by_type[hunk.type] or 0) > (rank_by_type[current] or 0) then
+            if not current or rank_by_type[hunk.type] > rank_by_type[current] then
               winner[half] = hunk.type
             end
           end
@@ -134,8 +128,7 @@ return {
         -- Bar position of the cursor in cells. The fraction picks one of 4 line
         -- heights inside the cell.
         local cursor_row = vim.api.nvim_win_get_cursor(winid)[1] - 1
-        local rounded, diff = util.row_to_barpos(winid, cursor_row)
-        local cursor_exact = math.max(0, math.min(height - 0.001, (rounded - diff) * height / (height - 1)))
+        local cursor_exact = math.max(0, math.min(height - 0.001, bar_pos(cursor_row)))
         local cursor_cell = math.floor(cursor_exact)
         local cursor_step = math.min(3, math.floor((cursor_exact - cursor_cell) * 4)) + 1
 
@@ -184,27 +177,5 @@ return {
     })
 
     require("satellite").setup(opts)
-
-    -- Satellite redraws only on GitSignsUpdate (a branch change), so it can draw
-    -- before gitsigns has the changes and show no markers until you scroll.
-    -- Also redraw on GitSignsChanged, which fires when the changes update.
-    local refresh_pending = false
-    local function refresh()
-      if refresh_pending then
-        return
-      end
-      refresh_pending = true
-      vim.defer_fn(function()
-        refresh_pending = false
-        pcall(vim.cmd, "SatelliteRefresh")
-      end, 100)
-    end
-
-    vim.api.nvim_create_autocmd("User", {
-      pattern = { "GitSignsChanged", "GitSignsUpdate" },
-      callback = refresh,
-    })
-    vim.api.nvim_create_autocmd("BufWinEnter", { callback = refresh })
-    refresh()
   end,
 }
