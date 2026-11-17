@@ -56,3 +56,6 @@ Workspace.experiments.usesNewQuickSwitcher
 rex.developer-mode-enabled
 Workspace.cursorShader
 Workspace.smoothResizeEnabled
+Workspace.experiments.terminalGridAnchor
+Workspace.preservesWindowWidthOnSidebarToggle
+Workspace.sidebarTextPointSize

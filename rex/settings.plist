@@ -16,6 +16,8 @@
 	<false/>
 	<key>Workspace.darkThemeID</key>
 	<string>custom-AD40A323-3325-4676-89DF-7507082824B4</string>
+	<key>Workspace.experiments.terminalGridAnchor</key>
+	<string>top</string>
 	<key>Workspace.experiments.usesNewQuickSwitcher</key>
 	<true/>
 	<key>Workspace.inactivePaneFadeMode</key>
@@ -28,6 +30,8 @@
 	<string>comfortable</string>
 	<key>Workspace.playsProgramActivitySounds</key>
 	<false/>
+	<key>Workspace.preservesWindowWidthOnSidebarToggle</key>
+	<true/>
 	<key>Workspace.shellIconTheme</key>
 	<string>themed</string>
 	<key>Workspace.showsActivePaneBorder</key>
@@ -38,6 +42,8 @@
 	<string>left</string>
 	<key>Workspace.sidebarShowsActivity</key>
 	<false/>
+	<key>Workspace.sidebarTextPointSize</key>
+	<real>13.0</real>
 	<key>Workspace.sidebarWidth</key>
 	<real>230.0</real>
 	<key>Workspace.smoothResizeEnabled</key>
@@ -55,7 +61,7 @@
 	<key>Workspace.terminalAllowsLigatures</key>
 	<false/>
 	<key>Workspace.terminalCellHeightPercent</key>
-	<real>0.0</real>
+	<real>30.0</real>
 	<key>Workspace.terminalCharacterSpacing</key>
 	<string>0</string>
 	<key>Workspace.terminalCursorBlinkIntervalMilliseconds</key>
