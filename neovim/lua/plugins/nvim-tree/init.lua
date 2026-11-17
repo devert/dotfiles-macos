@@ -1,3 +1,6 @@
+-- True while the tree's QuitPre handler runs its own :qa
+local quitting = false
+
 return {
   "nvim-tree/nvim-tree.lua",
   -- Loads on the first key or command below, or when Neovim starts with a directory
@@ -142,6 +145,11 @@ return {
       vim.api.nvim_create_autocmd("QuitPre", {
         buffer = bufnr,
         callback = function()
+          -- QuitPre also fires for the :qa below. Without this guard a failed :qa
+          -- (for example, a file with unsaved changes) schedules itself again forever.
+          if quitting then
+            return
+          end
           local other_windows = 0
           for _, win in ipairs(vim.api.nvim_list_wins()) do
             local is_floating = vim.api.nvim_win_get_config(win).relative ~= ""
@@ -153,7 +161,9 @@ return {
           if other_windows <= 1 then
             vim.schedule(function()
               -- Fails with a message when a file has unsaved changes
+              quitting = true
               local ok, err = pcall(vim.cmd, "qa")
+              quitting = false
               if not ok then
                 vim.notify(err, vim.log.levels.ERROR)
               end
