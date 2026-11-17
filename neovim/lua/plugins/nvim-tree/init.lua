@@ -80,7 +80,17 @@ return {
   end,
   keys = {
     { "<C-e>", "<cmd>NvimTreeToggle<CR>", desc = "Toggle file tree" },
-    { "<leader>e", "<cmd>NvimTreeFindFile<CR>", desc = "Find current file in tree" },
+    {
+      "<leader>e",
+      function()
+        if vim.bo.filetype == "NvimTree" then
+          require("nvim-tree.api").tree.close()
+        else
+          vim.cmd("NvimTreeFindFile")
+        end
+      end,
+      desc = "Find current file in tree, or close the tree when it has focus",
+    },
   },
   config = function(_, opts)
     -- Add the decorator that colors folders with changed files (the built-in decorators
