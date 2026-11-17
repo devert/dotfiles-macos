@@ -12,7 +12,7 @@ return {
     end,
     spec = {
       { "<leader>t", group = "tabs" },
-      { "<leader>f", group = "find" },
+      { "<leader>s", group = "search" },
       { "<leader>g", group = "git" },
       { "<leader>w", group = "windows" },
       { "<leader>u", group = "toggles" },

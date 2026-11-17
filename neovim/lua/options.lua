@@ -30,6 +30,45 @@ require("vim._core.ui2").enable({
 -- Clipboard (share yank and paste with the system clipboard)
 vim.opt.clipboard = "unnamedplus"
 
+-- Folding: Tree-sitter finds the folds. All folds are open when you open a file.
+-- <leader>f opens or closes the fold under the cursor. <leader>F closes all folds, or opens
+-- them all when they are already closed. zM and zR also close and open all folds.
+-- A file type without a Tree-sitter parser has no folds.
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevelstart = 99
+vim.keymap.set("n", "<leader>f", "za", { desc = "Toggle fold" })
+-- Fold look, like VS Code: a chevron in the gutter on the first line of each closed fold
+-- (fold_column() below, used by the statuscolumn), and a collapsed line that keeps its syntax colors and ends with a dim marker and line count.
+-- The Folded and FoldColumn colors are set in lua/plugins/monokai-pro.lua.
+-- The built-in fold column is off: in nested folds it shows the fold level as a digit.
+vim.opt.foldcolumn = "0"
+vim.opt.fillchars:append({ fold = " " })
+function _G.fold_column()
+  local lnum = vim.v.lnum
+  if vim.v.virtnum ~= 0 then
+    return " "
+  end
+  if vim.fn.foldclosed(lnum) == lnum then
+    local hl = lnum == vim.fn.line(".") and "FoldColumnCursor" or "FoldColumn"
+    return "%#" .. hl .. "#▸%*"
+  end
+  return " "
+end
+function _G.fold_text()
+  local lines = vim.v.foldend - vim.v.foldstart + 1
+  local ok, chunks = pcall(vim.treesitter.foldtext)
+  if not ok or type(chunks) ~= "table" then
+    chunks = { { vim.fn.getline(vim.v.foldstart), "Folded" } }
+  end
+  table.insert(chunks, { " ⋯ " .. lines .. " lines", "FoldedMarker" })
+  return chunks
+end
+vim.opt.foldtext = "v:lua.fold_text()"
+vim.keymap.set("n", "<leader>F", function()
+  vim.cmd.normal({ vim.wo.foldlevel > 0 and "zM" or "zR", bang = true })
+end, { desc = "Toggle all folds" })
+
 -- Files: no swap files (auto-save writes when you leave a buffer), and reload files that
 -- another program changed (for example Claude Code) when Neovim gets focus back.
 vim.opt.swapfile = false
@@ -75,9 +114,9 @@ vim.opt.shiftwidth = 2
 -- Line Numbers
 vim.wo.number = true
 vim.wo.numberwidth = 5
--- Line number (4 digits wide) followed by 3 spaces, like the gap in VS Code.
+-- Line number (4 digits wide), then the fold chevron, with a 3 cell gap like VS Code.
 -- %s is the sign column, which stays empty until something (git, diagnostics) uses it.
-vim.opt.statuscolumn = "%s%4l   "
+vim.opt.statuscolumn = "%s%4l %{%v:lua.fold_column()%} "
 
 -- Move 3 lines at a time with Ctrl+j / Ctrl+k
 vim.keymap.set({ "n", "x" }, "<C-j>", "3j", { desc = "Down 3 lines" })

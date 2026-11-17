@@ -1,5 +1,5 @@
 -- Fuzzy finder for files, text, buffers, and help.
--- Telescope loads on the first <leader>f key, :Telescope command, or vim.ui.select prompt.
+-- Telescope loads on the first <leader>s key, :Telescope command, or vim.ui.select prompt.
 -- live_grep needs ripgrep (installed by brew/install.sh).
 return {
   "nvim-telescope/telescope.nvim",
@@ -14,11 +14,11 @@ return {
     "nvim-telescope/telescope-ui-select.nvim",
   },
   keys = {
-    { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find files" },
-    { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Grep in project" },
-    { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find buffers" },
-    { "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Find help" },
-    { "<leader>fc", "<cmd>Telescope git_status<CR>", desc = "Find changed files (git)" },
+    { "<leader>sf", "<cmd>Telescope find_files<CR>", desc = "Find files" },
+    { "<leader>sg", "<cmd>Telescope live_grep<CR>", desc = "Grep in project" },
+    { "<leader>sb", "<cmd>Telescope buffers<CR>", desc = "Find buffers" },
+    { "<leader>sh", "<cmd>Telescope help_tags<CR>", desc = "Find help" },
+    { "<leader>sc", "<cmd>Telescope git_status<CR>", desc = "Find changed files (git)" },
   },
   init = function()
     -- Load Telescope the first time something calls vim.ui.select.

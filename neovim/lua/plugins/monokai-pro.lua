@@ -45,6 +45,12 @@ return {
           RainbowDelimiterGreen = { fg = "#a9dc76" },
           RainbowDelimiterCyan = { fg = "#78dce8" },
           RainbowDelimiterViolet = { fg = "#ab9df2" },
+          -- Folds: chevrons in the gutter use the line number colors (FoldColumn like
+          -- LineNr, FoldColumnCursor like CursorLineNr), and the marker after a collapsed
+          -- line is dim (the theme already sets the Folded background)
+          FoldColumn = { link = "LineNr" },
+          FoldColumnCursor = { link = "CursorLineNr" },
+          FoldedMarker = { fg = "#939293", bg = c.editor.foldBackground },
           -- CSS: class selectors green, id selectors orange, pseudo classes/elements teal italic
           ["@type.css"] = { fg = "#a9dc76" },
           ["@constant.css"] = { fg = "#fc9867" },

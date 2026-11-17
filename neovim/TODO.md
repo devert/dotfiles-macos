@@ -61,9 +61,3 @@ Ideas to add to this configuration later. These come from common Neovim distros 
 - It adds text objects for function arguments, quotes, and brackets.
 - With the Tree-sitter text objects, you can select a whole function or class (for example `vif`).
 - It works with the commands from nvim-surround, such as `ci"` and `daa`.
-
-## Code folding with Tree-sitter
-
-- Set `vim.opt.foldmethod = "expr"` and `vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"` in `lua/options.lua`.
-- Set `vim.opt.foldlevelstart = 99` so that all folds are open when you open a file.
-- Use `za` to open or close a fold, and `zM` and `zR` to close or open all folds.

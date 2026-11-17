@@ -3,11 +3,12 @@
 - Entry point: `init.lua` (bootstraps lazy.nvim and loads configs)
 - Core settings and keymaps: `lua/options.lua` (leader key = Space). `<leader>ga` there opens all modified and untracked files as tabs, in any buffer.
 - Plugin definitions: one spec per file in `lua/plugins/*.lua`, or a directory with an `init.lua` for larger specs (`lua/plugins/nvim-tree/`). `lua/plugins.lua` returns an empty table.
+- Folding: Tree-sitter finds the folds, and all folds are open at the start. `<leader>f` toggles the fold under the cursor, and `<leader>F` closes all folds or opens them all (`zM` and `zR` also work). The gutter shows a `▸` chevron on the first line of each closed fold and a collapsed line ends with `⋯ N lines`. The settings are in `lua/options.lua`, and the colors are in `lua/plugins/monokai-pro.lua`.
 - Locked versions: `lazy-lock.json`
 
 `neovim/install.sh` installs `neovim` and `tree-sitter-cli` with Homebrew. Then it symlinks `init.lua`, `lazy-lock.json`, and `lua/` into `~/.config/nvim/`.
 
-Active plugins: Monokai Pro theme, Tree-sitter, LSP (nvim-lspconfig with Mason and mason-lspconfig), nvim-tree, lualine, gitsigns (keymaps under `<leader>g`), nvim-surround, Which-key, Telescope (with fzf-native and ui-select, keymaps under `<leader>f`), auto-save.nvim (saves when you leave a buffer or switch away from Neovim, `:ASToggle` turns it off and on; Cmd+S saves on demand through F13), multicursor.nvim, flash.nvim, satellite.nvim, bufferline.nvim (with mini.bufremove), rainbow-delimiters.nvim.
+Active plugins: Monokai Pro theme, Tree-sitter, LSP (nvim-lspconfig with Mason and mason-lspconfig), nvim-tree, lualine, gitsigns (keymaps under `<leader>g`), nvim-surround, Which-key, Telescope (with fzf-native and ui-select, keymaps under `<leader>s`), auto-save.nvim (saves when you leave a buffer or switch away from Neovim, `:ASToggle` turns it off and on; Cmd+S saves on demand through F13), multicursor.nvim, flash.nvim, satellite.nvim, bufferline.nvim (with mini.bufremove), rainbow-delimiters.nvim.
 
 bufferline.nvim shows a tab for each open buffer, like the VS Code editor tabs. Vim tab pages are not used. `Shift+H` and `Shift+L` go to the previous and next tab. `<leader>1` to `<leader>9` go to a tab by position. `<leader>td` closes the tab, `<leader>to` closes the other tabs, and `<leader>tt` picks a tab by letter. Tabs close with mini.bufremove, so the window and the nvim-tree layout stay. The colors come from monokai-pro.nvim (`themable = true`). `lua/plugins/monokai-pro.lua` gives the tab bar and all tabs the editor background and draws a yellow bar on the left of the active tab. `lua/plugins/bufferline.lua` sets the bar to the thin `▏` character. The space above nvim-tree uses the tree background (`NvimTreeNormal`).
 
