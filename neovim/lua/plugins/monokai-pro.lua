@@ -38,6 +38,13 @@ return {
           FlashMatch = { fg = "#c1c0c0", bg = "#5b595c" },
           FlashCurrent = { fg = "#2d2a2e", bg = "#78dce8" },
           FlashBackdrop = { fg = "#727072" },
+          -- rainbow-delimiters.nvim: bracket colors by depth, same as VS Code
+          RainbowDelimiterRed = { fg = "#ff6188" },
+          RainbowDelimiterOrange = { fg = "#fc9867" },
+          RainbowDelimiterYellow = { fg = "#ffd866" },
+          RainbowDelimiterGreen = { fg = "#a9dc76" },
+          RainbowDelimiterCyan = { fg = "#78dce8" },
+          RainbowDelimiterViolet = { fg = "#ab9df2" },
           -- CSS: class selectors green, id selectors orange, pseudo classes/elements teal italic
           ["@type.css"] = { fg = "#a9dc76" },
           ["@constant.css"] = { fg = "#fc9867" },

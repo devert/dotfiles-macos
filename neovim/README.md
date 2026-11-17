@@ -38,7 +38,6 @@ These overrides are in `lua/plugins/monokai-pro.lua`.
 
 These cannot be fixed with a simple override. The same highlight group covers tokens that VS Code colors differently. A fix needs a custom Tree-sitter query.
 
-- **Brackets:** VS Code colors bracket pairs by nesting depth (pink, orange, yellow, green, cyan, purple). Neovim colors all brackets pink. A rainbow brackets plugin can fix this.
 - **`const`, `let`, `var`:** These are teal and italic in VS Code. In Neovim they are pink and italic, like `extends`.
 - **`console`:** This is teal and italic in VS Code. In Neovim it is gray and italic, like `this` and `super`.
 - **`${` in template strings:** This is pink in VS Code and gray in Neovim. The `?` in optional TypeScript properties shares the same group, so an override also turns `?` pink.

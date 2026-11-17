@@ -55,14 +55,6 @@ Ideas to add to this configuration later. These come from common Neovim distros 
 - You can restore them the next time you open Neovim in that folder.
 - This fits the bufferline tabs, because it brings back the same tabs.
 
-## Rainbow brackets with rainbow-delimiters.nvim
-
-- Add `HiPhish/rainbow-delimiters.nvim`.
-- It colors nested brackets by depth, like the bracket pair colors in VS Code.
-- It uses Tree-sitter, so it works in each language that has a parser.
-- Set the `RainbowDelimiter*` highlight groups (Red, Yellow, Blue, Orange, Green, Violet, Cyan) to Monokai Pro colors in `lua/plugins/monokai-pro.lua`.
-- It does not draw the guide lines between matching brackets. `indent-blankline.nvim` can draw similar scope lines.
-
 ## Extra text objects with mini.ai
 
 - Add `mini.ai`.
