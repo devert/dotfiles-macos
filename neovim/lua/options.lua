@@ -82,6 +82,12 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "TermClose" }, {
   command = "silent! checktime",
 })
 
+-- Keep undo history after you close a file or restart Neovim
+vim.opt.undofile = true
+
+-- Keep 4 lines of context above and below the cursor
+vim.opt.scrolloff = 4
+
 -- Search: ignore case, unless the search text has a capital letter
 vim.opt.ignorecase = true
 vim.opt.smartcase = true

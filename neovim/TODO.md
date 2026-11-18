@@ -10,16 +10,6 @@ Ideas to add to this configuration later. These come from common Neovim distros 
 - Use stylua for Lua.
 - Install the formatters with Mason.
 
-## Keep undo history with `undofile`
-
-- Set `vim.opt.undofile = true` in `lua/options.lua`.
-- The swap file is off (`swapfile = false`), so the undo history is the only way to recover work after a crash or restart.
-
-## Keep context lines with `scrolloff`
-
-- Set `vim.opt.scrolloff` to a value from 4 to 8 in `lua/options.lua`.
-- The cursor then stays a few lines away from the top and bottom edge of the window.
-
 ## Close brackets and quotes automatically
 
 - Add `mini.pairs` or `nvim-autopairs`.
