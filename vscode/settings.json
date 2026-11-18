@@ -481,6 +481,10 @@
       "commands": ["git.openAllChanges"]
     },
     {
+      "before": ["<leader>", "e"],
+      "commands": ["workbench.view.explorer"]
+    },
+    {
       "before": ["<leader>", "f"],
       "commands": ["editor.toggleFold"]
     },
