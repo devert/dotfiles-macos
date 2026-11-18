@@ -13,6 +13,12 @@ vim.keymap.set("n", "<leader><leader>r", function()
   vim.cmd("restart")
 end, { desc = "Save all and restart Nvim" })
 
+-- What a session saves (persistence.nvim and :restart). No "blank": windows that have no
+-- file, like nvim-tree, are skipped. "globals" saves vim.g.NvimTreeOpen, so that the tree
+-- opens again (see lua/plugins/nvim-tree/session.lua). No "terminal": terminal windows
+-- cannot restore their program.
+vim.opt.sessionoptions = { "buffers", "curdir", "folds", "globals", "help", "tabpages", "winsize" }
+
 -- Messages: use the experimental ui2 message UI (Nvim 0.12+). Messages show in a
 -- small window at the bottom right and close after the timeout.
 -- Long messages show a [+x] marker instead of "Press ENTER". Use g< to read them.

@@ -38,6 +38,14 @@ return {
     -- Blank row until bufferline loads, instead of the built-in "[No Name]" tab
     vim.o.tabline = " "
   end,
+  config = function(_, opts)
+    require("bufferline").setup(opts)
+    -- monokai-pro loads its bufferline colors when bufferline loads. It colors the tab
+    -- icons on the next BufEnter. Buffers that are already open (for example from a
+    -- restored session) get no BufEnter, so their icons keep a darker background until
+    -- you switch tabs. Run BufEnter once now.
+    vim.api.nvim_exec_autocmds("BufEnter", {})
+  end,
   opts = {
     options = {
       mode = "buffers",

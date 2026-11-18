@@ -63,6 +63,9 @@ return {
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
 
+    -- Open the tree again when a session restores, if it was open (see session.lua)
+    require("plugins.nvim-tree.session").setup()
+
     -- `nvim <directory>` opens the tree. The plugin is lazy, so load it here.
     vim.api.nvim_create_autocmd("VimEnter", {
       once = true,

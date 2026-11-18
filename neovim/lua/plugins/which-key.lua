@@ -16,6 +16,7 @@ return {
       { "<leader>g", group = "git" },
       { "<leader>w", group = "windows" },
       { "<leader>u", group = "toggles" },
+      { "<leader>p", group = "sessions" },
       { "gr", group = "LSP" },
     },
   },

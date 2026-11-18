@@ -48,13 +48,6 @@ Ideas to add to this configuration later. These come from common Neovim distros 
 - It gives a three-way view to fix merge conflicts.
 - This adds to the gitsigns setup, which only shows changes in one buffer.
 
-## Session restore with persistence.nvim
-
-- Add `persistence.nvim`.
-- It saves the open buffers (tabs) for each project folder.
-- You can restore them the next time you open Neovim in that folder.
-- This fits the bufferline tabs, because it brings back the same tabs.
-
 ## Extra text objects with mini.ai
 
 - Add `mini.ai`.
