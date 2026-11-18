@@ -12,11 +12,11 @@ return {
     end,
     spec = {
       { "<leader>t", group = "tabs" },
-      { "<leader>s", group = "search" },
+      { "<leader>f", group = "find" },
       { "<leader>g", group = "git" },
       { "<leader>w", group = "windows" },
       { "<leader>u", group = "toggles" },
-      { "<leader>p", group = "sessions" },
+      { "<leader>s", group = "sessions" },
       { "gr", group = "LSP" },
     },
   },

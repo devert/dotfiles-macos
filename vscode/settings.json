@@ -485,11 +485,11 @@
       "commands": ["workbench.view.explorer"]
     },
     {
-      "before": ["<leader>", "f"],
+      "before": ["<leader>", "<leader>", "f"],
       "commands": ["editor.toggleFold"]
     },
     {
-      "before": ["<leader>", "F"],
+      "before": ["<leader>", "<leader>", "F"],
       "commands": ["editor.foldAll"]
     },
     {

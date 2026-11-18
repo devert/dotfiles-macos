@@ -37,13 +37,13 @@ require("vim._core.ui2").enable({
 vim.opt.clipboard = "unnamedplus"
 
 -- Folding: Tree-sitter finds the folds. All folds are open when you open a file.
--- <leader>f opens or closes the fold under the cursor. <leader>F closes all folds, or opens
--- them all when they are already closed. zM and zR also close and open all folds.
+-- <leader><leader>f opens or closes the fold under the cursor. <leader><leader>F closes all folds,
+-- and <leader><leader>u opens all folds (the same keys as in VS Code). zM and zR also work.
 -- A file type without a Tree-sitter parser has no folds.
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevelstart = 99
-vim.keymap.set("n", "<leader>f", "za", { desc = "Toggle fold" })
+vim.keymap.set("n", "<leader><leader>f", "za", { desc = "Toggle fold" })
 -- Fold look, like VS Code: a chevron in the gutter on the first line of each closed fold
 -- (fold_column() below, used by the statuscolumn), and a collapsed line that keeps its syntax colors and ends with a dim marker and line count.
 -- The Folded and FoldColumn colors are set in lua/plugins/monokai-pro.lua.
@@ -71,9 +71,8 @@ function _G.fold_text()
   return chunks
 end
 vim.opt.foldtext = "v:lua.fold_text()"
-vim.keymap.set("n", "<leader>F", function()
-  vim.cmd.normal({ vim.wo.foldlevel > 0 and "zM" or "zR", bang = true })
-end, { desc = "Toggle all folds" })
+vim.keymap.set("n", "<leader><leader>F", "zM", { desc = "Fold all" })
+vim.keymap.set("n", "<leader><leader>u", "zR", { desc = "Unfold all" })
 
 -- Files: no swap files (auto-save writes when you leave a buffer), and reload files that
 -- another program changed (for example Claude Code) when Neovim gets focus back.
@@ -159,10 +158,14 @@ end
 -- "∆" and "˚" are what Option+j / Option+k type on macOS when the
 -- terminal does not send Option as Alt.
 for _, key in ipairs({ "<M-j>", "∆" }) do
-  vim.keymap.set("n", key, function() resize_pane(1) end, { desc = "Increase pane size" })
+  vim.keymap.set("n", key, function()
+    resize_pane(1)
+  end, { desc = "Increase pane size" })
 end
 for _, key in ipairs({ "<M-k>", "˚" }) do
-  vim.keymap.set("n", key, function() resize_pane(-1) end, { desc = "Decrease pane size" })
+  vim.keymap.set("n", key, function()
+    resize_pane(-1)
+  end, { desc = "Decrease pane size" })
 end
 
 -- Create and close split panes
