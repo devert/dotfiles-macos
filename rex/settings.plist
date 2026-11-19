@@ -4,6 +4,10 @@
 <dict>
 	<key>RexAppUpdateAutomation</key>
 	<string>notify</string>
+	<key>Workspace.activityGrouping</key>
+	<string>priority</string>
+	<key>Workspace.activityGroupingResetToPriority</key>
+	<true/>
 	<key>Workspace.appIcon</key>
 	<string>dark</string>
 	<key>Workspace.appearance</key>
@@ -73,7 +77,9 @@
 	<key>Workspace.terminalCursorStyleForced</key>
 	<false/>
 	<key>Workspace.terminalFallbackFontNames</key>
-	<array/>
+	<array>
+		<string>JetBrainsMonoNL Nerd Font Mono</string>
+	</array>
 	<key>Workspace.terminalFontName</key>
 	<string>Operator Mono</string>
 	<key>Workspace.terminalFontPointSize</key>
@@ -91,6 +97,8 @@
 	<key>Workspace.terminalSelectionRoundedCorners</key>
 	<true/>
 	<key>Workspace.terminalSmoothScrolling</key>
+	<true/>
+	<key>Workspace.terminalSynthesizesMissingStyles</key>
 	<true/>
 	<key>Workspace.terminalUseThemePalette</key>
 	<false/>
