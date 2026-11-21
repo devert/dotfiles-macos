@@ -29,3 +29,6 @@ node_modules
 
 # Claude Code local settings (machine-specific permissions)
 .claude/settings.local.json
+
+# Claude Code worktrees (EnterWorktree, agent isolation, factory runs)
+.claude/worktrees/
