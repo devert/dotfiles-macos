@@ -9,7 +9,7 @@ end
 local keys = {
   { "H", "<Cmd>BufferLineCyclePrev<CR>", desc = "Previous tab" },
   { "L", "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
-  { "<leader>td", close_buffer, desc = "Close tab" },
+  { "<leader>tc", close_buffer, desc = "Close tab" },
   { "<leader>to", "<Cmd>BufferLineCloseOthers<CR>", desc = "Close other tabs" },
   { "<leader>tt", "<Cmd>BufferLinePick<CR>", desc = "Pick tab by letter" },
 }
@@ -57,7 +57,7 @@ return {
       themable = true,
       close_command = close_buffer,
       right_mouse_command = close_buffer,
-      -- No close buttons. Close tabs with <leader>td.
+      -- No close buttons. Close tabs with <leader>tc.
       show_buffer_close_icons = false,
       show_close_icon = false,
       -- Start the tabs after the nvim-tree sidebar, like VS Code
