@@ -8,7 +8,7 @@
 
 `neovim/install.sh` installs `neovim` and `tree-sitter-cli` with Homebrew. Then it symlinks `init.lua`, `lazy-lock.json`, and `lua/` into `~/.config/nvim/`.
 
-Active plugins: Monokai Pro theme, Tree-sitter, LSP (nvim-lspconfig with Mason and mason-lspconfig), nvim-tree, lualine, gitsigns (keymaps under `<leader>g`), nvim-surround, Which-key, Telescope (with fzf-native, ui-select, and frecency, keymaps under `<leader>f`, and `<leader>/` searches the current buffer), auto-save.nvim (saves when you leave a buffer or switch away from Neovim, `:ASToggle` turns it off and on; Cmd+S saves on demand through F13; Cmd+Return and Cmd+Shift+Return open a line below and above through F14 and F15), multicursor.nvim, flash.nvim, satellite.nvim, bufferline.nvim (with mini.bufremove), rainbow-delimiters.nvim, persistence.nvim, blink.cmp, mini.pairs.
+Active plugins: Monokai Pro theme, Tree-sitter, LSP (nvim-lspconfig with Mason and mason-lspconfig), nvim-tree, lualine, gitsigns (keymaps under `<leader>g`), nvim-surround, Which-key, Telescope (with fzf-native, ui-select, and frecency, keymaps under `<leader>f`, and `<leader>/` searches the current buffer), auto-save.nvim (saves when you leave a buffer or switch away from Neovim, `:ASToggle` turns it off and on; Cmd+S saves on demand through F13), multicursor.nvim, flash.nvim, satellite.nvim, bufferline.nvim (with mini.bufremove), rainbow-delimiters.nvim, persistence.nvim, blink.cmp, mini.pairs.
 
 mini.pairs closes brackets and quotes as you type, like VS Code. It is installed on its own (`nvim-mini/mini.pairs`), not as part of mini.nvim. `lua/plugins/mini-pairs.lua` uses the default configuration.
 
