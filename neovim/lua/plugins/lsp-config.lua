@@ -1,4 +1,5 @@
--- Language servers (LSP), diagnostics, and completion.
+-- Language servers (LSP) and diagnostics. The completion menu is blink.cmp
+-- (lua/plugins/blink-cmp.lua), which tells the servers that it supports completion.
 --
 -- Mason installs the servers. mason-lspconfig enables every installed server with
 -- vim.lsp.enable(). nvim-lspconfig supplies the default settings for each server.
@@ -166,45 +167,11 @@ local function on_attach(ev)
     client.server_capabilities.hoverProvider = false
   end
 
-  -- The completion menu opens only with Ctrl+Space (see setup_completion_keys).
-  if client:supports_method("textDocument/completion") then
-    vim.lsp.completion.enable(true, client.id, buf, { autotrigger = false })
-  end
-
   local function map(lhs, rhs, desc)
     vim.keymap.set("n", lhs, rhs, { buffer = buf, desc = desc })
   end
   map("gd", vim.lsp.buf.definition, "Go to definition")
   map("gh", diagnostic_or_hover, "Diagnostic or hover")
-end
-
-local function setup_completion_keys()
-  -- Show the menu with one match too, select nothing until Tab, show docs for the
-  -- selected item, and match fuzzy like VS Code.
-  vim.opt.completeopt = { "menuone", "noselect", "popup", "fuzzy" }
-
-  local function pum_key(when_visible, otherwise)
-    return function()
-      return vim.fn.pumvisible() == 1 and when_visible or otherwise
-    end
-  end
-  -- Ctrl+Space opens the completion menu, like VS Code. Most terminals send Ctrl+Space
-  -- as <C-@>, so both keys are mapped.
-  for _, lhs in ipairs({ "<C-Space>", "<C-@>" }) do
-    vim.keymap.set("i", lhs, function()
-      vim.lsp.completion.get()
-    end, { desc = "Show completions" })
-  end
-  vim.keymap.set("i", "<Tab>", pum_key("<C-n>", "<Tab>"), { expr = true, desc = "Next completion item" })
-  vim.keymap.set("i", "<S-Tab>", pum_key("<C-p>", "<S-Tab>"), { expr = true, desc = "Previous completion item" })
-  -- Enter accepts the selected item. With nothing selected it closes the menu and
-  -- makes a new line.
-  vim.keymap.set("i", "<CR>", function()
-    if vim.fn.pumvisible() == 0 then
-      return "<CR>"
-    end
-    return vim.fn.complete_info({ "selected" }).selected ~= -1 and "<C-y>" or "<C-e><CR>"
-  end, { expr = true, desc = "Accept completion or new line" })
 end
 
 return {
@@ -244,7 +211,6 @@ return {
     },
     config = function()
       setup_diagnostics()
-      setup_completion_keys()
       configure_servers()
       vim.keymap.set("n", "<Esc>", close_float, { desc = "Close hover / diagnostic float" })
       setup_float_yank()

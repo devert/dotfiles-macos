@@ -39,9 +39,8 @@ require("vim._core.ui2").enable({
     msg = { timeout = 4000 },
   },
 })
--- Hide insert-mode completion messages, such as "match 1 of 12" and "Pattern not found".
--- The LSP opens the completion menu on every letter you type (lua/plugins/lsp-config.lua),
--- so without this flag a message shows on each key.
+-- Hide the messages of the built-in Ctrl+N/Ctrl+P completion, such as "match 1 of 12"
+-- and "Pattern not found". The LSP completion menu is blink.cmp (lua/plugins/blink-cmp.lua).
 vim.opt.shortmess:append("c")
 
 -- Clipboard (share yank and paste with the system clipboard)
