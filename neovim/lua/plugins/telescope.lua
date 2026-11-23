@@ -19,6 +19,8 @@ return {
     { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find buffers" },
     { "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Find help" },
     { "<leader>fc", "<cmd>Telescope git_status<CR>", desc = "Find changed files (git)" },
+    { "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Find recent files" },
+    { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "Search in buffer" },
   },
   init = function()
     -- Load Telescope the first time something calls vim.ui.select.

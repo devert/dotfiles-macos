@@ -25,10 +25,8 @@ Ideas to add to this configuration later. These come from common Neovim distros 
 
 ## Better Telescope pickers
 
-- Add more pickers to `lua/plugins/telescope.lua`.
 - Live grep with arguments (`telescope-live-grep-args.nvim`) lets you pass flags such as a file type or a glob.
-- A recent files picker (`oldfiles`) or a frecency picker lists the files you open most.
-- A `<leader>/` key searches fuzzily inside the current buffer.
+- A frecency picker (`telescope-frecency.nvim`) lists the files you open most. `<leader>fr` already lists recent files.
 
 ## Diffs and merge conflicts with diffview.nvim
 
