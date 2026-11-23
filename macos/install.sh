@@ -43,9 +43,6 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
-# Enable Reduce Motion to minimize the movement of user interface elements
-defaults write com.apple.universalaccess reduceMotion -bool true
-
 
 ###############################################################################
 # Trackpad
