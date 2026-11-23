@@ -1,7 +1,7 @@
 # Neovim Configuration
 
 - Entry point: `init.lua` (bootstraps lazy.nvim and loads configs)
-- Core settings and keymaps: `lua/options.lua` (leader key = Space). `<leader>ga` there opens all modified and untracked files as tabs, in any buffer.
+- Core settings and keymaps: `lua/options.lua` (leader key = Space). `<leader>ga` there opens all modified and untracked files as tabs, in any buffer. `<leader>L` opens the Lazy plugin manager, and Esc closes it.
 - Plugin definitions: one spec per file in `lua/plugins/*.lua`, or a directory with an `init.lua` for larger specs (`lua/plugins/nvim-tree/`). `lua/plugins.lua` returns an empty table.
 - Folding: Tree-sitter finds the folds, and all folds are open at the start. `<leader><leader>f` toggles the fold under the cursor, `<leader><leader>F` closes all folds, and `<leader><leader>u` opens all folds (`zM` and `zR` also work). VS Code uses the same three keys. The gutter shows a `▸` chevron on the first line of each closed fold and a collapsed line ends with `⋯ N lines`. The settings are in `lua/options.lua`, and the colors are in `lua/plugins/monokai-pro.lua`.
 - Locked versions: `lazy-lock.json`

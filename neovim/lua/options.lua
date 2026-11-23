@@ -226,7 +226,8 @@ vim.keymap.set("n", "<leader>ga", function()
   end
 end, { desc = "Open all changed files" })
 
--- Close the Lazy window with Esc (q also works)
+-- <leader>L opens the Lazy plugin manager. Esc closes it (q also works).
+vim.keymap.set("n", "<leader>L", "<cmd>Lazy<CR>", { desc = "Open Lazy" })
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "lazy",
   callback = function(ev)
