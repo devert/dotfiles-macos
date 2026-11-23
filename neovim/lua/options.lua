@@ -6,6 +6,13 @@ vim.keymap.set("n", "<leader>q", ":qa<CR>", { desc = "Quit all" })
 -- ghostty/config), because terminals do not pass Cmd to Neovim.
 vim.keymap.set({ "n", "i", "v" }, "<F13>", "<Cmd>silent! write<CR><Esc>", { desc = "Save file" })
 
+-- Cmd+Return and Cmd+Shift+Return open a new line below and above, like o and O.
+-- The terminal turns them into F14 and F15. In insert mode they work the same way.
+vim.keymap.set("n", "<F14>", "o", { desc = "New line below" })
+vim.keymap.set("n", "<F15>", "O", { desc = "New line above" })
+vim.keymap.set("i", "<F14>", "<C-o>o", { desc = "New line below" })
+vim.keymap.set("i", "<F15>", "<C-o>O", { desc = "New line above" })
+
 -- Save all files and restart Nvim to load config and plugin changes.
 -- :restart (Nvim 0.12+) keeps the terminal UI and restores open windows.
 vim.keymap.set("n", "<leader><leader>r", function()

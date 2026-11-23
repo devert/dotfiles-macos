@@ -15,6 +15,11 @@ rex.bind("cmd+k", "pane.send_key", { key = "ctrl+l" })
 -- Cmd+S sends F13, which Neovim maps to save
 rex.bind("cmd+s", "pane.send_key", { key = "f13" })
 
+-- Cmd+Return sends F14 and Cmd+Shift+Return sends F15, which Neovim maps to
+-- o and O (open a new line below or above)
+rex.bind("cmd+enter", "pane.send_key", { key = "f14" })
+rex.bind("cmd+shift+enter", "pane.send_key", { key = "f15" })
+
 -- Ctrl+Shift+Up/Down moves the active tab up/down
 rex.bind("ctrl+shift+up", "client.tab.move.backward")
 rex.bind("ctrl+shift+down", "client.tab.move.forward")

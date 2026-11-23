@@ -39,3 +39,8 @@ keybind = cmd+k=text:\x0c
 
 # Cmd+S sends F13, which Neovim maps to save
 keybind = cmd+s=text:\x1b[25~
+
+# Cmd+Return sends F14 and Cmd+Shift+Return sends F15, which Neovim maps to o and O.
+# This replaces the default Cmd+Return fullscreen key (Cmd+Ctrl+F still works).
+keybind = cmd+enter=text:\x1b[26~
+keybind = cmd+shift+enter=text:\x1b[28~
