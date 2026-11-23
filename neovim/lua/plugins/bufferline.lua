@@ -6,10 +6,20 @@ local function close_buffer(buf)
   require("mini.bufremove").delete(buf or 0, false)
 end
 
+-- Close every tab (listed buffer). The windows stay and show an empty buffer.
+local function close_all_buffers()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.bo[buf].buflisted then
+      close_buffer(buf)
+    end
+  end
+end
+
 local keys = {
   { "H", "<Cmd>BufferLineCyclePrev<CR>", desc = "Previous tab" },
   { "L", "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
   { "<leader>tc", close_buffer, desc = "Close tab" },
+  { "<leader>tC", close_all_buffers, desc = "Close all tabs" },
   { "<leader>to", "<Cmd>BufferLineCloseOthers<CR>", desc = "Close other tabs" },
   { "<leader>tt", "<Cmd>BufferLinePick<CR>", desc = "Pick tab by letter" },
 }
