@@ -12,6 +12,8 @@ return {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     -- Show vim.ui.select prompts (for example LSP code actions) in Telescope.
     "nvim-telescope/telescope-ui-select.nvim",
+    -- Rank files by how often and how recently you open them.
+    { "nvim-telescope/telescope-frecency.nvim", version = "*" },
   },
   keys = {
     { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find files" },
@@ -19,7 +21,7 @@ return {
     { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find buffers" },
     { "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Find help" },
     { "<leader>fc", "<cmd>Telescope git_status<CR>", desc = "Find changed files (git)" },
-    { "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Find recent files" },
+    { "<leader>fr", "<cmd>Telescope frecency workspace=CWD<CR>", desc = "Find recent files" },
     { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "Search in buffer" },
   },
   init = function()
@@ -47,10 +49,17 @@ return {
       },
       extensions = {
         ["ui-select"] = { require("telescope.themes").get_dropdown() },
+        frecency = {
+          -- Remove entries for deleted files without a question.
+          -- The question opens as a hidden ui-select picker,
+          -- and that picker puts an "A" in the frecency prompt.
+          db_safe_mode = false,
+        },
       },
     })
 
     telescope.load_extension("fzf")
     telescope.load_extension("ui-select")
+    telescope.load_extension("frecency")
   end,
 }

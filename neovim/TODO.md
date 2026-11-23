@@ -23,10 +23,11 @@ Ideas to add to this configuration later. These come from common Neovim distros 
 - It can list recent files and projects.
 - This only helps if you start Neovim without a file. Skip it if you always open a file from the shell.
 
-## Better Telescope pickers
+## Live grep with arguments
 
-- Live grep with arguments (`telescope-live-grep-args.nvim`) lets you pass flags such as a file type or a glob.
-- A frecency picker (`telescope-frecency.nvim`) lists the files you open most. `<leader>fr` already lists recent files.
+- Add `telescope-live-grep-args.nvim` to `lua/plugins/telescope.lua`.
+- It lets you pass ripgrep flags in the grep prompt, such as a file type or a glob.
+- For example, `"TODO" -t lua` searches only Lua files.
 
 ## Diffs and merge conflicts with diffview.nvim
 
