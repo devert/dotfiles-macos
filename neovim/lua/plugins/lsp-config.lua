@@ -114,22 +114,6 @@ local function configure_servers()
   })
 end
 
--- Open the completion menu on every word character, not only on the server's trigger
--- characters (such as ".").
-local function complete_on_every_keypress(client)
-  local provider = client.server_capabilities.completionProvider
-  if not provider then
-    return
-  end
-  local chars = provider.triggerCharacters or {}
-  for c in ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"):gmatch(".") do
-    if not vim.tbl_contains(chars, c) then
-      table.insert(chars, c)
-    end
-  end
-  provider.triggerCharacters = chars
-end
-
 -- gh: show the diagnostic under the cursor. If there is none, show hover docs.
 local function diagnostic_or_hover()
   if not vim.diagnostic.open_float({ scope = "cursor" }) then
@@ -182,9 +166,9 @@ local function on_attach(ev)
     client.server_capabilities.hoverProvider = false
   end
 
+  -- The completion menu opens only with Ctrl+Space (see setup_completion_keys).
   if client:supports_method("textDocument/completion") then
-    complete_on_every_keypress(client)
-    vim.lsp.completion.enable(true, client.id, buf, { autotrigger = true })
+    vim.lsp.completion.enable(true, client.id, buf, { autotrigger = false })
   end
 
   local function map(lhs, rhs, desc)
@@ -203,6 +187,13 @@ local function setup_completion_keys()
     return function()
       return vim.fn.pumvisible() == 1 and when_visible or otherwise
     end
+  end
+  -- Ctrl+Space opens the completion menu, like VS Code. Most terminals send Ctrl+Space
+  -- as <C-@>, so both keys are mapped.
+  for _, lhs in ipairs({ "<C-Space>", "<C-@>" }) do
+    vim.keymap.set("i", lhs, function()
+      vim.lsp.completion.get()
+    end, { desc = "Show completions" })
   end
   vim.keymap.set("i", "<Tab>", pum_key("<C-n>", "<Tab>"), { expr = true, desc = "Next completion item" })
   vim.keymap.set("i", "<S-Tab>", pum_key("<C-p>", "<S-Tab>"), { expr = true, desc = "Previous completion item" })
