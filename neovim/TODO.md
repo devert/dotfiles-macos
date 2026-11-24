@@ -29,3 +29,10 @@ Ideas to add to this configuration later. These come from common Neovim distros 
 - It adds text objects for function arguments, quotes, and brackets.
 - With the Tree-sitter text objects, you can select a whole function or class (for example `vif`).
 - It works with the commands from nvim-surround, such as `ci"` and `daa`.
+
+## Text cut off by the scrollbar
+
+- Fix text that is cut off on the right edge of the window.
+- The cause is probably the custom scrollbar from satellite.nvim (`lua/plugins/satellite.lua`). Its bar is 3 cells wide and covers the right edge of the window.
+- Find out if the bar covers the text or if the window is too narrow for it.
+- Then change the bar width or the window layout so that the text stays visible.
