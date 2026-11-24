@@ -10,12 +10,6 @@ Ideas to add to this configuration later. These come from common Neovim distros 
 - Use stylua for Lua.
 - Install the formatters with Mason.
 
-## Close brackets and quotes automatically
-
-- Add `mini.pairs` or `nvim-autopairs`.
-- When you type `(`, `[`, `{`, or a quote, the plugin types the closing character.
-- VS Code does this by default.
-
 ## Start screen
 
 - Add a start screen (dashboard) plugin, such as `snacks.dashboard` or `alpha-nvim`.
