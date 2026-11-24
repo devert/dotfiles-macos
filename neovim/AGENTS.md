@@ -8,7 +8,9 @@
 
 `neovim/install.sh` installs `neovim` and `tree-sitter-cli` with Homebrew. Then it symlinks `init.lua`, `lazy-lock.json`, and `lua/` into `~/.config/nvim/`.
 
-Active plugins: Monokai Pro theme, Tree-sitter, LSP (nvim-lspconfig with Mason and mason-lspconfig), nvim-tree, lualine, gitsigns (keymaps under `<leader>g`), nvim-surround, Which-key, Telescope (with fzf-native, ui-select, and frecency, keymaps under `<leader>f`, and `<leader>/` searches the current buffer), auto-save.nvim (saves when you leave a buffer or switch away from Neovim, `:ASToggle` turns it off and on; Cmd+S saves on demand through F13), multicursor.nvim, flash.nvim, satellite.nvim, bufferline.nvim (with mini.bufremove), rainbow-delimiters.nvim, persistence.nvim, blink.cmp, mini.pairs.
+Active plugins: Monokai Pro theme, Tree-sitter, LSP (nvim-lspconfig with Mason and mason-lspconfig), nvim-tree, lualine, gitsigns (keymaps under `<leader>g`), nvim-surround, Which-key, Telescope (with fzf-native, ui-select, and frecency, keymaps under `<leader>f`, and `<leader>/` searches the current buffer), auto-save.nvim (saves when you leave a buffer or switch away from Neovim, `:ASToggle` turns it off and on; Cmd+S saves on demand through F13), multicursor.nvim, flash.nvim, satellite.nvim, bufferline.nvim (with mini.bufremove), rainbow-delimiters.nvim, persistence.nvim, blink.cmp, mini.pairs, diffview.nvim.
+
+diffview.nvim shows the diff of all changed files in one view, the history of a file or a branch, and a three-way view for merge conflicts. The keys are under `<leader>g`: `gv` opens the diff view, `gh` shows the history of the current file, `gH` shows the history of the branch, and `gq` closes the view. It loads on first use. `lua/plugins/diffview.lua` has the configuration.
 
 mini.pairs closes brackets and quotes as you type, like VS Code. It is installed on its own (`nvim-mini/mini.pairs`), not as part of mini.nvim. `lua/plugins/mini-pairs.lua` uses the default configuration.
 

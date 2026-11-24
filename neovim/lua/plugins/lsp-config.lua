@@ -95,6 +95,19 @@ local function configure_servers()
     },
   })
 
+  -- Do not start marksman for diffview:// buffers (see on_attach). It crashes on them.
+  vim.lsp.config("marksman", {
+    root_dir = function(bufnr, on_dir)
+      if vim.api.nvim_buf_get_name(bufnr):match("^diffview://") then
+        return
+      end
+      local root = vim.fs.root(bufnr, { ".marksman.toml", ".git" })
+      if root then
+        on_dir(root)
+      end
+    end,
+  })
+
   vim.lsp.config("jsonls", {
     settings = {
       json = {
@@ -161,6 +174,15 @@ local function on_attach(ev)
     return
   end
   local buf = ev.buf
+
+  -- diffview.nvim shows old file versions as diffview:// buffers. They are not real
+  -- files, and marksman crashes when it tries to read them.
+  if vim.api.nvim_buf_get_name(buf):match("^diffview://") then
+    vim.schedule(function()
+      vim.lsp.buf_detach_client(buf, client.id)
+    end)
+    return
+  end
 
   -- basedpyright gives better hover docs for Python than Ruff
   if client.name == "ruff" then

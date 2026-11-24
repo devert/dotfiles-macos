@@ -204,6 +204,12 @@ vim.keymap.set("x", ">", ">gv", { desc = "Indent and keep selection" })
 
 -- Open every modified and untracked file as a buffer (a bufferline tab).
 vim.keymap.set("n", "<leader>ga", function()
+  -- :edit would replace the diff buffer and break the diff view.
+  local ok, lib = pcall(require, "diffview.lib")
+  if ok and lib.get_current_view() then
+    vim.notify("Close the diff view first (<leader>gq).")
+    return
+  end
   local root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
   local files = vim.fn.systemlist("git ls-files --modified --others --exclude-standard")
   if vim.v.shell_error ~= 0 or #files == 0 then

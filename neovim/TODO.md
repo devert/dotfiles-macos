@@ -23,14 +23,6 @@ Ideas to add to this configuration later. These come from common Neovim distros 
 - It lets you pass ripgrep flags in the grep prompt, such as a file type or a glob.
 - For example, `"TODO" -t lua` searches only Lua files.
 
-## Diffs and merge conflicts with diffview.nvim
-
-- Add `diffview.nvim`.
-- It shows the diff for all changed files in one view.
-- It shows the history of a file or a branch.
-- It gives a three-way view to fix merge conflicts.
-- This adds to the gitsigns setup, which only shows changes in one buffer.
-
 ## Extra text objects with mini.ai
 
 - Add `mini.ai`.
