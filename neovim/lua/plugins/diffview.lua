@@ -12,13 +12,21 @@ return {
   },
   config = function(_, opts)
     require("diffview").setup(opts)
-    -- The theme gives Directory a dark background, which shows behind the folder
-    -- names in the file panel. Use the same text color without the background.
-    local function folder_name()
+    -- The file panel uses the same colors as nvim-tree. The theme also gives
+    -- Directory a dark background, which shows behind the folder names, so the
+    -- folder names get the Directory text color without the background.
+    local function panel_colors()
+      local tree_bg = "#221f22"
       local fg = vim.api.nvim_get_hl(0, { name = "Directory", link = false }).fg
       vim.api.nvim_set_hl(0, "DiffviewFolderName", { fg = fg })
+      vim.api.nvim_set_hl(0, "DiffviewNormal", { fg = "#939293", bg = tree_bg })
+      vim.api.nvim_set_hl(0, "DiffviewEndOfBuffer", { fg = tree_bg, bg = tree_bg })
+      vim.api.nvim_set_hl(0, "DiffviewCursorLine", { bg = "#3a373a" })
+      -- The divider between the panel and the diff has the panel background, so
+      -- no thin line shows.
+      vim.api.nvim_set_hl(0, "DiffviewWinSeparator", { fg = tree_bg, bg = tree_bg })
     end
-    folder_name()
+    panel_colors()
 
     -- Close all diff views before persistence.nvim saves the session. A session
     -- cannot restore a diff view. It brings back a broken tab with empty windows
@@ -33,7 +41,7 @@ return {
     })
     vim.api.nvim_create_autocmd("ColorScheme", {
       callback = function()
-        vim.schedule(folder_name)
+        vim.schedule(panel_colors)
       end,
     })
   end,
@@ -59,6 +67,11 @@ return {
       -- Diffview has its own tab page, but bufferline lists every buffer. Hide the
       -- tab bar while a diff view is active, and show it again when you leave.
       hooks = {
+      -- The divider above the file history panel belongs to the diff windows. Make
+      -- it a blank row, so no thin line shows. The fold item keeps the global value.
+      diff_buf_win_enter = function(_, winid)
+        vim.wo[winid].fillchars = "fold: ,horiz: "
+      end,
         view_enter = function()
           vim.o.showtabline = 0
         end,
